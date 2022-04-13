@@ -12,9 +12,10 @@ const Login = () => {
           <img src={hero} alt="logo" />
       </div>
       <div className={classes["login-form-container"]}>
+          <h2 className="text-prim"></h2>
         <form action="post" className={classes["login-form"]} onSubmit={submitHandler}>
-          <label htmlFor="email" className="text-primary">
-            Email address
+          <label htmlFor="email" >
+            <span className="text-primary">Email address</span>
             <input
               onChange={handleChange}
               name="email"
@@ -24,7 +25,7 @@ const Login = () => {
           </label>
 
           <label htmlFor="password" className="text-primary">
-            Password
+            <span className="text-primary">Password</span>
             <input
               type="password"
               name="password"
@@ -44,8 +45,8 @@ const Login = () => {
             Login as Guest
           </button>
           <div>
-            <p className="centered-text ">
-              <Link to="/signup" >
+            <p className="centered-text  ">
+              <Link to="/signup"  className="text-primary">
                 Create New Account <i className="fas fa-chevron-right"></i>
               </Link>
             </p>
