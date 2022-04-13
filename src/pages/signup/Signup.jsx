@@ -30,6 +30,7 @@ const Signup = () => {
               onChange={changeHandler}
               name="email"
               type="email"
+              required
               placeholder="abc@neog.com"
             />
           </label>
@@ -100,9 +101,11 @@ const Signup = () => {
             </span>
           )}
           <div>
-            <label htmlFor="accept-condition" className="text-primary">
-              <input id="accept-condition" required type="checkbox" /> I accept
-              all Terms & Conditions
+            <label htmlFor="accept-condition">
+              <input id="accept-condition" required type="checkbox" />{" "}
+              <span className="text-primary">
+                I accept all Terms & Conditions
+              </span>
             </label>
           </div>
           <input type="submit" value="Signup" className="btn btn-primary" />
