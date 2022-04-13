@@ -1,6 +1,6 @@
 import classes from "./login.module.css";
 import { Link } from "react-router-dom";
-import hero from '../../assets/logo.webp';
+import hero from "../../assets/logo.webp";
 
 const Login = () => {
   const handleChange = () => {};
@@ -9,12 +9,16 @@ const Login = () => {
   return (
     <div className={classes["login-container"]}>
       <div className={classes["hero-image"]}>
-          <img src={hero} alt="logo" />
+        <img src={hero} alt="logo" />
       </div>
       <div className={classes["login-form-container"]}>
-          <h2 className="text-prim"></h2>
-        <form action="post" className={classes["login-form"]} onSubmit={submitHandler}>
-          <label htmlFor="email" >
+        <h2 className="centered-text text-primary">Login</h2>
+        <form
+          action="post"
+          className={classes["login-form"]}
+          onSubmit={submitHandler}
+        >
+          <label htmlFor="email">
             <span className="text-primary">Email address</span>
             <input
               onChange={handleChange}
@@ -33,20 +37,13 @@ const Login = () => {
               placeholder="*******"
             />
           </label>
-          <input
-            type="submit"
-            value="Login"
-            className="btn btn-primary"
-          />
-          <button
-            className="btn btn-secondary"
-            onClick={guestHandler}
-          >
+          <input type="submit" value="Login" className="btn btn-primary" />
+          <button className="btn btn-secondary" onClick={guestHandler}>
             Login as Guest
           </button>
           <div>
             <p className="centered-text  ">
-              <Link to="/signup"  className="text-primary">
+              <Link to="/signup" className="text-primary">
                 Create New Account <i className="fas fa-chevron-right"></i>
               </Link>
             </p>
