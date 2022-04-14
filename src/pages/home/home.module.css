@@ -2,4 +2,5 @@
     display: flex;
     background: var(--tertiary);
     height: 100%;
+    position: relative;
 }

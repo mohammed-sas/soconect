@@ -1,8 +1,10 @@
 import classes from "./sidebar.module.css";
 import logo from "../../assets/logo-32x32.png";
-import React from "react";
+import {useToggle} from '../../hooks/useToggle'
+import CreatePostModal from "../create post/CreatePostModal";
 
 const Sidebar = () => {
+  const [showModal,setShowModal]=useToggle(false);
   return (
     <aside className={classes["container"]}>
       <div className={classes["tabs-container"]}>
@@ -14,10 +16,6 @@ const Sidebar = () => {
           <span className="text-primary">Home</span>
         </div>
         <div className={classes["tab-item"]}>
-          <i className="fas fa-hashtag text-primary"></i>
-          <span className="text-primary">Explore</span>
-        </div>
-        <div className={classes["tab-item"]}>
           <i className="fas fa-bell text-primary"></i>
           <span className="text-primary">Notifications</span>
         </div>
@@ -25,7 +23,7 @@ const Sidebar = () => {
           <i className="fas fa-user-alt text-primary"></i>
           <span className="text-primary">Profile</span>
         </div>
-        <button className="btn btn-primary">Post</button>
+        <button className="btn btn-primary" onClick={setShowModal}>Create Post</button>
       </div>
       <div className={classes["profile-container"]}>
         <div className={classes["user-detail"]}>
@@ -33,6 +31,7 @@ const Sidebar = () => {
           <span className="text-primary">@mhdsas</span>
         </div>
       </div>
+      {showModal ?<CreatePostModal setShowModal={setShowModal}/>:null}
     </aside>
   );
 };

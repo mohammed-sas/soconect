@@ -30,6 +30,7 @@ body {
 .btn-primary{
   background: var(--primary);
   color: var(--tertiary);
+  font-weight: bolder;
 }
 .btn-primary:hover{
   background: var(--secondary);
