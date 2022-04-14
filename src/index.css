@@ -24,6 +24,9 @@ body {
 .text-primary {
   color: var(--primary);
 }
+.text-white{
+  color:var(--white);
+}
 
 .btn{
   margin: 0;
