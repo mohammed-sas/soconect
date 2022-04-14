@@ -20,21 +20,21 @@ const Login = () => {
       [name]: value,
     });
   };
-  const guestHandler =() => {
-      const guestUser = {
-        username: "mohammed",
-        password: "@12345678_",
-      };
-      setUser(guestUser);
+  const guestHandler = () => {
+    const guestUser = {
+      username: "mohammed",
+      password: "@12345678_",
+    };
+    setUser(guestUser);
   };
-  const submitHandler =async (e) => {
-    try{
+  const submitHandler = async (e) => {
+    try {
       e.preventDefault();
       const status = await login(user);
-      if(status===200){
-        navigate(from,{replace:true});
+      if (status === 200) {
+        navigate(from, { replace: true });
       }
-    }catch(error){
+    } catch (error) {
       console.log(error);
     }
   };
@@ -71,7 +71,12 @@ const Login = () => {
             />
           </label>
           <input type="submit" value="Login" className="btn btn-primary" />
-          <input type="button" className="btn btn-secondary" onClick={guestHandler} value="Guest login"/>
+          <input
+            type="button"
+            className="btn btn-secondary"
+            onClick={guestHandler}
+            value="Guest login"
+          />
           <div>
             <p className="centered-text  ">
               <Link to="/signup" className="text-primary">

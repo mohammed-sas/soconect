@@ -49,3 +49,8 @@ body {
   background: var(--primary);
   color:var(--tertiary)
 }
+
+.mismatch{
+  color:var(--white);
+  font-size: 1.2rem;
+}

@@ -3,14 +3,42 @@ import hero from "../../assets/logo.webp";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useToggle } from "../../hooks/useToggle";
-
+import { useAuth } from "../../context";
+import {useNavigate} from 'react-router-dom';
 const Signup = () => {
   const [passMatch, setPassMatch] = useState(true);
   const [passLen, setPassLen] = useState(true);
   const [showpass, setShowpass] = useToggle(false);
+  const [user, setUser] = useState(null);
   const [showConfirmpass, setShowConfirmpass] = useToggle(false);
-  const changeHandler = () => {};
-  const submitHandler = () => {};
+  const { signup } = useAuth();
+  const navigate=useNavigate();
+  const changeHandler = (e) => {
+    const { name, value } = e.target;
+    setUser({
+      ...user,
+      [name]: value,
+    });
+  };
+  const submitHandler = async (e) => {
+    try {
+      e.preventDefault();
+      if (user.password !== user.confirmPassword) {
+        setPassMatch(false);
+        return;
+      }
+      if (user.password.length < 8) {
+        setPassLen(false);
+        return;
+      }
+      let status = await signup(user);
+      if (status == 201) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className={classes["login-container"]}>
@@ -25,19 +53,17 @@ const Signup = () => {
           onSubmit={submitHandler}
         >
           <label htmlFor="email">
-            <span className="text-primary">Email address</span>
+            <span className="text-primary">Username</span>
             <input
               onChange={changeHandler}
-              name="email"
-              type="email"
+              name="username"
+              type="text"
               required
-              placeholder="abc@neog.com"
             />
           </label>
           <label className="text-white" htmlFor="firstName">
             <span className="text-primary">First Name</span>
             <input
-              id="firstName"
               name="firstName"
               required
               onChange={changeHandler}
@@ -48,7 +74,6 @@ const Signup = () => {
           <label className="text-white" htmlFor="lastName">
             <span className="text-primary">Last Name</span>
             <input
-              id="lastName"
               name="lastName"
               required
               onChange={changeHandler}
@@ -59,7 +84,7 @@ const Signup = () => {
 
           <label className="text-white" htmlFor="password">
             <span className="text-primary">Password</span>
-            <div id="password" className={classes["password"]}>
+            <div className={classes["password"]}>
               <input
                 name="password"
                 type={showpass ? "text" : "password"}

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
-import {authReducer} from '../reducer';
+import { authReducer } from "../reducer";
 const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
@@ -10,21 +10,19 @@ const AuthProvider = ({ children }) => {
 };
 
 const useAuthProvide = () => {
-  const [authState,authDispatch] = useReducer(authReducer,{user:null});
-
-  useEffect(()=>{
-        const existingUser = JSON.parse(localStorage.getItem("user"));
-        authDispatch({type:"INITIAL_STATE",payload:existingUser});
-  },[])
+  const [authState, authDispatch] = useReducer(authReducer, { user: null });
+  useEffect(() => {
+    const existingUser = JSON.parse(localStorage.getItem("user"));
+    authDispatch({ type: "INITIAL_STATE", payload: existingUser });
+  }, []);
 
   const login = async (user) => {
     try {
-      
-      const response = await axios.post("/api/auth/login",user);
+      const response = await axios.post("/api/auth/login", user);
       if (response.status === 200) {
         localStorage.setItem("token", response.data.encodedToken);
-        localStorage.setItem("user",JSON.stringify(response.data.foundUser));
-        authDispatch({type:"LOGIN",payload:response.data.foundUser});
+        localStorage.setItem("user", JSON.stringify(response.data.foundUser));
+        authDispatch({ type: "LOGIN", payload: response.data.foundUser });
       }
       return response.status;
     } catch (error) {
@@ -33,11 +31,11 @@ const useAuthProvide = () => {
   };
   const signup = async (user) => {
     try {
-      const response = await axios.post("/api/auth/signup",user);
+      const response = await axios.post("/api/auth/signup", user);
       if (response.status === 201) {
         localStorage.setItem("token", response.data.encodedToken);
-        localStorage.setItem("user",JSON.stringify(response.data.createdUser));
-        authDispatch({type:"SIGNUP",payload:response.data.createdUser});
+        localStorage.setItem("user", JSON.stringify(response.data.createdUser));
+        authDispatch({ type: "SIGNUP", payload: response.data.createdUser });
       }
       return response.status;
     } catch (error) {
@@ -47,11 +45,11 @@ const useAuthProvide = () => {
 
   const logout = () => {
     localStorage.setItem("token", null);
-    localStorage.setItem("user",null);
-    authDispatch({type:"LOGOUT"});
+    localStorage.setItem("user", null);
+    authDispatch({ type: "LOGOUT" });
   };
 
-  return { authState, login, signup, logout };
+  return { authState, login, signup, logout, authDispatch };
 };
 
 const useAuth = () => useContext(AuthContext);
