@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext, useEffect, useReducer, useState } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import {authReducer} from '../reducer';
 const AuthContext = createContext(null);
 
@@ -13,13 +13,14 @@ const useAuthProvide = () => {
   const [authState,authDispatch] = useReducer(authReducer,{user:null});
 
   useEffect(()=>{
-        const user = JSON.parse(localStorage.getItem("user"));
-        authDispatch({type:"INITIAL_STATE",payload:user});
+        const existingUser = JSON.parse(localStorage.getItem("user"));
+        authDispatch({type:"INITIAL_STATE",payload:existingUser});
   },[])
 
   const login = async (user) => {
     try {
-      const response = await axios.post("/api/auth/login", { user });
+      
+      const response = await axios.post("/api/auth/login",user);
       if (response.status === 200) {
         localStorage.setItem("token", response.data.encodedToken);
         localStorage.setItem("user",JSON.stringify(response.data.foundUser));
@@ -32,7 +33,7 @@ const useAuthProvide = () => {
   };
   const signup = async (user) => {
     try {
-      const response = await axios.post("/api/auth/signup", { user });
+      const response = await axios.post("/api/auth/signup",user);
       if (response.status === 201) {
         localStorage.setItem("token", response.data.encodedToken);
         localStorage.setItem("user",JSON.stringify(response.data.createdUser));
