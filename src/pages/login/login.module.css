@@ -1,0 +1,59 @@
+.login-container {
+  background: var(--tertiary);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-flow: row wrap;
+  gap: 1rem;
+  height: 100vh;
+}
+
+.login-form-container {
+  width: 40rem;
+  padding: 2rem;
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+}
+
+.login-form {
+  display: flex;
+  min-height: 30rem;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: space-between;
+}
+.login-form input {
+  height: 3rem;
+  padding: 0 5px;
+  border: 1px solid var(--gray-70);
+  border-radius: 1rem;
+  margin-top: 5px;
+}
+
+.login-form .password {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+.login-form .password input {
+  flex-grow: 1;
+}
+.password i {
+  cursor: pointer;
+}
+
+.login-form label {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form label:last-child{
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+} 
+.hero-image img {
+  width: 20rem;
+  height: 20rem;
+}
