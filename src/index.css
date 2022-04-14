@@ -1,9 +1,11 @@
 :root {
   --primary: #f87db4;
   --tertiary: #1e1545;
+  --tertiary-light:#261D50;
+  --tertiary-lighter:#3E336D;
   --secondary:#F9CEE1;
   --primary-dark:#960200;
-  -white:#fff;
+  --white:#fff;
 }
 
 img {
@@ -22,6 +24,9 @@ body {
 .text-primary {
   color: var(--primary);
 }
+.text-white{
+  color:var(--white);
+}
 
 .btn{
   margin: 0;
@@ -29,6 +34,7 @@ body {
 .btn-primary{
   background: var(--primary);
   color: var(--tertiary);
+  font-weight: bolder;
 }
 .btn-primary:hover{
   background: var(--secondary);

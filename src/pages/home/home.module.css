@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+    background: var(--tertiary);
+    height: 100%;
+    position: relative;
+}
+
+.user-feed{
+    max-width: 80%;
+    margin: 0 auto;
+}
