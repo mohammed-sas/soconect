@@ -6,23 +6,22 @@ const Sidebar = () => {
   return (
     <aside className={classes["container"]}>
       <div className={classes["tabs-container"]}>
-        <div>
+        <div className={classes["tab-item"]}>
           <img src={logo} alt="logo" />
         </div>
-        <div>
+        <div className={classes["tab-item"]}>
           <i className="fas fa-home text-primary"></i>
           <span className="text-primary">Home</span>
         </div>
-        <div>
+        <div className={classes["tab-item"]}>
           <i className="fas fa-hashtag text-primary"></i>
           <span className="text-primary">Explore</span>
         </div>
-        <div className="badge">
+        <div className={classes["tab-item"]}>
           <i className="fas fa-bell text-primary"></i>
           <span className="text-primary">Notifications</span>
-          <span className="notification-num">4</span>
         </div>
-        <div>
+        <div className={classes["tab-item"]}>
           <i className="fas fa-user-alt text-primary"></i>
           <span className="text-primary">Profile</span>
         </div>
