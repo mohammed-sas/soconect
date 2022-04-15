@@ -1,7 +1,7 @@
 .container {
   width: 20%;
   height: 98vh;
-  background-color:var(--tertiary-light) ;
+  background-color: var(--tertiary-light);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,26 +16,33 @@
   height: 60%;
   justify-content: space-between;
 }
-.tab-item{
+.tab-item {
   cursor: pointer;
   display: flex;
   gap: 5px;
   padding: 8px 12px;
   border-radius: 1rem;
 }
-.tab-item:first-child:hover{
+.tab-item:first-child:hover {
   background: none;
 }
-.tab-item:hover{
+.tab-item:hover {
   background: var(--tertiary-lighter);
 }
-.tab-item>*{
+.tab-item > * {
   font-size: 2rem;
 }
 
 .profile-container {
   display: flex;
   flex-direction: row;
+  gap: 1px;
+  justify-content: space-between;
+  align-items: center;
+}
+.logout-btn {
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 .user-detail {
@@ -43,7 +50,7 @@
   flex-direction: column;
 }
 
-.user-detail span{
+.user-detail span {
   font-size: 2rem;
   font-weight: bolder;
 }

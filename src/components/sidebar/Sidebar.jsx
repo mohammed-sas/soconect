@@ -1,10 +1,17 @@
 import classes from "./sidebar.module.css";
 import logo from "../../assets/logo-32x32.png";
-import {useToggle} from '../../hooks/useToggle'
+import { useToggle } from "../../hooks/useToggle";
 import CreatePostModal from "../create post/CreatePostModal";
-
+import {useAuth} from '../../context';
+import { useNavigate } from "react-router-dom";
 const Sidebar = () => {
-  const [showModal,setShowModal]=useToggle(false);
+  const [showModal, setShowModal] = useToggle(false);
+  const {logout}=useAuth();
+  const navigate=useNavigate();
+  const logoutHandler=()=>{
+    logout();
+    navigate("/login");
+  }
   return (
     <aside className={classes["container"]}>
       <div className={classes["tabs-container"]}>
@@ -23,15 +30,21 @@ const Sidebar = () => {
           <i className="fas fa-user-alt text-primary"></i>
           <span className="text-primary">Profile</span>
         </div>
-        <button className="btn btn-primary" onClick={setShowModal}>Create Post</button>
+        <button className="btn btn-primary" onClick={setShowModal}>
+          Create Post
+        </button>
       </div>
       <div className={classes["profile-container"]}>
         <div className={classes["user-detail"]}>
           <span className="text-primary">Mohammed</span>
           <span className="text-primary">@mhdsas</span>
         </div>
+        <i
+          class={`fas fa-sign-out-alt text-primary ${classes["logout-btn"]}`}
+          onClick={logoutHandler}
+        ></i>
       </div>
-      {showModal ?<CreatePostModal setShowModal={setShowModal}/>:null}
+      {showModal ? <CreatePostModal setShowModal={setShowModal} /> : null}
     </aside>
   );
 };
