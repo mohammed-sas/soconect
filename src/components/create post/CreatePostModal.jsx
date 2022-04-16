@@ -20,7 +20,7 @@ const CreatePostModal = ({ setShowModal }) => {
     <div className={classes["modal-container"]}>
       <div className={classes["modal"]}>
         <i
-          class={`fas fa-times text-primary ${classes["close-btn"]}`}
+          className={`fas fa-times text-primary ${classes["close-btn"]}`}
           onClick={setShowModal}
         ></i>
         <h3 className="text-primary">Create Post</h3>

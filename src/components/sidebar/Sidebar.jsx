@@ -43,7 +43,7 @@ const Sidebar = () => {
           <span className="text-primary">@mhdsas</span>
         </div>
         <i
-          class={`fas fa-sign-out-alt text-primary ${classes["logout-btn"]}`}
+          className={`fas fa-sign-out-alt text-primary ${classes["logout-btn"]}`}
           onClick={logoutHandler}
         ></i>
       </div>
