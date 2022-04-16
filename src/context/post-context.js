@@ -44,8 +44,18 @@ const usePostActions = () => {
       console.log(error);
     }
   };
+  const deletePost=async (postId)=>{
+    try{
+      const response= await axios.delete(`/api/posts/${postId}`,auth);
+      if(response.status ===201){
+        postDispatch({type:"DELETE",payload:response.data.posts.reverse()});
+      }
+    }catch(error){
+      console.log(error);
+    }
+  }
 
-  return { postState, postDispatch, addPost, getAllPost };
+  return { postState, postDispatch, addPost, getAllPost,deletePost };
 };
 
 const usePost = () => useContext(PostContext);

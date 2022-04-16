@@ -1,10 +1,18 @@
 import classes from "./postCard.module.css";
 import { useToggle } from "../../hooks/useToggle";
-import { useAuth } from "../../context";
+import { useAuth, usePost } from "../../context";
 const PostCard = ({ post }) => {
   const [showOptions, setShowOptions] = useToggle(false);
   const { authState } = useAuth();
   const { user } = authState;
+  const {deletePost} = usePost();
+  const deleteHandler=async ()=>{
+    try{
+      await deletePost(post._id);
+    }catch(error){
+      console.log(error);
+    }
+  }
 
   return (
     <div className={classes["post-container"]}>
@@ -25,7 +33,7 @@ const PostCard = ({ post }) => {
             {showOptions && (
               <ul className={classes["option-list"]}>
                 {user.username === post.username && (
-                  <li>
+                  <li onClick={deleteHandler}>
                     <i class="far fa-trash-alt"></i> Delete Post
                   </li>
                 )}

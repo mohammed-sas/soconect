@@ -15,6 +15,11 @@ const postReducer = (state, { type, payload }) => {
         ...state,
         posts: [],
       };
+    case "DELETE":
+      return {
+        ...state,
+        posts: payload,
+      };
     default:
       return state;
   }

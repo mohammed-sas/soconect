@@ -53,6 +53,7 @@
   color: var(--white);
   width: 10rem;
   padding: 1.2rem 1.6rem;
+  cursor: pointer;
 }
 .option-list li:hover{
   background: var(--tertiary-lightest);
