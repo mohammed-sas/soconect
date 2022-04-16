@@ -1,6 +1,11 @@
 import classes from "./postCard.module.css";
-
+import { useToggle } from "../../hooks/useToggle";
+import { useAuth } from "../../context";
 const PostCard = ({ post }) => {
+  const [showOptions, setShowOptions] = useToggle(false);
+  const { authState } = useAuth();
+  const { user } = authState;
+
   return (
     <div className={classes["post-container"]}>
       <div className="avatar avatar-text">
@@ -12,8 +17,20 @@ const PostCard = ({ post }) => {
             <span className="text-white">@{post.username}</span>
             <span className="text-white">3h</span>
           </div>
-          <span>
-            <i className="fas fa-ellipsis-h text-white"></i>
+          <span className={classes["options"]}>
+            <i
+              className={`fas fa-ellipsis-h text-white ${classes["option-btn"]}`}
+              onClick={setShowOptions}
+            ></i>
+            {showOptions && (
+              <ul className={classes["option-list"]}>
+                {user.username === post.username && (
+                  <li>
+                    <i class="far fa-trash-alt"></i> Delete Post
+                  </li>
+                )}
+              </ul>
+            )}
           </span>
         </div>
         <div className="tweet-body">

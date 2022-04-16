@@ -36,3 +36,24 @@
 .username-body span:first-child {
   font-weight: bolder;
 }
+
+.options{
+  position: relative;
+}
+.option-btn{
+  cursor: pointer;
+}
+.option-list{
+  position: absolute;
+  list-style: none;
+  right: 0rem;
+}
+.option-list li{
+  background: var(--tertiary-lighter);
+  color: var(--white);
+  width: 10rem;
+  padding: 1.2rem 1.6rem;
+}
+.option-list li:hover{
+  background: var(--tertiary-lightest);
+}

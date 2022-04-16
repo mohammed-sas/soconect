@@ -38,7 +38,7 @@ const usePostActions = () => {
     try {
       const response = await axios.post("/api/posts", { postData }, auth);
       if (response.status === 201) {
-        postDispatch({ type: "ADD", payload: response.data.posts });
+        postDispatch({ type: "ADD", payload: response.data.posts.reverse() });
       }
     } catch (error) {
       console.log(error);
