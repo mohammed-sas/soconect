@@ -1,3 +1,4 @@
 import { AuthProvider, useAuth } from "./auth-context";
+import { PostProvider, usePost } from "./post-context";
 
-export { AuthProvider, useAuth };
+export { AuthProvider, useAuth, PostProvider, usePost };
