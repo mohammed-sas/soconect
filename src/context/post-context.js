@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { postReducer } from "../reducer";
 const PostContext = createContext(null);
 
@@ -16,9 +16,27 @@ const usePostActions = () => {
       authorization: token,
     },
   };
+
+  useEffect(() => {
+    if (token !== null){
+        getAllPost();
+    } 
+  }, []);
+
+  const getAllPost = async () => {
+    try {
+      const response = await axios.get("/api/posts");
+      if (response.status === 200) {
+        postDispatch({ type: "ALL_POST", payload: response.data.posts });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const addPost = async (postData) => {
     try {
-      const response = await axios.post("/api/posts", {postData}, auth);
+      const response = await axios.post("/api/posts", { postData }, auth);
       if (response.status === 201) {
         postDispatch({ type: "ADD", payload: response.data.posts });
       }
@@ -27,7 +45,7 @@ const usePostActions = () => {
     }
   };
 
-  return { postState, postDispatch, addPost };
+  return { postState, postDispatch, addPost, getAllPost };
 };
 
 const usePost = () => useContext(PostContext);
