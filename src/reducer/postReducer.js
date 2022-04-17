@@ -20,6 +20,11 @@ const postReducer = (state, { type, payload }) => {
         ...state,
         posts: payload,
       };
+    case "EDIT":
+      return {
+        ...state,
+        posts: payload,
+      };
     default:
       return state;
   }

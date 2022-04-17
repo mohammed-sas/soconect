@@ -1,8 +1,10 @@
 import classes from "./postCard.module.css";
 import { useToggle } from "../../hooks/useToggle";
 import { useAuth, usePost } from "../../context";
+import EditPostModal from "../edit post/EditPostModal";
 const PostCard = ({ post }) => {
   const [showOptions, setShowOptions] = useToggle(false);
+  const [showEditModal,setShowEditModal]=useToggle(false);
   const { authState } = useAuth();
   const { user } = authState;
   const {deletePost} = usePost();
@@ -13,6 +15,7 @@ const PostCard = ({ post }) => {
       console.log(error);
     }
   }
+  
 
   return (
     <div className={classes["post-container"]}>
@@ -34,7 +37,12 @@ const PostCard = ({ post }) => {
               <ul className={classes["option-list"]}>
                 {user.username === post.username && (
                   <li onClick={deleteHandler}>
-                    <i class="far fa-trash-alt"></i> Delete Post
+                    <i className="far fa-trash-alt"></i> Delete Post
+                  </li>
+                )}
+                 {user.username === post.username && (
+                  <li onClick={setShowEditModal}>
+                    <i className="far fa-edit"></i> Edit Post
                   </li>
                 )}
               </ul>
@@ -55,6 +63,7 @@ const PostCard = ({ post }) => {
           </span>
         </div>
       </div>
+      {showEditModal && <EditPostModal post={post} setShowEditModal={setShowEditModal} setShowOptions={setShowOptions}/>}
     </div>
   );
 };

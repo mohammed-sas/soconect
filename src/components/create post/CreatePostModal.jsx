@@ -11,6 +11,7 @@ const CreatePostModal = ({ setShowModal }) => {
   const postHandler = async () => {
     try {
       await addPost(post);
+      setShowModal();
     } catch (error) {
       console.log(error);
     }

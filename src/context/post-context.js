@@ -54,8 +54,18 @@ const usePostActions = () => {
       console.log(error);
     }
   }
+  const editPost=async (postData,id)=>{
+    try{
+      const response = await axios.post(`/api/posts/edit/${id}`,{postData},auth);
+      if(response.status === 201){
+        postDispatch({type:"EDIT",payload:response.data.posts.reverse()});
+      }
+    }catch(error){
+      console.log(error);
+    }
+  }
 
-  return { postState, postDispatch, addPost, getAllPost,deletePost };
+  return { postState, postDispatch, addPost, getAllPost,deletePost,editPost };
 };
 
 const usePost = () => useContext(PostContext);
