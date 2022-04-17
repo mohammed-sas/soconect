@@ -71,7 +71,7 @@ const PostCard = ({ post }) => {
             <span className="text-white">0</span>
           </div>
           <div className={classes["footer-item"]} onClick={likeHandler}>
-            <i className="far fa-heart text-white"></i> 
+            <i className={`fas fa-heart ${checkLiked(post._id)? "text-primary":"text-white"}`}></i> 
             <span className="text-white">{post.likes.likeCount}</span>
           </div>
         </div>
