@@ -26,8 +26,14 @@
   margin-top: 20px;
 }
 
-.post-footer span {
-  font-size: 1.2rem;
+.footer-item{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  cursor: pointer;
+}
+.footer-item>*{
+  font-size: 1.4rem;
 }
 
 .username-body span {

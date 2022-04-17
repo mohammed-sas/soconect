@@ -25,6 +25,16 @@ const postReducer = (state, { type, payload }) => {
         ...state,
         posts: payload,
       };
+    case "LIKED":
+      return {
+        ...state,
+        posts: payload,
+      };
+    case "UNLIKED":
+      return {
+        ...state,
+        posts:payload
+      }
     default:
       return state;
   }
