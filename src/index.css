@@ -3,6 +3,7 @@
   --tertiary: #1e1545;
   --tertiary-light:#261D50;
   --tertiary-lighter:#3E336D;
+  --tertiary-lightest:#4D427F;
   --secondary:#F9CEE1;
   --primary-dark:#960200;
   --white:#fff;
@@ -53,4 +54,12 @@ body {
 .mismatch{
   color:var(--white);
   font-size: 1.2rem;
+}
+
+.avatar{
+  background: var(--primary);
+}
+.avatar span{
+  color: var(--tertiary);
+  font-weight: bolder;
 }

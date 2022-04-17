@@ -2,15 +2,18 @@ import classes from "./sidebar.module.css";
 import logo from "../../assets/logo-32x32.png";
 import { useToggle } from "../../hooks/useToggle";
 import CreatePostModal from "../create post/CreatePostModal";
-import {useAuth} from '../../context';
+import {useAuth,usePost} from '../../context';
 import { useNavigate } from "react-router-dom";
 const Sidebar = () => {
   const [showModal, setShowModal] = useToggle(false);
   const {logout}=useAuth();
+  const {postDispatch}=usePost();
   const navigate=useNavigate();
   const logoutHandler=()=>{
     logout();
     navigate("/login");
+    postDispatch({type:"CLEAR"});
+    
   }
   return (
     <aside className={classes["container"]}>
@@ -40,7 +43,7 @@ const Sidebar = () => {
           <span className="text-primary">@mhdsas</span>
         </div>
         <i
-          class={`fas fa-sign-out-alt text-primary ${classes["logout-btn"]}`}
+          className={`fas fa-sign-out-alt text-primary ${classes["logout-btn"]}`}
           onClick={logoutHandler}
         ></i>
       </div>
