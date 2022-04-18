@@ -1,0 +1,22 @@
+.comment-card{
+    background: var(--tertiary-light);
+    width: inherit;
+    padding:2rem 1rem;
+}
+
+.comment-body{
+    display: flex;
+    gap: 5px;
+}
+.comment-body .content{
+    flex-grow: 1;
+}
+.footer{
+    font-weight: bolder;
+    font-size: 1.2rem;
+}
+
+.close-btn{
+    font-size: 1.2rem;
+    cursor: pointer;
+}

@@ -21,7 +21,7 @@ const Sidebar = () => {
         <div className={classes["tab-item"]}>
           <img src={logo} alt="logo" />
         </div>
-        <div className={classes["tab-item"]}>
+        <div className={classes["tab-item"]} onClick={()=>navigate("/")}>
           <i className="fas fa-home text-primary"></i>
           <span className="text-primary">Home</span>
         </div>

@@ -35,6 +35,11 @@ const postReducer = (state, { type, payload }) => {
         ...state,
         posts:payload
       }
+    case "UPDATE":
+      return{
+        ...state,
+        posts:payload
+      }
     default:
       return state;
   }
