@@ -1,5 +1,5 @@
 import classes from "./detailedPost.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Sidebar, PostCard } from "../../components";
 import { usePost } from "../../context";
@@ -9,15 +9,20 @@ const DetailedPost = () => {
   const { postId } = params;
   const [post, setPost] = useState(null);
   const { getSinglePost } = usePost();
+  const mountedRef=useRef(false);
   useEffect(() => {
+    mountedRef.current=true;
     (async () => {
       try {
         const post = await getSinglePost(postId);
+        if(mountedRef.current)
         setPost(post);
       } catch (error) {
         console.log(error);
       }
     })();
+
+    return ()=>mountedRef.current=false;
   });
   return (
     <div className={classes["container"]}>

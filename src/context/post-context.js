@@ -120,7 +120,6 @@ const usePostActions = () => {
   }
 
   const deleteComment=async (commentId,postId)=>{
-    console.log("hi");  
     try{
       const response = await axios.post(`/api/posts/${postId}/${commentId}`,{},auth);
       if(response.status === 201){
