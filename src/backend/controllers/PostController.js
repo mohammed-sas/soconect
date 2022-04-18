@@ -324,7 +324,8 @@ export const addCommentHandler = function (schema, request) {
     const newComment={
       _id:uuid(),
       ...comment,
-      userId:user._id
+      userId:user._id,
+      username:user.username
     }
     post.comment.comments.push(newComment);
     this.db.posts.update({ _id: postId }, { ...post, updatedAt: formatDate() });
