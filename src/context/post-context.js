@@ -95,6 +95,20 @@ const usePostActions = () => {
     }
   };
 
+  const addComment=async (comment,postId)=>{
+    try{
+      const response=await axios.post(`/api/posts/comment/${postId}`,{comment},auth);
+      if(response.status === 201){
+        postDispatch({
+          type:"UPDATE",
+          payload:response.data.posts
+        })
+      }
+    }catch(error){
+      console.log(error);
+    }
+  }
+
   return {
     postState,
     postDispatch,
@@ -104,6 +118,7 @@ const usePostActions = () => {
     editPost,
     likePost,
     unlikePost,
+    addComment
   };
 };
 

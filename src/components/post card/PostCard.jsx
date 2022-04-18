@@ -2,9 +2,11 @@ import classes from "./postCard.module.css";
 import { useToggle } from "../../hooks/useToggle";
 import { useAuth, usePost } from "../../context";
 import EditPostModal from "../edit post/EditPostModal";
+import CommentModal from "../comment/CommentModal";
 const PostCard = ({ post }) => {
   const [showOptions, setShowOptions] = useToggle(false);
   const [showEditModal,setShowEditModal]=useToggle(false);
+  const [showCommentModal,setShowCommentModal]=useToggle(false);
   const { authState } = useAuth();
   const { user } = authState;
   const {deletePost,likePost,unlikePost,postState} = usePost();
@@ -27,7 +29,13 @@ const PostCard = ({ post }) => {
       console.log(error);
     }
   }
-
+  const commentHandler=async()=>{
+    try{
+      setShowCommentModal();
+    }catch(error){
+      console.log(error);
+    }
+  }
   
 
   return (
@@ -66,9 +74,9 @@ const PostCard = ({ post }) => {
           <p className="text-white">{post.content}</p>
         </div>
         <div className={classes["post-footer"]}>
-          <div className={classes["footer-item"]}>
+          <div className={classes["footer-item"]} onClick={commentHandler}>
             <i className="far fa-comment text-white"></i> 
-            <span className="text-white">0</span>
+            <span className="text-white">{post.comment.commentCount}</span>
           </div>
           <div className={classes["footer-item"]} onClick={likeHandler}>
             <i className={`fas fa-heart ${checkLiked(post._id)? "text-primary":"text-white"}`}></i> 
@@ -77,6 +85,7 @@ const PostCard = ({ post }) => {
         </div>
       </div>
       {showEditModal && <EditPostModal post={post} setShowEditModal={setShowEditModal} setShowOptions={setShowOptions}/>}
+      {showCommentModal && <CommentModal post={post} setShowCommentModal={setShowCommentModal}/>}
     </div>
   );
 };

@@ -16,6 +16,10 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    comment:{
+      commentCount:0,
+      comments:[],
+    },
     username: "adarshbalika",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -28,6 +32,10 @@ export const posts = [
       likeCount: 0,
       likedBy: [],
       dislikedBy: [],
+    },
+    comment:{
+      commentCount:0,
+      comments:[],
     },
     username: "shubhamsoni",
     createdAt: formatDate(),
