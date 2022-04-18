@@ -18,6 +18,9 @@
   display: flex;
   gap: 5px;
 }
+.post-body{
+  cursor: pointer;
+}
 
 .post-footer {
   display: flex;

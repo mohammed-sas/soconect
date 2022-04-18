@@ -94,6 +94,16 @@ const usePostActions = () => {
       console.log(error);
     }
   };
+  const getSinglePost=async (postId)=>{
+    try{
+      const response = await axios.get(`/api/posts/${postId}`);
+      if(response.status === 200){
+        return response.data.post;
+      }
+    }catch(error){
+      console.log(error);
+    }
+  }
 
   const addComment=async (comment,postId)=>{
     try{
@@ -118,7 +128,8 @@ const usePostActions = () => {
     editPost,
     likePost,
     unlikePost,
-    addComment
+    addComment,
+    getSinglePost
   };
 };
 

@@ -4,6 +4,7 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
 import RequiresAuth from "./components/requires auth/RequiresAuth";
+import DetailedPost from "./pages/detail post/DetailedPost";
 function App() {
   return (
     <div>
@@ -13,6 +14,14 @@ function App() {
           element={
             <RequiresAuth>
               <Home />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/posts/:postId"
+          element={
+            <RequiresAuth>
+              <DetailedPost />
             </RequiresAuth>
           }
         />

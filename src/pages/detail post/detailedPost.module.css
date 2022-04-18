@@ -1,0 +1,13 @@
+.container{
+    display: flex;
+    background: var(--tertiary);
+    height: 100%;
+    position: relative;
+}
+
+.post-details{
+    max-width: 80%;
+    margin: 0 auto;
+    height: 100vh;
+    overflow-y:scroll;
+}
