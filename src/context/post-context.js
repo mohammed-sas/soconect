@@ -119,6 +119,18 @@ const usePostActions = () => {
     }
   }
 
+  const deleteComment=async (commentId,postId)=>{
+    console.log("hi");  
+    try{
+      const response = await axios.post(`/api/posts/${postId}/${commentId}`,{},auth);
+      if(response.status === 201){
+        postDispatch({type:"UPDATE",payload:response.data.posts});
+      }
+    }catch(error){
+      console.log(error);
+    }
+  }
+
   return {
     postState,
     postDispatch,
@@ -129,7 +141,8 @@ const usePostActions = () => {
     likePost,
     unlikePost,
     addComment,
-    getSinglePost
+    getSinglePost,
+    deleteComment
   };
 };
 
