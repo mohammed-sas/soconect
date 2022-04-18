@@ -18,9 +18,9 @@ const usePostActions = () => {
   };
 
   useEffect(() => {
-    if (token !== null){
-        getAllPost();
-    } 
+    if (token !== null) {
+      getAllPost();
+    }
   }, []);
 
   const getAllPost = async () => {
@@ -44,28 +44,67 @@ const usePostActions = () => {
       console.log(error);
     }
   };
-  const deletePost=async (postId)=>{
-    try{
-      const response= await axios.delete(`/api/posts/${postId}`,auth);
-      if(response.status ===201){
-        postDispatch({type:"DELETE",payload:response.data.posts.reverse()});
+  const deletePost = async (postId) => {
+    try {
+      const response = await axios.delete(`/api/posts/${postId}`, auth);
+      if (response.status === 201) {
+        postDispatch({
+          type: "DELETE",
+          payload: response.data.posts.reverse(),
+        });
       }
-    }catch(error){
+    } catch (error) {
       console.log(error);
     }
-  }
-  const editPost=async (postData,id)=>{
-    try{
-      const response = await axios.post(`/api/posts/edit/${id}`,{postData},auth);
-      if(response.status === 201){
-        postDispatch({type:"EDIT",payload:response.data.posts.reverse()});
+  };
+  const editPost = async (postData, id) => {
+    try {
+      const response = await axios.post(
+        `/api/posts/edit/${id}`,
+        { postData },
+        auth
+      );
+      if (response.status === 201) {
+        postDispatch({ type: "EDIT", payload: response.data.posts.reverse() });
       }
-    }catch(error){
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
+  const likePost = async (postId) => {
+    try {
+      const response = await axios.post(`/api/posts/like/${postId}`,{}, auth);
+      if (response.status === 201) {
+        postDispatch({ type: "LIKED", payload: response.data.posts.reverse() });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const unlikePost = async (postId) => {
+    try {
+      const response = await axios.post(`/api/posts/dislike/${postId}`,{}, auth);
+      if (response.status === 201) {
+        postDispatch({
+          type: "UNLIKED",
+          payload: response.data.posts.reverse(),
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  return { postState, postDispatch, addPost, getAllPost,deletePost,editPost };
+  return {
+    postState,
+    postDispatch,
+    addPost,
+    getAllPost,
+    deletePost,
+    editPost,
+    likePost,
+    unlikePost,
+  };
 };
 
 const usePost = () => useContext(PostContext);
