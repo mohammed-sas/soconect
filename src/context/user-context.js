@@ -38,7 +38,26 @@ const useUserActions = () => {
       console.log(error);
     }
   };
-  return { userState, addToBookmark };
+
+  const deleteBookmark = async (postId) => {
+    try {
+      const response = await axios.post(
+        `/api/users/remove-bookmark/${postId}`,
+        {},
+        auth
+      );
+      if (response.status === 200) {
+        userDispatch({
+          type: "DELETE_BOOKMARK",
+          payload: response.data.bookmarks,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return { userState, addToBookmark , deleteBookmark};
 };
 const useUser = () => useContext(UserContext);
 
