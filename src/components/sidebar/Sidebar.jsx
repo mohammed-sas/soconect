@@ -29,7 +29,7 @@ const Sidebar = () => {
           <i className="fas fa-bell text-primary"></i>
           <span className="text-primary">Notifications</span>
         </div>
-        <div className={classes["tab-item"]}>
+        <div className={classes["tab-item"]} onClick={()=>navigate("/bookmark")}>
         <i className="fas fa-bookmark text-primary"></i>
           <span className="text-primary">Bookmark</span>
         </div>

@@ -6,7 +6,7 @@ const Home = () => {
         <div className={classes["container"]}>
             <Sidebar/>
             <main className={classes["user-feed"]}>
-                <h1 className="text-primary">Home</h1>
+                <h1 className="centered-text text-primary">Home</h1>
                 <Feeds/>
             </main>
             
