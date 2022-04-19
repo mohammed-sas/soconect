@@ -30,6 +30,10 @@ const Sidebar = () => {
           <span className="text-primary">Notifications</span>
         </div>
         <div className={classes["tab-item"]}>
+        <i className="fas fa-bookmark text-primary"></i>
+          <span className="text-primary">Bookmark</span>
+        </div>
+        <div className={classes["tab-item"]}>
           <i className="fas fa-user-alt text-primary"></i>
           <span className="text-primary">Profile</span>
         </div>
