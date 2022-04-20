@@ -60,7 +60,7 @@ const useUserActions = () => {
   const getUserPost=async (userId)=>{
     try{
       const response = await axios.get(`/api/users/${userId}`);
-      console.log(response.data.user);
+      if(response.status===200) return response.data.user.posts;
     }catch(error){
       console.log(error);
     }
