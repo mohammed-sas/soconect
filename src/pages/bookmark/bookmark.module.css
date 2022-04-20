@@ -5,7 +5,7 @@
     position: relative;
 }
 .bookmarks-container{
-    max-width: 80%;
+    width: 80%;
     margin: 0 auto;
     height: 100vh;
     overflow-y:scroll;

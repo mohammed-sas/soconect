@@ -26,7 +26,9 @@ const DetailedPost = () => {
   return (
     <main className={classes["post-details"]}>
       {post ? (
-        <PostCard post={post} />
+        <div className={classes["lists"]}>
+          <PostCard post={post} />
+        </div>
       ) : (
         <h1 className="text-primary">Loading...</h1>
       )}

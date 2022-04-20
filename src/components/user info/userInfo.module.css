@@ -4,6 +4,8 @@
   background: var(--tertiary-light);
   width: 80%;
   margin: 1rem auto;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .body {
@@ -14,4 +16,17 @@
 .footer {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
+}
+.footer span{
+  font-size: 1.2rem;
+}
+.avatar-large{
+  width: 6rem;
+  height: 6rem;
+}
+
+.avatar-text-lg{
+  font-size: 3.6rem;
+  text-align: center;
 }

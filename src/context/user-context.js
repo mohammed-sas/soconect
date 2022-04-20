@@ -57,16 +57,41 @@ const useUserActions = () => {
     }
   };
 
-  const getUserPost=async (userId)=>{
+  const getUserPost = async (userId) => {
+    try {
+      const response = await axios.get(`/api/users/${userId}`);
+      if (response.status === 200) return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const followUser = async (userId) => {
+    try {
+      const response = await axios.post(
+        `/api/users/follow/${userId}`,
+        {},
+        auth
+      );
+      const {user,followUser} = response.data;
+      if(response.status === 200){
+        const updateUser = await getUser(user._id);
+        userDispatch({type:"FOLLOWING",payload:updateUser.following});
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getUser=async (userId)=>{
     try{
       const response = await axios.get(`/api/users/${userId}`);
-      if(response.status===200) return response.data;
+      return response.data.user;
     }catch(error){
       console.log(error);
     }
   }
-
-  return { userState, addToBookmark , deleteBookmark,getUserPost};
+  return { userState, addToBookmark, deleteBookmark, getUserPost, followUser ,getUser};
 };
 const useUser = () => useContext(UserContext);
 

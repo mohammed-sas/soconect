@@ -10,6 +10,11 @@ const userReducer = (state, { type, payload }) => {
         ...state,
         bookmarks: payload,
       };
+    case "FOLLOWING":
+      return{
+        ...state,
+        following:payload
+      }
     default:
       return state;
   }

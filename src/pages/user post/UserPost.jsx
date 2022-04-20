@@ -14,13 +14,14 @@ const UserPost = () => {
   useEffect(() => {
     mountedRef.current = true;
 
-    (async () => {
+    const fetchUser=async () => {
       const response = await getUserPost(userId);
       if (mountedRef.current) {
         setPosts(response.user.posts);
         setUser(response.user);
       }
-    })();
+    };
+    fetchUser();
 
     return () => (mountedRef.current = false);
   });
