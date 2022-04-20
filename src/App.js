@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import { Home, Login, Signup, DetailedPost, Bookmark } from "./pages";
+import { Home, Login, Signup, DetailedPost, Bookmark, UserPost } from "./pages";
 import { RequiresAuth } from "./components";
 
 function App() {
@@ -28,6 +28,14 @@ function App() {
           element={
             <RequiresAuth>
               <Bookmark />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/posts/user/:userId"
+          element={
+            <RequiresAuth>
+              <UserPost/>
             </RequiresAuth>
           }
         />

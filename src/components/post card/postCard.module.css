@@ -17,6 +17,7 @@
 .username-body {
   display: flex;
   gap: 5px;
+  cursor: pointer;
 }
 .post-body{
   cursor: pointer;
