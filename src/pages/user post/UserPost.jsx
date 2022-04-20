@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import {Sidebar,PostCard}  from "../../components";
+import { UserInfo, PostCard } from "../../components";
 import { useUser } from "../../context";
 import classes from "./userPost.module.css";
 
@@ -9,27 +9,31 @@ const UserPost = () => {
   const { userId } = params;
   const { getUserPost } = useUser();
   const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState(null);
   const mountedRef = useRef(false);
   useEffect(() => {
     mountedRef.current = true;
 
     (async () => {
       const response = await getUserPost(userId);
-      if (mountedRef.current) setPosts(response);
+      if (mountedRef.current) {
+        setPosts(response.user.posts);
+        setUser(response.user);
+      }
     })();
 
     return () => (mountedRef.current = false);
   });
   return (
-    <div className={classes["container"]}>
-      <main className={classes["user-posts-container"]}>
-        <div className={classes["post-list"]}>
-          {posts.map((post) => {
-            return <PostCard key={post._id} post={post} />;
-          })}
-        </div>
-      </main>
-    </div>
+    <main className={classes["user-posts-container"]}>
+      {user && <UserInfo user={user} />}
+
+      <div className={classes["post-list"]}>
+        {posts.map((post) => {
+          return <PostCard key={post._id} post={post} />;
+        })}
+      </div>  
+    </main>
   );
 };
 
