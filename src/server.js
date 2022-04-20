@@ -51,7 +51,7 @@ export function makeServer({ environment = "development" } = {}) {
           bookmarks: [],
         })
       );
-      posts.forEach((item) => server.create("post", { ...item }));
+      posts.forEach((item) => server.create("post", { ...item,userId:users.find(user=>user.username===item.username)._id }));
     },
 
     routes() {

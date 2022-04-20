@@ -57,7 +57,16 @@ const useUserActions = () => {
     }
   };
 
-  return { userState, addToBookmark , deleteBookmark};
+  const getUserPost=async (userId)=>{
+    try{
+      const response = await axios.get(`/api/users/${userId}`);
+      console.log(response.data.user);
+    }catch(error){
+      console.log(error);
+    }
+  }
+
+  return { userState, addToBookmark , deleteBookmark,getUserPost};
 };
 const useUser = () => useContext(UserContext);
 
