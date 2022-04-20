@@ -1,10 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./pages/home/Home";
-import Login from "./pages/login/Login";
-import Signup from "./pages/signup/Signup";
-import RequiresAuth from "./components/requires auth/RequiresAuth";
-import DetailedPost from "./pages/detail post/DetailedPost";
+import { Home, Login, Signup, DetailedPost, Bookmark } from "./pages";
+import { RequiresAuth } from "./components";
+
 function App() {
   return (
     <div>
@@ -22,6 +20,14 @@ function App() {
           element={
             <RequiresAuth>
               <DetailedPost />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/bookmark"
+          element={
+            <RequiresAuth>
+              <Bookmark />
             </RequiresAuth>
           }
         />

@@ -1,6 +1,6 @@
 import classes from "./postCard.module.css";
 import { useToggle } from "../../hooks/useToggle";
-import { useAuth, usePost } from "../../context";
+import { useAuth, usePost, useUser } from "../../context";
 import EditPostModal from "../edit post/EditPostModal";
 import CommentModal from "../comment/CommentModal";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ const PostCard = ({ post }) => {
   const { authState } = useAuth();
   const { user } = authState;
   const { deletePost, likePost, unlikePost, postState } = usePost();
+  const { userState, addToBookmark, deleteBookmark } = useUser();
   const navigate = useNavigate();
   const deleteHandler = async () => {
     try {
@@ -46,7 +47,20 @@ const PostCard = ({ post }) => {
   const viewPostHandler = () => {
     navigate(`/posts/${post._id}`);
   };
-
+  const bookmarkHandler = async () => {
+    try {
+      checkIfBookmarked(post._id)
+        ? await deleteBookmark(post._id)
+        : await addToBookmark(post._id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const checkIfBookmarked = (postId) => {
+    return userState.bookmarks.find(
+      (bookmarkedPost) => bookmarkedPost._id === postId
+    );
+  };
   return (
     <div className={classes["post-container"]}>
       <div className="avatar avatar-text">
@@ -75,6 +89,14 @@ const PostCard = ({ post }) => {
                     <i className="far fa-edit"></i> Edit Post
                   </li>
                 )}
+                <li onClick={bookmarkHandler}>
+                  <i
+                    className={`${
+                      checkIfBookmarked(post._id) ? "fas " : "far "
+                    } fa-bookmark`}
+                  ></i>{" "}
+                  Bookmark
+                </li>
               </ul>
             )}
           </span>

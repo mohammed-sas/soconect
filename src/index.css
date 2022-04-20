@@ -21,6 +21,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+a{
+  text-decoration: none;
+}
 
 .text-primary {
   color: var(--primary);

@@ -2,18 +2,21 @@ import classes from "./sidebar.module.css";
 import logo from "../../assets/logo-32x32.png";
 import { useToggle } from "../../hooks/useToggle";
 import CreatePostModal from "../create post/CreatePostModal";
-import {useAuth,usePost} from '../../context';
-import { useNavigate } from "react-router-dom";
+import { useAuth, usePost } from "../../context";
+import { useNavigate, NavLink } from "react-router-dom";
 const Sidebar = () => {
   const [showModal, setShowModal] = useToggle(false);
-  const {logout}=useAuth();
-  const {postDispatch}=usePost();
-  const navigate=useNavigate();
-  const logoutHandler=()=>{
+  const { logout } = useAuth();
+  const { postDispatch } = usePost();
+  const navigate = useNavigate();
+  const logoutHandler = () => {
     logout();
     navigate("/login");
-    postDispatch({type:"CLEAR"});
-    
+    postDispatch({ type: "CLEAR" });
+  };
+  let active={
+    background:"var(--tertiary-lighter)",
+    borderRadius:"1rem"
   }
   return (
     <aside className={classes["container"]}>
@@ -21,14 +24,22 @@ const Sidebar = () => {
         <div className={classes["tab-item"]}>
           <img src={logo} alt="logo" />
         </div>
-        <div className={classes["tab-item"]} onClick={()=>navigate("/")}>
-          <i className="fas fa-home text-primary"></i>
-          <span className="text-primary">Home</span>
-        </div>
+        <NavLink to="/" style={({isActive})=>isActive? active : null}>
+          <div className={classes["tab-item"]}>
+            <i className="fas fa-home text-primary"></i>
+            <span className="text-primary">Home</span>
+          </div>
+        </NavLink>
         <div className={classes["tab-item"]}>
           <i className="fas fa-bell text-primary"></i>
           <span className="text-primary">Notifications</span>
         </div>
+        <NavLink to="/bookmark" style={({isActive})=>isActive? active : null}>
+          <div className={classes["tab-item"]}>
+            <i className="fas fa-bookmark text-primary"></i>
+            <span className="text-primary">Bookmark</span>
+          </div>
+        </NavLink>
         <div className={classes["tab-item"]}>
           <i className="fas fa-user-alt text-primary"></i>
           <span className="text-primary">Profile</span>
