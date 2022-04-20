@@ -1,14 +1,11 @@
-.container {
-  display: flex;
-  background: var(--tertiary);
-  height: 100%;
-  position: relative;
-}
+
 .user-posts-container {
   width: 80%;
   margin: 0 auto;
   height: 100vh;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
 }
 .post-list {
   display: flex;

@@ -1,0 +1,17 @@
+.user-container {
+  display: flex;
+  gap: 5px;
+  background: var(--tertiary-light);
+  width: 80%;
+  margin: 1rem auto;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
