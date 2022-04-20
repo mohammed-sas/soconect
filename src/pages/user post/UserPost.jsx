@@ -22,7 +22,6 @@ const UserPost = () => {
   });
   return (
     <div className={classes["container"]}>
-      <Sidebar />
       <main className={classes["user-posts-container"]}>
         <div className={classes["post-list"]}>
           {posts.map((post) => {

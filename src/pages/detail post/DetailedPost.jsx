@@ -26,7 +26,6 @@ const DetailedPost = () => {
   });
   return (
     <div className={classes["container"]}>
-      <Sidebar />
       <main className={classes["post-details"]}>
         {post ? (
           <PostCard post={post} />
