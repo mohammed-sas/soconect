@@ -14,17 +14,17 @@ const Sidebar = () => {
     navigate("/login");
     postDispatch({ type: "CLEAR" });
   };
-  let active={
-    background:"var(--tertiary-lighter)",
-    borderRadius:"1rem"
-  }
+  let active = {
+    background: "var(--tertiary-lighter)",
+    borderRadius: "1rem",
+  };
   return (
     <aside className={classes["container"]}>
       <div className={classes["tabs-container"]}>
         <div className={classes["tab-item"]}>
           <img src={logo} alt="logo" />
         </div>
-        <NavLink to="/" style={({isActive})=>isActive? active : null}>
+        <NavLink to="/" style={({ isActive }) => (isActive ? active : null)}>
           <div className={classes["tab-item"]}>
             <i className="fas fa-home text-primary"></i>
             <span className="text-primary">Home</span>
@@ -34,16 +34,24 @@ const Sidebar = () => {
           <i className="fas fa-bell text-primary"></i>
           <span className="text-primary">Notifications</span>
         </div>
-        <NavLink to="/bookmark" style={({isActive})=>isActive? active : null}>
+        <NavLink
+          to="/bookmark"
+          style={({ isActive }) => (isActive ? active : null)}
+        >
           <div className={classes["tab-item"]}>
             <i className="fas fa-bookmark text-primary"></i>
             <span className="text-primary">Bookmark</span>
           </div>
         </NavLink>
-        <div className={classes["tab-item"]}>
-          <i className="fas fa-user-alt text-primary"></i>
-          <span className="text-primary">Profile</span>
-        </div>
+        <NavLink
+          to="/profile"
+          style={({ isActive }) => (isActive ? active : null)}
+        >
+          <div className={classes["tab-item"]}>
+            <i className="fas fa-user-alt text-primary"></i>
+            <span className="text-primary">Profile</span>
+          </div>
+        </NavLink>
         <button className="btn btn-primary" onClick={setShowModal}>
           Create Post
         </button>
