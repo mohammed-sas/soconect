@@ -7,11 +7,13 @@ import classes from "./userPost.module.css";
 const UserPost = () => {
   const params = useParams();
   const { userId } = params;
-  const { getUserPost } = useUser();
+  const {userState,getUserPost } = useUser();
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState(null);
-  const mountedRef = useRef(false);
+  const mountedRef=useRef(false);
+
   useEffect(() => {
+    console.log('effect running');
     mountedRef.current = true;
 
     const fetchUser=async () => {
@@ -24,7 +26,7 @@ const UserPost = () => {
     fetchUser();
 
     return () => (mountedRef.current = false);
-  });
+  },[userState]);
   return (
     <main className={classes["user-posts-container"]}>
       {user && <UserInfo user={user} />}
