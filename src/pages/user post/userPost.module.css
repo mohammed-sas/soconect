@@ -1,0 +1,17 @@
+
+.user-posts-container {
+  width: 80%;
+  margin: 0 auto;
+  height: 100vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: inherit;
+  align-items: center;
+  margin: 0 auto;
+}

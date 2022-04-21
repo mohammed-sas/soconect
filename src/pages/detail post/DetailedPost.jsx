@@ -9,40 +9,40 @@ const DetailedPost = () => {
   const { postId } = params;
   const [post, setPost] = useState(null);
   const { getSinglePost } = usePost();
-  const mountedRef=useRef(false);
+  const mountedRef = useRef(false);
   useEffect(() => {
-    mountedRef.current=true;
+    mountedRef.current = true;
     (async () => {
       try {
         const post = await getSinglePost(postId);
-        if(mountedRef.current)
-        setPost(post);
+        if (mountedRef.current) setPost(post);
       } catch (error) {
         console.log(error);
       }
     })();
 
-    return ()=>mountedRef.current=false;
+    return () => (mountedRef.current = false);
   });
   return (
-    <div className={classes["container"]}>
-      <Sidebar />
-      <main className={classes["post-details"]}>
-        {post ? (
+    <main className={classes["post-details"]}>
+      {post ? (
+        <div className={classes["lists"]}>
           <PostCard post={post} />
-        ) : (
-          <h1 className="text-primary">Loading...</h1>
-        )}
-        {post ? (
-          <div className={classes["comments-list"]}>
-              <h4 className="text-primary">Comments</h4>
-            {post.comment.comments.map((comment) => {
-              return <CommentCard key={comment._id} comment={comment} post={post}/>
-            })}
-          </div>
-        ) : null}
-      </main>
-    </div>
+        </div>
+      ) : (
+        <h1 className="text-primary">Loading...</h1>
+      )}
+      {post ? (
+        <div className={classes["comments-list"]}>
+          <h4 className="text-primary">Comments</h4>
+          {post.comment.comments.map((comment) => {
+            return (
+              <CommentCard key={comment._id} comment={comment} post={post} />
+            );
+          })}
+        </div>
+      ) : null}
+    </main>
   );
 };
 

@@ -1,8 +1,12 @@
+*{
+  box-sizing: border-box;
+}
+
 .post-container {
   display: flex;
   padding: 2rem 1rem;
   background: var(--tertiary-light);
-  width:80%;
+  width:100%;
 }
 
 .post-body-container {
@@ -17,6 +21,7 @@
 .username-body {
   display: flex;
   gap: 5px;
+  cursor: pointer;
 }
 .post-body{
   cursor: pointer;
@@ -60,7 +65,7 @@
 .option-list li{
   background: var(--tertiary-lighter);
   color: var(--white);
-  width: 10rem;
+  width: 14rem;
   padding: 1.2rem 1.6rem;
   cursor: pointer;
 }

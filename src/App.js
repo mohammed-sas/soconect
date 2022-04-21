@@ -1,11 +1,15 @@
-import { Routes, Route } from "react-router-dom";
-import "./App.css";
-import { Home, Login, Signup, DetailedPost, Bookmark } from "./pages";
-import { RequiresAuth } from "./components";
+import { Routes, Route, useLocation } from "react-router-dom";
+import classes from "./App.module.css";
+import { Home, Login, Signup, DetailedPost, Bookmark, UserPost } from "./pages";
+import { RequiresAuth, Sidebar } from "./components";
 
 function App() {
+  const location = useLocation();
   return (
-    <div>
+    <div className={location.pathname!=="/login" && location.pathname !== "/signup" ? classes["container"]:""}>
+      {location.pathname !== "/login" && location.pathname !== "/signup" ? (
+        <Sidebar />
+      ) : null}
       <Routes>
         <Route
           path="/"
@@ -28,6 +32,14 @@ function App() {
           element={
             <RequiresAuth>
               <Bookmark />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/posts/user/:userId"
+          element={
+            <RequiresAuth>
+              <UserPost />
             </RequiresAuth>
           }
         />

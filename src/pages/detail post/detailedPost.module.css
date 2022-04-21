@@ -1,10 +1,3 @@
-.container{
-    display: flex;
-    background: var(--tertiary);
-    height: 100%;
-    position: relative;
-}
-
 .post-details{
     width: 80%;
     margin: 0 auto;
@@ -12,7 +5,7 @@
     overflow-y:scroll;
 }
 .comments-list{
-    max-width: 82%;
+    max-width: 80%;
     height: 100vh;
     overflow-y:scroll;
     display: flex;
@@ -20,7 +13,9 @@
     gap: 5px;
     margin-top: 5px;
 }
-
+.lists{
+    width: 80%;
+}
 .post-details>div{
     margin: 1rem auto;
 }

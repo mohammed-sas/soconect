@@ -49,9 +49,10 @@ export function makeServer({ environment = "development" } = {}) {
           followers: [],
           following: [],
           bookmarks: [],
+          posts:posts.filter(post=>post.username===item.username)
         })
       );
-      posts.forEach((item) => server.create("post", { ...item }));
+      posts.forEach((item) => server.create("post", { ...item,userId:users.find(user=>user.username===item.username)._id }));
     },
 
     routes() {

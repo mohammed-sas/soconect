@@ -68,9 +68,8 @@ const PostCard = ({ post }) => {
       </div>
       <div className={classes["post-body-container"]}>
         <div className={classes["username-id-container"]}>
-          <div className={classes["username-body"]}>
+          <div className={classes["username-body"]} onClick={()=>navigate(`/posts/user/${post.userId}`)}>
             <span className="text-white">@{post.username}</span>
-            <span className="text-white">3h</span>
           </div>
           <span className={classes["options"]}>
             <i
