@@ -13,9 +13,7 @@ const UserPost = () => {
   const mountedRef=useRef(false);
 
   useEffect(() => {
-    console.log('effect running');
     mountedRef.current = true;
-
     const fetchUser=async () => {
       const response = await getUserPost(userId);
       if (mountedRef.current) {

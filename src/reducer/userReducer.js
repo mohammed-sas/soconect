@@ -15,6 +15,11 @@ const userReducer = (state, { type, payload }) => {
         ...state,
         following:payload
       }
+    case "UNFOLLOWING":
+        return{
+          ...state,
+          following:payload
+        }
     default:
       return state;
   }
