@@ -1,5 +1,13 @@
-.profile-container{
-    width: 80%;
-    height: 100vh;
-    overflow-y:scroll;
+.profile-container {
+  width: 80%;
+  height: 100vh;
+  overflow-y: scroll;
+}
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: inherit;
+  align-items: center;
+  margin: 0 auto;
 }
