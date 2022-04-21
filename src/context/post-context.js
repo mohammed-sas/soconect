@@ -18,9 +18,7 @@ const usePostActions = () => {
   };
 
   useEffect(() => {
-    if (token !== null) {
       getAllPost();
-    }
   }, []);
 
   const getAllPost = async () => {
