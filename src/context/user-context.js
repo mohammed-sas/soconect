@@ -108,6 +108,23 @@ const useUserActions = () => {
       console.log(error);
     }
   };
+
+  const editUser=async (userBio)=>{
+    try{
+      const userData={
+        bio:{
+          ...userBio
+        }
+      }
+      const response= await axios.post('/api/users/edit',{userData},auth);
+      if(response.status === 201){
+
+      }
+
+    }catch(error){
+
+    }
+  }
   return {
     userState,
     addToBookmark,
@@ -116,6 +133,7 @@ const useUserActions = () => {
     followUser,
     getUser,
     unFollowUser,
+    editUser
   };
 };
 const useUser = () => useContext(UserContext);

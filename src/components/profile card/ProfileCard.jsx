@@ -1,6 +1,12 @@
 import classes from './profileCard.module.css';
-
+import {useToggle} from '../../hooks/useToggle'
+import EditProfileModal from '../edit profile/EditProfileModal';
 const ProfileCard = ({user}) => {
+ 
+  const [showModal,setShowModal]=useToggle(false);
+  const editHandler=()=>{
+    setShowModal();
+  }
     return (
         <div className={classes["user-container"]}>
         <div
@@ -23,10 +29,11 @@ const ProfileCard = ({user}) => {
           </div>
         </div>
         <div>
-          <button className="btn btn-primary">
+          <button className="btn btn-primary" onClick={editHandler}>
             Edit Profile
           </button>
         </div>
+      {showModal ? <EditProfileModal user={user} setShowModal={setShowModal}/> : null}
       </div>
     )
 }
