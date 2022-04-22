@@ -2,9 +2,11 @@ import classes from "./profileCard.module.css";
 import { useToggle } from "../../hooks/useToggle";
 import EditProfileModal from "../edit profile/EditProfileModal";
 import { useUser } from "../../context";
+import FollowingModal from "../following/FollowingModal";
 const ProfileCard = ({ user }) => {
   const { userState } = useUser();
   const [showModal, setShowModal] = useToggle(false);
+  const [showFollowing, setShowFollowing] = useToggle(false);
   const editHandler = () => {
     setShowModal();
   };
@@ -30,7 +32,7 @@ const ProfileCard = ({ user }) => {
           <span className="text-primary">
             {user.followers.length} Followers
           </span>
-          <span className="text-primary">
+          <span className={`text-primary ${classes["following"]}`} onClick={setShowFollowing}>
             {user.following.length} Following
           </span>
         </div>
@@ -49,6 +51,7 @@ const ProfileCard = ({ user }) => {
       {showModal ? (
         <EditProfileModal user={user} setShowModal={setShowModal} />
       ) : null}
+      {showFollowing ? <FollowingModal setShowFollowing={setShowFollowing} /> : null}
     </div>
   );
 };
