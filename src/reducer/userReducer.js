@@ -11,15 +11,20 @@ const userReducer = (state, { type, payload }) => {
         bookmarks: payload,
       };
     case "FOLLOWING":
-      return{
+      return {
         ...state,
-        following:payload
-      }
+        following: payload,
+      };
     case "UNFOLLOWING":
-        return{
-          ...state,
-          following:payload
-        }
+      return {
+        ...state,
+        following: payload,
+      };
+    case "UPDATE_BIO":
+      return {
+        ...state,
+        bio: payload,
+      };
     default:
       return state;
   }
