@@ -13,6 +13,7 @@ const useUserActions = () => {
     bookmarks: [],
     followers: [],
     following: [],
+    bio: { info: "", website: "" },
   });
   const token = localStorage.getItem("token");
   const auth = {
@@ -108,6 +109,20 @@ const useUserActions = () => {
       console.log(error);
     }
   };
+
+  const editUser = async (userBio) => {
+    try {
+      const userData = {
+        bio: {
+          ...userBio,
+        },
+      };
+      const response = await axios.post("/api/users/edit", { userData }, auth);
+      if (response.status === 201) {
+        userDispatch({ type: "UPDATE_BIO", payload: response.data.user.bio });
+      }
+    } catch (error) {}
+  };
   return {
     userState,
     addToBookmark,
@@ -116,6 +131,7 @@ const useUserActions = () => {
     followUser,
     getUser,
     unFollowUser,
+    editUser,
   };
 };
 const useUser = () => useContext(UserContext);

@@ -7,7 +7,7 @@ import { formatDate } from "../utils/authUtils";
 
 export const users = [
   {
-    _id: uuid(),
+    _id: "fcb163e8-ff59-4d92-bbb5-3c91b27db5e4",
     firstName: "Mohammed",
     lastName: "Ashraf",
     username: "mohammed",
@@ -16,7 +16,7 @@ export const users = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "57a81d3e-6fae-42de-9880-b08389cb1362",
     firstName: "Mohammed",
     lastName: "Vahid",
     username: "vahid",
@@ -25,7 +25,7 @@ export const users = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "9ac965c1-de29-44cf-b2af-0dec8eb2b413",
     firstName: "Akshay",
     lastName: "Saini",
     username: "akshay",
@@ -34,7 +34,7 @@ export const users = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "cafbe724-08da-4717-8455-88368050c719",
     firstName: "Suraj",
     lastName: "Kumar",
     username: "suraj",
@@ -43,7 +43,7 @@ export const users = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "9d4434eb-9945-4ad8-b650-de29b53af384",
     firstName: "Tanner",
     lastName: "Linsley",
     username: "tanner",
@@ -52,7 +52,7 @@ export const users = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "2dcfa3dd-eb87-4ac7-9785-8fb2bee1ff31",
     firstName: "Muhammad",
     lastName: "Khalid",
     username: "khalid",

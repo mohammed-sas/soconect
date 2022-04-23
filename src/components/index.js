@@ -4,8 +4,9 @@ import CommentModal from "./comment/CommentModal";
 import CreatePostModal from "./create post/CreatePostModal";
 import EditPostModal from "./edit post/EditPostModal";
 import RequiresAuth from "./requires auth/RequiresAuth";
-import UserInfo from './user info/UserInfo';
-
+import UserInfo from "./user info/UserInfo";
+import ProfileCard from "./profile card/ProfileCard";
+import FollowingModal from "./following/FollowingModal";
 export {
   Sidebar,
   PostCard,
@@ -13,5 +14,7 @@ export {
   CreatePostModal,
   EditPostModal,
   RequiresAuth,
-  UserInfo
+  UserInfo,
+  ProfileCard,
+  FollowingModal,
 };

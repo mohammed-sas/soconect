@@ -49,6 +49,7 @@ export function makeServer({ environment = "development" } = {}) {
           followers: [],
           following: [],
           bookmarks: [],
+          bio:{info:"",website:""},
           posts:posts.filter(post=>post.username===item.username)
         })
       );
