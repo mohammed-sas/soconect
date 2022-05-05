@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { UserInfo, PostCard } from "../../components";
 import axios from 'axios';
 import classes from "./userPost.module.css";
+
 
 const UserPost = () => {
   const params = useParams();

@@ -5,6 +5,7 @@ import {
   followUser,
   unFollowUser,
   editUser,
+  getUser
 } from "../async thunks/userThunk";
 
 const initialState = {
@@ -68,6 +69,18 @@ export const userSlice = createSlice({
       state.loading = false;
     },
     [editUser.rejected]: (state) => {
+      state.loading = false;
+    },
+    [getUser.pending]: (state) => {
+      state.loading = true;
+    },
+    [getUser.fulfilled]: (state, { payload }) => {
+      state.bookmarks = payload.bookmarks;
+      state.following=payload.following;
+      state.bio = payload.bio;
+      state.loading = false;
+    },
+    [getUser.rejected]: (state) => {
       state.loading = false;
     },
   },

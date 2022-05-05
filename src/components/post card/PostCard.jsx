@@ -9,7 +9,10 @@ import {
   likePost,
   unlikePost,
 } from "../../redux/async thunks/postThunk";
-import {addToBookmark,deleteBookmark} from '../../redux/async thunks/userThunk';
+import {
+  addToBookmark,
+  deleteBookmark,
+} from "../../redux/async thunks/userThunk";
 import { useDispatch, useSelector } from "react-redux";
 const PostCard = ({ post }) => {
   const [showOptions, setShowOptions] = useToggle(false);
@@ -18,8 +21,8 @@ const PostCard = ({ post }) => {
   const { authState } = useAuth();
   const { user } = authState;
   const dispatch = useDispatch();
-  const {posts} = useSelector((state) => state.posts);
-  const userState= useSelector(state=>state.user);
+  const { posts } = useSelector((state) => state.posts);
+  const userState = useSelector((state) => state.user);
   const navigate = useNavigate();
   const deleteHandler = () => {
     dispatch(deletePost(post._id));
@@ -42,12 +45,10 @@ const PostCard = ({ post }) => {
   const viewPostHandler = () => {
     navigate(`/posts/${post._id}`);
   };
-  const bookmarkHandler =  () => {
- 
-      checkIfBookmarked(post._id)
-        ?  dispatch(deleteBookmark(post._id))
-        :  dispatch(addToBookmark(post._id));
-
+  const bookmarkHandler = () => {
+    checkIfBookmarked(post._id)
+      ? dispatch(deleteBookmark(post._id))
+      : dispatch(addToBookmark(post._id));
   };
   const checkIfBookmarked = (postId) => {
     return userState.bookmarks.find(

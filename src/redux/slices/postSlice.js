@@ -9,6 +9,7 @@ import {
   addComment,
   deleteComment,
 } from "../async thunks/postThunk";
+
 const initialState = {
   posts: [],
   loading: false,

@@ -174,7 +174,7 @@ export const likePostHandler = function (schema, request) {
     const postId = request.params.postId;
     const post = schema.posts.findBy({ _id: postId }).attrs;
     post.likes.likeCount += 1;
-    post.likes.likedBy.push({username:user.username,userId:user._id});
+    post.likes.likedBy.push({ username: user.username, userId: user._id });
     this.db.posts.update({ _id: postId }, { ...post, updatedAt: formatDate() });
     return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {
@@ -341,7 +341,13 @@ export const deleteCommentHandler = function (schema, request) {
     comment.commentCount -= 1;
     comment = { ...comment, comments: commentsArray };
     post = { ...post, comment };
-    this.db.posts.update({ _id: postId },{ ...post, updatedAt: formatDate() } );
+    this.db.posts.update({ _id: postId }, { ...post, updatedAt: formatDate() });
+    user.bookmarks = user.bookmarks.map((b) => {
+      if (b._id === postId) {
+        return post;
+      } else return b;
+    });
+    this.db.users.update({ _id: user._id }, { ...user ,bookmarks:user.bookmarks});
     return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {
     return new Response(

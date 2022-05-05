@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import {getUser} from './userThunk';
 import axios from "axios";
 const token = localStorage.getItem("token");
 const auth = {
@@ -61,10 +62,12 @@ export const editPost = createAsyncThunk(
   }
 );
 
-export const likePost = createAsyncThunk("user/posts/like", async (postId) => {
+export const likePost = createAsyncThunk("user/posts/like", async (postId,thunkAPI) => {
   try {
     const response = await axios.post(`/api/posts/like/${postId}`, {}, auth);
     if (response.status === 201) {
+      const user = JSON.parse(localStorage.getItem("user"));
+      thunkAPI.dispatch(getUser(user._id));
       return response.data.posts;
     }
   } catch (error) {
@@ -74,7 +77,7 @@ export const likePost = createAsyncThunk("user/posts/like", async (postId) => {
 
 export const unlikePost = createAsyncThunk(
   "user/posts/unlike",
-  async (postId) => {
+  async (postId,thunkAPI) => {
     try {
       const response = await axios.post(
         `/api/posts/dislike/${postId}`,
@@ -82,6 +85,8 @@ export const unlikePost = createAsyncThunk(
         auth
       );
       if (response.status === 201) {
+        const user = JSON.parse(localStorage.getItem("user"));
+        thunkAPI.dispatch(getUser(user._id));
         return response.data.posts;
       }
     } catch (error) {
@@ -106,7 +111,7 @@ export const getSinglePost = createAsyncThunk(
 
 export const addComment = createAsyncThunk(
   "user/posts/addComment",
-  async (data) => {
+  async (data,thunkAPI) => {
     try {
       const {comment,postId} = data;
       const response = await axios.post(
@@ -115,6 +120,8 @@ export const addComment = createAsyncThunk(
         auth
       );
       if (response.status === 201) {
+        const user = JSON.parse(localStorage.getItem("user"));
+        thunkAPI.dispatch(getUser(user._id));
         return response.data.posts;
       }
     } catch (error) {
@@ -125,7 +132,7 @@ export const addComment = createAsyncThunk(
 
 export const deleteComment = createAsyncThunk(
   "user/posts/deleteComment",
-  async (data) => {
+  async (data,thunkAPI) => {
     try {
       const {commentId,postId} = data;
       const response = await axios.post(
@@ -134,6 +141,8 @@ export const deleteComment = createAsyncThunk(
         auth
       );
       if (response.status === 201) {
+        const user = JSON.parse(localStorage.getItem("user"));
+        thunkAPI.dispatch(getUser(user._id));
         return response.data.posts;
       }
     } catch (error) {

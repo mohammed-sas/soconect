@@ -7,7 +7,16 @@ const auth = {
   },
 };
 
-
+export const getUser=createAsyncThunk("user/getUser",async (userId)=>{
+  try{
+    const response = await axios.get(`/api/users/${userId}`);
+    if(response.status === 200){
+      return response.data.user;
+    }
+  }catch(error){
+    console.log(error);
+  }
+})
 
 export const addToBookmark = createAsyncThunk(
   "user/addBookmark",
