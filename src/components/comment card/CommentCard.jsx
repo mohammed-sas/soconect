@@ -1,14 +1,10 @@
-import { usePost } from '../../context';
 import classes from './commentCard.module.css';
-
+import { deleteComment } from "../../redux/async thunks/postThunk";
+import { useDispatch } from "react-redux";
 const CommentCard = ({comment,post}) => {
-    const {deleteComment}=usePost();
+    const dispatch = useDispatch();
     const deleteHandler=async ()=>{
-        try{
-            await deleteComment(comment._id,post._id);
-        }catch(error){
-            console.log(error);
-        }
+        dispatch(deleteComment(comment._id,post._id)); 
     }
     return (
         <div className={classes["comment-card"]}>

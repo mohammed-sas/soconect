@@ -17,7 +17,12 @@ const initialState = {
 export const postSlice = createSlice({
   name: "posts",
   initialState,
-  reducers: {},
+  reducers: {
+    clearPosts:(state)=>{
+        state.posts=[];
+        state.loading=false;
+    }
+  },
   extraReducers: {
     [getAllPost.pending]: (state) => {
       state.loading = true;
@@ -101,5 +106,5 @@ export const postSlice = createSlice({
     },
   },
 });
-
+export const {clearPosts} = postSlice.actions;
 export default postSlice.reducer;

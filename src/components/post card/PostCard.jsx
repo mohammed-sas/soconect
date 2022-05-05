@@ -1,48 +1,42 @@
 import classes from "./postCard.module.css";
 import { useToggle } from "../../hooks/useToggle";
-import { useAuth, usePost, useUser } from "../../context";
+import { useAuth, useUser } from "../../context";
 import EditPostModal from "../edit post/EditPostModal";
 import CommentModal from "../comment/CommentModal";
 import { useNavigate } from "react-router-dom";
+import {
+  deletePost,
+  likePost,
+  unlikePost,
+} from "../../redux/async thunks/postThunk";
+import { useDispatch, useSelector } from "react-redux";
 const PostCard = ({ post }) => {
   const [showOptions, setShowOptions] = useToggle(false);
   const [showEditModal, setShowEditModal] = useToggle(false);
   const [showCommentModal, setShowCommentModal] = useToggle(false);
   const { authState } = useAuth();
   const { user } = authState;
-  const { deletePost, likePost, unlikePost, postState } = usePost();
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts);
   const { userState, addToBookmark, deleteBookmark } = useUser();
   const navigate = useNavigate();
-  const deleteHandler = async () => {
-    try {
-      await deletePost(post._id);
-    } catch (error) {
-      console.log(error);
-    }
+  const deleteHandler = () => {
+    dispatch(deletePost(post._id));
   };
   const checkLiked = (postId) => {
-    const likeArray = postState.posts.find(
-      (existingPost) => existingPost._id === postId
-    )?.likes?.likedBy;
+    const likeArray = posts.find((existingPost) => existingPost._id === postId)
+      ?.likes?.likedBy;
     return likeArray.some((likedUser) => likedUser.username === user.username);
   };
 
-  const likeHandler = async () => {
-    try {
-      checkLiked(post._id)
-        ? await unlikePost(post._id)
-        : await likePost(post._id);
-    } catch (error) {
-      console.log(error);
-    }
+  const likeHandler = () => {
+    checkLiked(post._id)
+      ? dispatch(unlikePost(post._id))
+      : dispatch(likePost(post._id));
   };
-  const commentHandler = async (e) => {
-    try {
-      e.stopPropagation();
-      setShowCommentModal();
-    } catch (error) {
-      console.log(error);
-    }
+  const commentHandler = (e) => {
+    e.stopPropagation();
+    setShowCommentModal();
   };
   const viewPostHandler = () => {
     navigate(`/posts/${post._id}`);
@@ -68,7 +62,10 @@ const PostCard = ({ post }) => {
       </div>
       <div className={classes["post-body-container"]}>
         <div className={classes["username-id-container"]}>
-          <div className={classes["username-body"]} onClick={()=>navigate(`/posts/user/${post.userId}`)}>
+          <div
+            className={classes["username-body"]}
+            onClick={() => navigate(`/posts/user/${post.userId}`)}
+          >
             <span className="text-white">@{post.username}</span>
           </div>
           <span className={classes["options"]}>

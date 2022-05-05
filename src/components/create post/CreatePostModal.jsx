@@ -1,20 +1,16 @@
 import classes from "./createPostModal.module.css";
 import { useState } from "react";
-import { usePost } from "../../context";
-
+import { addPost } from "../../redux/async thunks/postThunk";
+import { useDispatch } from "react-redux";
 const CreatePostModal = ({ setShowModal }) => {
   const [post, setPost] = useState({ content: "" });
-  const { addPost } = usePost();
+  const dispatch = useDispatch();
   const changeHandler = (e) => {
     setPost({ content: e.target.value });
   };
-  const postHandler = async () => {
-    try {
-      await addPost(post);
-      setShowModal();
-    } catch (error) {
-      console.log(error);
-    }
+  const postHandler = () => {
+    dispatch(addPost(post));
+    setShowModal();
   };
 
   return (
