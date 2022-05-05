@@ -1,6 +1,6 @@
 import classes from "./postCard.module.css";
 import { useToggle } from "../../hooks/useToggle";
-import { useAuth } from "../../context";
+import { useSelector } from "react-redux";
 import EditPostModal from "../edit post/EditPostModal";
 import CommentModal from "../comment/CommentModal";
 import { useNavigate } from "react-router-dom";
@@ -15,11 +15,11 @@ import {
 } from "../../redux/async thunks/userThunk";
 import { useDispatch, useSelector } from "react-redux";
 const PostCard = ({ post }) => {
+  const authState = useSelector(state=>state.auth);
+  const { user } = authState;
   const [showOptions, setShowOptions] = useToggle(false);
   const [showEditModal, setShowEditModal] = useToggle(false);
   const [showCommentModal, setShowCommentModal] = useToggle(false);
-  const { authState } = useAuth();
-  const { user } = authState;
   const dispatch = useDispatch();
   const { posts } = useSelector((state) => state.posts);
   const userState = useSelector((state) => state.user);

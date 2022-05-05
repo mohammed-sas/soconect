@@ -2,17 +2,16 @@ import classes from "./sidebar.module.css";
 import logo from "../../assets/logo-32x32.png";
 import { useToggle } from "../../hooks/useToggle";
 import CreatePostModal from "../create post/CreatePostModal";
-import { useAuth } from "../../context";
+import { logout } from "../../redux/slices/authSlice";
 import { clearPosts } from "../../redux/slices/postSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate, NavLink } from "react-router-dom";
 const Sidebar = () => {
   const [showModal, setShowModal] = useToggle(false);
-  const { logout } = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutHandler = () => {
-    logout();
+    dispatch(logout());
     navigate("/login");
     dispatch(clearPosts());
   };
