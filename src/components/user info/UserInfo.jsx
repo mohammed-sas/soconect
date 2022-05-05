@@ -1,15 +1,13 @@
-import { useUser } from "../../context";
 import classes from "./userInfo.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { followUser, unFollowUser } from "../../redux/async thunks/userThunk";
 const UserInfo = ({ user }) => {
-  const { userState, followUser, unFollowUser } = useUser();
-  const followHandler = async () => {
-    try {
-      checkFollowing()
-        ? await unFollowUser(user._id)
-        : await followUser(user._id);
-    } catch (error) {
-      console.log(error);
-    }
+  const dispatch = useDispatch();
+  const userState = useSelector((state) => state.user);
+  const followHandler = () => {
+    checkFollowing()
+      ? dispatch(unFollowUser(user._id))
+      : dispatch(followUser(user._id));
   };
 
   const checkFollowing = () => {

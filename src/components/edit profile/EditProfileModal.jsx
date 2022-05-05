@@ -1,29 +1,26 @@
 import classes from "./editProfileModal.module.css";
 import { useState } from "react";
-import {useUser} from '../../context';
+import { editUser } from "../../redux/async thunks/userThunk";
+import { useSelector, useDispatch } from "react-redux";
 
 const EditProfileModal = ({ user, setShowModal }) => {
-    const {editUser,userState} = useUser();
-    const [profile,setProfile]=useState(userState.bio);
+  const dispatch = useDispatch();
+  const userState = useSelector((state) => state.user);
+  const [profile, setProfile] = useState(userState.bio);
 
-    const changeHandler=e=>{
-        const {name,value} = e.target;
-        setProfile({
-            ...profile,
-            [name]:value
-        })
-    }
+  const changeHandler = (e) => {
+    const { name, value } = e.target;
+    setProfile({
+      ...profile,
+      [name]: value,
+    });
+  };
 
-    const submitHandler=async (e)=>{
-        try{
-        e.preventDefault();
-        await editUser(profile);
-        setShowModal();
-        }catch(error){
-            console.log(error);
-        }
-
-    }
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(editUser(profile));
+    setShowModal();
+  };
   return (
     <div className={classes["modal-container"]}>
       <div className={classes["modal"]}>
@@ -32,22 +29,45 @@ const EditProfileModal = ({ user, setShowModal }) => {
           onClick={setShowModal}
         ></i>
         <h3 className="text-primary">Edit Profile</h3>
-        <form action="post" className={classes["edit-profile-form"]} onSubmit={submitHandler}>
-          <label htmlFor="username" >
+        <form
+          action="post"
+          className={classes["edit-profile-form"]}
+          onSubmit={submitHandler}
+        >
+          <label htmlFor="username">
             <span className="text-primary">Username</span>
-            <input type="text" className={classes["cursor-not-allowed"]} disabled value={user.username} />
+            <input
+              type="text"
+              className={classes["cursor-not-allowed"]}
+              disabled
+              value={user.username}
+            />
           </label>
           <label htmlFor="name">
             <span className="text-primary">Name</span>
-            <input type="text" className={classes["cursor-not-allowed"]} disabled value={user.firstName + " " + user.lastName} />
+            <input
+              type="text"
+              className={classes["cursor-not-allowed"]}
+              disabled
+              value={user.firstName + " " + user.lastName}
+            />
           </label>
           <label htmlFor="bio-info">
             <span className="text-primary">Bio</span>
-            <textarea defaultValue={user.bio.info} name="info" defaultValue={userState.bio.info} onChange={changeHandler}></textarea>
+            <textarea
+              defaultValue={userState.bio.info}
+              name="info"
+              onChange={changeHandler}
+            ></textarea>
           </label>
           <label htmlFor="bio-website">
             <span className="text-primary">Website</span>
-            <input type="text" defaultValue={user.bio.website} name="website" defaultValue={userState.bio.website} onChange={changeHandler} />
+            <input
+              type="text"
+              defaultValue={userState.bio.website}
+              name="website"
+              onChange={changeHandler}
+            />
           </label>
           <input type="submit" value="Update" className="btn btn-primary" />
         </form>

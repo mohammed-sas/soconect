@@ -1,10 +1,10 @@
 import classes from "./profileCard.module.css";
 import { useToggle } from "../../hooks/useToggle";
 import EditProfileModal from "../edit profile/EditProfileModal";
-import { useUser } from "../../context";
+import { useSelector } from "react-redux";
 import FollowingModal from "../following/FollowingModal";
 const ProfileCard = ({ user }) => {
-  const { userState } = useUser();
+  const userState = useSelector(state=>state.user);
   const [showModal, setShowModal] = useToggle(false);
   const [showFollowing, setShowFollowing] = useToggle(false);
   const editHandler = () => {

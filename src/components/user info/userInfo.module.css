@@ -27,6 +27,8 @@
 }
 
 .avatar-text-lg{
-  font-size: 3.6rem;
-  text-align: center;
+  font-size: 3.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

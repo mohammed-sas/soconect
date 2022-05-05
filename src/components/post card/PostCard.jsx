@@ -1,6 +1,6 @@
 import classes from "./postCard.module.css";
 import { useToggle } from "../../hooks/useToggle";
-import { useAuth, useUser } from "../../context";
+import { useAuth } from "../../context";
 import EditPostModal from "../edit post/EditPostModal";
 import CommentModal from "../comment/CommentModal";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import {
   likePost,
   unlikePost,
 } from "../../redux/async thunks/postThunk";
+import {addToBookmark,deleteBookmark} from '../../redux/async thunks/userThunk';
 import { useDispatch, useSelector } from "react-redux";
 const PostCard = ({ post }) => {
   const [showOptions, setShowOptions] = useToggle(false);
@@ -18,7 +19,7 @@ const PostCard = ({ post }) => {
   const { user } = authState;
   const dispatch = useDispatch();
   const {posts} = useSelector((state) => state.posts);
-  const { userState, addToBookmark, deleteBookmark } = useUser();
+  const userState= useSelector(state=>state.user);
   const navigate = useNavigate();
   const deleteHandler = () => {
     dispatch(deletePost(post._id));
@@ -41,14 +42,12 @@ const PostCard = ({ post }) => {
   const viewPostHandler = () => {
     navigate(`/posts/${post._id}`);
   };
-  const bookmarkHandler = async () => {
-    try {
+  const bookmarkHandler =  () => {
+ 
       checkIfBookmarked(post._id)
-        ? await deleteBookmark(post._id)
-        : await addToBookmark(post._id);
-    } catch (error) {
-      console.log(error);
-    }
+        ?  dispatch(deleteBookmark(post._id))
+        :  dispatch(addToBookmark(post._id));
+
   };
   const checkIfBookmarked = (postId) => {
     return userState.bookmarks.find(

@@ -1,11 +1,9 @@
 import classes from "./profile.module.css";
 import { useEffect, useState, useRef } from "react";
-import { useUser } from "../../context";
 import { useSelector } from "react-redux";
 import { ProfileCard,PostCard } from "../../components";
-
+import axios from 'axios';
 const Profile = () => {
-  const { getUser } = useUser();
   const [user, setUser] = useState(null);
   const mountedRef = useRef(false);
   const {posts} = useSelector(state=>state.posts);
@@ -14,9 +12,9 @@ const Profile = () => {
     mountedRef.current = true;
     const fetchUser = async () => {
       const existingUser = JSON.parse(localStorage.getItem("user"));
-      const response = await getUser(existingUser._id);
+      const response = await axios.get(`/api/users/${existingUser._id}`);
       if (mountedRef.current) {
-        setUser(response);
+        setUser(response.data.user);
       }
     };
     fetchUser();

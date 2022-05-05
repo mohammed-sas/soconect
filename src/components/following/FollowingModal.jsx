@@ -1,9 +1,9 @@
 import classes from "./followingModal.module.css";
-import { useUser } from "../../context";
+import { useSelector } from "react-redux"; 
 
 const FollowingModal = ({ setShowFollowing }) => {
-  const { userState } = useUser();
-  const { following } = userState;
+  const user = useSelector(state=>state.user);
+  const { following } = user;
   return (
     <div className={classes["modal-container"]}>
       <div className={classes["modal"]}>
