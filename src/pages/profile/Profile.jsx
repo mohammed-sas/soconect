@@ -1,13 +1,14 @@
 import classes from "./profile.module.css";
 import { useEffect, useState, useRef } from "react";
-import { usePost, useUser } from "../../context";
+import { useUser } from "../../context";
+import { useSelector } from "react-redux";
 import { ProfileCard,PostCard } from "../../components";
 
 const Profile = () => {
   const { getUser } = useUser();
   const [user, setUser] = useState(null);
   const mountedRef = useRef(false);
-  const {postState} = usePost()
+  const {posts} = useSelector(state=>state.posts);
 
   useEffect(() => {
     mountedRef.current = true;
@@ -21,7 +22,7 @@ const Profile = () => {
     fetchUser();
 
     return () => (mountedRef.current = false);
-  },[postState]);
+  },[posts]);
 
   return (
     <main className={classes["profile-container"]}>
@@ -30,7 +31,7 @@ const Profile = () => {
       {user && <ProfileCard user={user} />}
       {user && (
         <div className={classes["post-list"]}>
-          {postState.posts.filter(post=>post.username===user.username).map((post) => {
+          {posts.filter(post=>post.username===user.username).map((post) => {
             return <PostCard key={post._id} post={post} />;
           })}
         </div>

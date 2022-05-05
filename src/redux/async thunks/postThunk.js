@@ -44,8 +44,9 @@ export const deletePost = createAsyncThunk(
 
 export const editPost = createAsyncThunk(
   "user/editPost",
-  async (postData, id) => {
+  async (data) => {
     try {
+      const {postData,id} = data;
       const response = await axios.post(
         `/api/posts/edit/${id}`,
         { postData },
@@ -105,8 +106,9 @@ export const getSinglePost = createAsyncThunk(
 
 export const addComment = createAsyncThunk(
   "user/posts/addComment",
-  async (comment, postId) => {
+  async (data) => {
     try {
+      const {comment,postId} = data;
       const response = await axios.post(
         `/api/posts/comment/${postId}`,
         { comment },
@@ -123,8 +125,9 @@ export const addComment = createAsyncThunk(
 
 export const deleteComment = createAsyncThunk(
   "user/posts/deleteComment",
-  async (commentId, postId) => {
+  async (data) => {
     try {
+      const {commentId,postId} = data;
       const response = await axios.post(
         `/api/posts/${postId}/${commentId}`,
         {},

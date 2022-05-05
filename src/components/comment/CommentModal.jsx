@@ -8,7 +8,7 @@ const CommentModal = ({ post, setShowCommentModal }) => {
   const dispatch = useDispatch();
 
   const commentHandler = () => {
-      dispatch(addComment(comment, post._id));
+      dispatch(addComment({comment, postId:post._id}));
       setShowCommentModal();
 
   };

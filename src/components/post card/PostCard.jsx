@@ -17,7 +17,7 @@ const PostCard = ({ post }) => {
   const { authState } = useAuth();
   const { user } = authState;
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts);
+  const {posts} = useSelector((state) => state.posts);
   const { userState, addToBookmark, deleteBookmark } = useUser();
   const navigate = useNavigate();
   const deleteHandler = () => {

@@ -8,7 +8,7 @@ const EditPostModal = ({ post, setShowEditModal, setShowOptions }) => {
   const dispatch = useDispatch();
 
   const saveHandler = () => {
-    dispatch(editPost(editedPost, post._id));
+    dispatch(editPost({postData:editedPost,id:post._id}));
     setShowEditModal();
     setShowOptions();
   };

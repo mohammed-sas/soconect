@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 const CommentCard = ({comment,post}) => {
     const dispatch = useDispatch();
     const deleteHandler=async ()=>{
-        dispatch(deleteComment(comment._id,post._id)); 
+        dispatch(deleteComment({commentId:comment._id,postId:post._id})); 
     }
     return (
         <div className={classes["comment-card"]}>
