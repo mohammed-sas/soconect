@@ -31,10 +31,8 @@ const Signup = () => {
       setPassLen(false);
       return;
     }
-    let status = dispatch(signup(user));
-    if (status == 201) {
-      navigate("/");
-    }
+    dispatch(signup(user));
+    navigate("/");
   };
 
   return (

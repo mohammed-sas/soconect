@@ -30,10 +30,8 @@ const Login = () => {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    const status = dispatch(login(user));
-    if (status === 200) {
-      navigate(from, { replace: true });
-    }
+    dispatch(login(user));
+    navigate(from, { replace: true });
   };
   return (
     <div className={classes["login-container"]}>

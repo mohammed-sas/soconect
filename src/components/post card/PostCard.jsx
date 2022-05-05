@@ -1,6 +1,5 @@
 import classes from "./postCard.module.css";
 import { useToggle } from "../../hooks/useToggle";
-import { useSelector } from "react-redux";
 import EditPostModal from "../edit post/EditPostModal";
 import CommentModal from "../comment/CommentModal";
 import { useNavigate } from "react-router-dom";
