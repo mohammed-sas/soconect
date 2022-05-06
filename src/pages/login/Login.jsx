@@ -28,10 +28,14 @@ const Login = () => {
     };
     setUser(guestUser);
   };
-  const submitHandler = (e) => {
+  const submitHandler =async (e) => {
     e.preventDefault();
-    dispatch(login(user));
+    try{
+    await dispatch(login(user));
     navigate(from, { replace: true });
+    }catch(error){
+      console.log(error);
+    }
   };
   return (
     <div className={classes["login-container"]}>

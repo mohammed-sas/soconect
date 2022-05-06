@@ -21,18 +21,22 @@ const Signup = () => {
       [name]: value,
     });
   };
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    if (user.password !== user.confirmPassword) {
-      setPassMatch(false);
-      return;
+    try {
+      if (user.password !== user.confirmPassword) {
+        setPassMatch(false);
+        return;
+      }
+      if (user.password.length < 8) {
+        setPassLen(false);
+        return;
+      }
+      await dispatch(signup(user));
+      navigate("/");
+    } catch (error) {
+      console.log(error);
     }
-    if (user.password.length < 8) {
-      setPassLen(false);
-      return;
-    }
-    dispatch(signup(user));
-    navigate("/");
   };
 
   return (
