@@ -13,6 +13,7 @@ const initialState = {
   followers: [],
   following: [],
   bio: { info: "", website: "" },
+  posts:[],
   loading: false,
 };
 
@@ -75,8 +76,10 @@ export const userSlice = createSlice({
       state.loading = true;
     },
     [getUser.fulfilled]: (state, { payload }) => {
-      state.bookmarks = payload.bookmarks;
+      state.bookmarks=payload.bookmarks;
+      state.followers=payload.followers;
       state.following=payload.following;
+      state.posts=payload.posts;
       state.bio = payload.bio;
       state.loading = false;
     },

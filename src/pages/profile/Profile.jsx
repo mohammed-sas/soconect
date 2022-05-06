@@ -1,26 +1,26 @@
 import classes from "./profile.module.css";
-import { useEffect, useState, useRef } from "react";
-import { useSelector } from "react-redux";
-import { ProfileCard,PostCard } from "../../components";
-import axios from 'axios';
+import { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { ProfileCard, PostCard } from "../../components";
+import { getUser } from "../../redux/async thunks/userThunk";
 const Profile = () => {
-  const [user, setUser] = useState(null);
   const mountedRef = useRef(false);
-  const {posts} = useSelector(state=>state.posts);
+  const { posts } = useSelector((state) => state.posts);
+  const authState = useSelector((state) => state.auth);
+  const { user } = authState;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     mountedRef.current = true;
     const fetchUser = async () => {
-      const existingUser = JSON.parse(localStorage.getItem("user"));
-      const response = await axios.get(`/api/users/${existingUser._id}`);
       if (mountedRef.current) {
-        setUser(response.data.user);
+        await dispatch(getUser(user._id));
       }
     };
     fetchUser();
 
     return () => (mountedRef.current = false);
-  },[posts]);
+  }, [posts]);
 
   return (
     <main className={classes["profile-container"]}>
@@ -29,9 +29,11 @@ const Profile = () => {
       {user && <ProfileCard user={user} />}
       {user && (
         <div className={classes["post-list"]}>
-          {posts.filter(post=>post.username===user.username).map((post) => {
-            return <PostCard key={post._id} post={post} />;
-          })}
+          {posts
+            .filter((post) => post.username === user.username)
+            .map((post) => {
+              return <PostCard key={post._id} post={post} />;
+            })}
         </div>
       )}
     </main>

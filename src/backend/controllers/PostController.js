@@ -95,6 +95,7 @@ export const createPostHandler = function (schema, request) {
     };
 
     this.db.posts.insert(post);
+    this.db.users.update({_id:user._id},{...user,posts:user.posts.concat(post)});
     return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {
     return new Response(
@@ -259,6 +260,7 @@ export const deletePostHandler = function (schema, request) {
       );
     }
     this.db.posts.remove({ _id: postId });
+    this.db.users.update({_id:user._id},{...user,posts:user.posts.filter(p=>p._id !== postId)});
     return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {
     return new Response(

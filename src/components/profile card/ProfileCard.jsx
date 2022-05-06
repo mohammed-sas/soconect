@@ -28,12 +28,12 @@ const ProfileCard = ({ user }) => {
         </div>
         <h4 className="text-primary">@{user.username}</h4>
         <div className={classes["footer"]}>
-          <span className="text-primary">{user.posts.length} Posts</span>
+          <span className="text-primary">{userState.posts.length} Posts</span>
           <span className="text-primary">
-            {user.followers.length} Followers
+            {userState.followers.length} Followers
           </span>
           <span className={`text-primary ${classes["following"]}`} onClick={setShowFollowing}>
-            {user.following.length} Following
+            {userState.following.length} Following
           </span>
         </div>
         <div>
