@@ -2,17 +2,20 @@ import classes from "./sidebar.module.css";
 import logo from "../../assets/logo-32x32.png";
 import { useToggle } from "../../hooks/useToggle";
 import CreatePostModal from "../create post/CreatePostModal";
-import { useAuth, usePost } from "../../context";
+import { logout } from "../../redux/slices/authSlice";
+import { clearPosts } from "../../redux/slices/postSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, NavLink } from "react-router-dom";
 const Sidebar = () => {
+  const authState = useSelector((state) => state.auth);
+  const { user } = authState;
   const [showModal, setShowModal] = useToggle(false);
-  const { logout } = useAuth();
-  const { postDispatch } = usePost();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutHandler = () => {
-    logout();
+    dispatch(logout());
     navigate("/login");
-    postDispatch({ type: "CLEAR" });
+    dispatch(clearPosts());
   };
   let active = {
     background: "var(--tertiary-lighter)",
@@ -56,16 +59,20 @@ const Sidebar = () => {
           Create Post
         </button>
       </div>
-      <div className={classes["profile-container"]}>
-        <div className={classes["user-detail"]}>
-          <span className="text-primary">Mohammed</span>
-          <span className="text-primary">@mhdsas</span>
+      {user && (
+        <div className={classes["profile-container"]}>
+          <div className={classes["user-detail"]}>
+            <span className="text-primary">
+              {user.firstName} {user.lastName}
+            </span>
+            <span className="text-primary">@{user.username}</span>
+          </div>
+          <i
+            className={`fas fa-sign-out-alt text-primary ${classes["logout-btn"]}`}
+            onClick={logoutHandler}
+          ></i>
         </div>
-        <i
-          className={`fas fa-sign-out-alt text-primary ${classes["logout-btn"]}`}
-          onClick={logoutHandler}
-        ></i>
-      </div>
+      )}
       {showModal ? <CreatePostModal setShowModal={setShowModal} /> : null}
     </aside>
   );

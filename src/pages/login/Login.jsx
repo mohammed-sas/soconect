@@ -1,12 +1,12 @@
 import classes from "./login.module.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import hero from "../../assets/logo.webp";
-import { useAuth } from "../../context";
+import { login } from "../../redux/async thunks/authThunk";
 import { useState } from "react";
-
+import { useDispatch } from "react-redux";
 
 const Login = () => {
-  const { login } = useAuth();
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -28,14 +28,12 @@ const Login = () => {
     };
     setUser(guestUser);
   };
-  const submitHandler = async (e) => {
-    try {
-      e.preventDefault();
-      const status = await login(user);
-      if (status === 200) {
-        navigate(from, { replace: true });
-      }
-    } catch (error) {
+  const submitHandler =async (e) => {
+    e.preventDefault();
+    try{
+    await dispatch(login(user));
+    navigate(from, { replace: true });
+    }catch(error){
       console.log(error);
     }
   };

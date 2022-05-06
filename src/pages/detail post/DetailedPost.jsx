@@ -1,21 +1,22 @@
 import classes from "./detailedPost.module.css";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Sidebar, PostCard } from "../../components";
-import { usePost } from "../../context";
+import {  PostCard } from "../../components";
+import axios from 'axios';
 import CommentCard from "../../components/comment card/CommentCard";
 const DetailedPost = () => {
   const params = useParams();
   const { postId } = params;
   const [post, setPost] = useState(null);
-  const { getSinglePost } = usePost();
   const mountedRef = useRef(false);
   useEffect(() => {
     mountedRef.current = true;
     (async () => {
       try {
-        const post = await getSinglePost(postId);
-        if (mountedRef.current) setPost(post);
+        const response = await axios.get(`/api/posts/${postId}`);
+        if (response.status === 200 && mountedRef.current) {
+          setPost(response.data.post);
+        }
       } catch (error) {
         console.log(error);
       }

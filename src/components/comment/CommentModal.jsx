@@ -1,28 +1,25 @@
-import { useState } from 'react';
-import { usePost } from '../../context';
-import classes from './../create post/createPostModal.module.css';
+import { useState } from "react";
+import { addComment } from "../../redux/async thunks/postThunk";
+import { useDispatch } from "react-redux";
+import classes from "./../create post/createPostModal.module.css";
 
-const CommentModal = ({post,setShowCommentModal}) => {
-    const [comment,setComment]=useState({content:""});
-    const {addComment} = usePost();
+const CommentModal = ({ post, setShowCommentModal }) => {
+  const [comment, setComment] = useState({ content: "" });
+  const dispatch = useDispatch();
 
-    const commentHandler=async ()=>{
-        try{
-            await addComment(comment,post._id);
-            setShowCommentModal();
-        }catch(error){
-            console.log(error);
-        }
-    }
-    const changeHandler=(e)=>{
-        setComment({
-            content:e.target.value
-        });
-    }
+  const commentHandler = () => {
+      dispatch(addComment({comment, postId:post._id}));
+      setShowCommentModal();
 
+  };
+  const changeHandler = (e) => {
+    setComment({
+      content: e.target.value,
+    });
+  };
 
-    return (
-<div className={classes["modal-container"]}>
+  return (
+    <div className={classes["modal-container"]}>
       <div className={classes["modal"]}>
         <i
           className={`fas fa-times text-primary ${classes["close-btn"]}`}
@@ -40,7 +37,7 @@ const CommentModal = ({post,setShowCommentModal}) => {
         </button>
       </div>
     </div>
-    )
-}
+  );
+};
 
-export default CommentModal
+export default CommentModal;

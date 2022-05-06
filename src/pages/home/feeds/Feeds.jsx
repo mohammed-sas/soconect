@@ -1,12 +1,21 @@
 import classes from "./feeds.module.css";
-import {usePost} from '../../../context'
+import {useSelector,useDispatch} from 'react-redux';
+import {getAllPost} from '../../../redux/async thunks/postThunk';
 import PostCard from "../../../components/post card/PostCard";
+import { useEffect } from "react";
 const Feeds = () => {
-  const {postState} = usePost();
+  const {posts} = useSelector(state=>state.posts);
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    (async ()=>{
+      dispatch(getAllPost());
+    })()
+  },[])
+  
   return (
     <div className={classes["post-list"]}>
       {
-        postState.posts.map(post=>{
+        posts.map(post=>{
           return <PostCard key={post._id} post={post}/>
         })
       }

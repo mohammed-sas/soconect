@@ -2,7 +2,6 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import classes from "./App.module.css";
 import { Home, Login, Signup, DetailedPost, Bookmark, UserPost , Profile } from "./pages";
 import { RequiresAuth, Sidebar } from "./components";
-
 function App() {
   const location = useLocation();
   return (
