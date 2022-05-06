@@ -30,7 +30,7 @@ const UserPost = () => {
   }, [postsState]);
   return (
     <main className={classes["user-posts-container"]}>
-      {user && <UserInfo user={user} />}
+      {user && <UserInfo userId={user._id} />}
 
       <div className={classes["post-list"]}>
         {posts.map((post) => {
