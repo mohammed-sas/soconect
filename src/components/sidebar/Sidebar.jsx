@@ -58,7 +58,7 @@ const Sidebar = () => {
         <button className={`btn btn-primary ${classes["post-btn"]}`} onClick={setShowModal}>
           Create Post
         </button>
-        <i class={`far fa-plus-square text-primary ${classes["mini-create-btn"]}`} onClick={setShowModal}></i>
+        <i className={`far fa-plus-square text-primary ${classes["mini-create-btn"]}`} onClick={setShowModal}></i>
         
       </div>
       {user && (

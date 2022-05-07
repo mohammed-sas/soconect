@@ -8,5 +8,6 @@
   .user-feed {
     width: 100%;
     padding: 1rem;
+    height: calc(100vh - 5rem);
   }
 }
