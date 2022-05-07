@@ -56,3 +56,9 @@
 .following{
   cursor: pointer;
 }
+
+@media only screen and (max-width:600px) {
+  .user-container {
+    width: 100%;
+  }
+}

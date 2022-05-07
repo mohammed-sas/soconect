@@ -27,6 +27,7 @@
     }
     .comments-list{
         max-width: 100%;
+        height: auto;
     }
     .lists{
         width: 100%;
