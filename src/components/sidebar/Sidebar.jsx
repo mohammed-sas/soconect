@@ -55,9 +55,11 @@ const Sidebar = () => {
             <span className="text-primary">Profile</span>
           </div>
         </NavLink>
-        <button className="btn btn-primary" onClick={setShowModal}>
+        <button className={`btn btn-primary ${classes["post-btn"]}`} onClick={setShowModal}>
           Create Post
         </button>
+        <i class={`far fa-plus-square text-primary ${classes["mini-create-btn"]}`} onClick={setShowModal}></i>
+        
       </div>
       {user && (
         <div className={classes["profile-container"]}>
