@@ -30,12 +30,12 @@ const Sidebar = () => {
         <NavLink to="/" style={({ isActive }) => (isActive ? active : null)}>
           <div className={classes["tab-item"]}>
             <i className="fas fa-home text-primary"></i>
-            <span className="text-primary">Home</span>
+            <span className="text-white">Home</span>
           </div>
         </NavLink>
         <div className={classes["tab-item"]}>
           <i className="fas fa-bell text-primary"></i>
-          <span className="text-primary">Notifications</span>
+          <span className="text-white">Notifications</span>
         </div>
         <NavLink
           to="/bookmark"
@@ -43,7 +43,7 @@ const Sidebar = () => {
         >
           <div className={classes["tab-item"]}>
             <i className="fas fa-bookmark text-primary"></i>
-            <span className="text-primary">Bookmark</span>
+            <span className="text-white">Bookmark</span>
           </div>
         </NavLink>
         <NavLink
@@ -52,7 +52,7 @@ const Sidebar = () => {
         >
           <div className={classes["tab-item"]}>
             <i className="fas fa-user-alt text-primary"></i>
-            <span className="text-primary">Profile</span>
+            <span className="text-white">Profile</span>
           </div>
         </NavLink>
         <button className={`btn btn-primary ${classes["post-btn"]}`} onClick={setShowModal}>
@@ -64,10 +64,10 @@ const Sidebar = () => {
       {user && (
         <div className={classes["profile-container"]}>
           <div className={classes["user-detail"]}>
-            <span className="text-primary">
+            <span className="text-white">
               {user.firstName} {user.lastName}
             </span>
-            <span className="text-primary">@{user.username}</span>
+            <span className="text-white">@{user.username}</span>
           </div>
           <i
             className={`fas fa-sign-out-alt text-primary ${classes["logout-btn"]}`}
