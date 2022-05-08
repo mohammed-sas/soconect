@@ -1,27 +1,27 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const token = localStorage.getItem("token");
-const auth = {
-  headers: {
-    authorization: token,
-  },
-};
 
-export const getUser=createAsyncThunk("user/getUser",async (userId)=>{
-  try{
+export const getUser = createAsyncThunk("user/getUser", async (userId) => {
+  try {
     const response = await axios.get(`/api/users/${userId}`);
-    if(response.status === 200){
+    if (response.status === 200) {
       return response.data.user;
     }
-  }catch(error){
+  } catch (error) {
     console.log(error);
   }
-})
+});
 
 export const addToBookmark = createAsyncThunk(
   "user/addBookmark",
   async (postId) => {
     try {
+      const token = localStorage.getItem("token");
+      const auth = {
+        headers: {
+          authorization: token,
+        },
+      };
       const response = await axios.post(
         `/api/users/bookmark/${postId}`,
         {},
@@ -40,6 +40,12 @@ export const deleteBookmark = createAsyncThunk(
   "user/deleteBookmark",
   async (postId) => {
     try {
+      const token = localStorage.getItem("token");
+      const auth = {
+        headers: {
+          authorization: token,
+        },
+      };
       const response = await axios.post(
         `/api/users/remove-bookmark/${postId}`,
         {},
@@ -56,6 +62,12 @@ export const deleteBookmark = createAsyncThunk(
 
 export const followUser = createAsyncThunk("user/follow", async (userId) => {
   try {
+    const token = localStorage.getItem("token");
+    const auth = {
+      headers: {
+        authorization: token,
+      },
+    };
     const response = await axios.post(`/api/users/follow/${userId}`, {}, auth);
     if (response.status === 200) {
       const { user } = response.data;
@@ -67,9 +79,21 @@ export const followUser = createAsyncThunk("user/follow", async (userId) => {
   }
 });
 
-export const unFollowUser = createAsyncThunk("user/unfollow", async (userId) => {
+export const unFollowUser = createAsyncThunk(
+  "user/unfollow",
+  async (userId) => {
     try {
-      const response = await axios.post(`/api/users/unfollow/${userId}`, {}, auth);
+      const token = localStorage.getItem("token");
+      const auth = {
+        headers: {
+          authorization: token,
+        },
+      };
+      const response = await axios.post(
+        `/api/users/unfollow/${userId}`,
+        {},
+        auth
+      );
       if (response.status === 200) {
         const { user } = response.data;
         const res = await axios.get(`/api/users/${user._id}`);
@@ -78,22 +102,27 @@ export const unFollowUser = createAsyncThunk("user/unfollow", async (userId) => 
     } catch (error) {
       console.log(error);
     }
-  });
+  }
+);
 
-export const editUser=createAsyncThunk("user/editUser",async (userBio)=>{
-    try{
-        const userData={
-            bio:{
-                ...userBio
-            }
-        }
-        const response = await axios.post("/api/users/edit", { userData }, auth);
-        if (response.status === 201) {
-         return response.data.user.bio; 
-        }
-    }catch(error){
-        console.log(error);
+export const editUser = createAsyncThunk("user/editUser", async (userBio) => {
+  try {
+    const token = localStorage.getItem("token");
+    const auth = {
+      headers: {
+        authorization: token,
+      },
+    };
+    const userData = {
+      bio: {
+        ...userBio,
+      },
+    };
+    const response = await axios.post("/api/users/edit", { userData }, auth);
+    if (response.status === 201) {
+      return response.data.user.bio;
     }
-})
-
-
+  } catch (error) {
+    console.log(error);
+  }
+});
