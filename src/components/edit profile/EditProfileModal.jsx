@@ -25,17 +25,17 @@ const EditProfileModal = ({ user, setShowModal }) => {
     <div className={classes["modal-container"]}>
       <div className={classes["modal"]}>
         <i
-          className={`fas fa-times text-primary ${classes["close-btn"]}`}
+          className={`fas fa-times text-white ${classes["close-btn"]}`}
           onClick={setShowModal}
         ></i>
-        <h3 className="text-primary">Edit Profile</h3>
+        <h3 className="text-white">Edit Profile</h3>
         <form
           action="post"
           className={classes["edit-profile-form"]}
           onSubmit={submitHandler}
         >
           <label htmlFor="username">
-            <span className="text-primary">Username</span>
+            <span className="text-white">Username</span>
             <input
               type="text"
               className={classes["cursor-not-allowed"]}
@@ -44,7 +44,7 @@ const EditProfileModal = ({ user, setShowModal }) => {
             />
           </label>
           <label htmlFor="name">
-            <span className="text-primary">Name</span>
+            <span className="text-white">Name</span>
             <input
               type="text"
               className={classes["cursor-not-allowed"]}
@@ -53,7 +53,7 @@ const EditProfileModal = ({ user, setShowModal }) => {
             />
           </label>
           <label htmlFor="bio-info">
-            <span className="text-primary">Bio</span>
+            <span className="text-white">Bio</span>
             <textarea
               defaultValue={userState.bio.info}
               name="info"
@@ -61,7 +61,7 @@ const EditProfileModal = ({ user, setShowModal }) => {
             ></textarea>
           </label>
           <label htmlFor="bio-website">
-            <span className="text-primary">Website</span>
+            <span className="text-white">Website</span>
             <input
               type="text"
               defaultValue={userState.bio.website}

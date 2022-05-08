@@ -40,15 +40,15 @@ const UserInfo = ({ userId }) => {
             <span>{user.username.substring(0, 2).toUpperCase()}</span>
           </div>
           <div className={classes["body"]}>
-            <h2 className="text-primary">
+            <h2 className="text-white">
               {user.firstName} {user.lastName}
             </h2>
             <div className={classes["footer"]}>
-              <span className="text-primary">{user.posts.length} Posts</span>
-              <span className="text-primary">
+              <span className="text-white">{user.posts.length} Posts</span>
+              <span className="text-white">
                 {user.followers.length} Followers
               </span>
-              <span className="text-primary">
+              <span className="text-white">
                 {user.following.length} Following
               </span>
             </div>
