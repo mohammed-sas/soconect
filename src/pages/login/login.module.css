@@ -11,7 +11,7 @@
 .login-form-container {
   width: 40rem;
   padding: 2rem;
-  border: 1px solid var(--primary);
+  background: var(--tertiary-light);
   border-radius: 10px;
 }
 
