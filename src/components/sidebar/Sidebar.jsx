@@ -29,12 +29,12 @@ const Sidebar = () => {
         </div>
         <NavLink to="/" style={({ isActive }) => (isActive ? active : null)}>
           <div className={classes["tab-item"]}>
-            <i className="fas fa-home text-primary"></i>
+            <i className="fas fa-home text-purple-400"></i>
             <span className="text-white">Home</span>
           </div>
         </NavLink>
         <div className={classes["tab-item"]}>
-          <i className="fas fa-bell text-primary"></i>
+          <i className="fas fa-bell text-purple-400"></i>
           <span className="text-white">Notifications</span>
         </div>
         <NavLink
@@ -42,7 +42,7 @@ const Sidebar = () => {
           style={({ isActive }) => (isActive ? active : null)}
         >
           <div className={classes["tab-item"]}>
-            <i className="fas fa-bookmark text-primary"></i>
+            <i className="fas fa-bookmark text-purple-400"></i>
             <span className="text-white">Bookmark</span>
           </div>
         </NavLink>
@@ -51,14 +51,14 @@ const Sidebar = () => {
           style={({ isActive }) => (isActive ? active : null)}
         >
           <div className={classes["tab-item"]}>
-            <i className="fas fa-user-alt text-primary"></i>
+            <i className="fas fa-user-alt text-purple-400"></i>
             <span className="text-white">Profile</span>
           </div>
         </NavLink>
         <button className={`btn btn-primary ${classes["post-btn"]}`} onClick={setShowModal}>
           Create Post
         </button>
-        <i className={`far fa-plus-square text-primary ${classes["mini-create-btn"]}`} onClick={setShowModal}></i>
+        <i className={`far fa-plus-square text-purple-400 ${classes["mini-create-btn"]}`} onClick={setShowModal}></i>
         
       </div>
       {user && (
@@ -70,7 +70,7 @@ const Sidebar = () => {
             <span className="text-white">@{user.username}</span>
           </div>
           <i
-            className={`fas fa-sign-out-alt text-primary ${classes["logout-btn"]}`}
+            className={`fas fa-sign-out-alt text-purple-400 ${classes["logout-btn"]}`}
             onClick={logoutHandler}
           ></i>
         </div>

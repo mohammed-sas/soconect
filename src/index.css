@@ -7,6 +7,7 @@
   --secondary:#F9CEE1;
   --primary-dark:#960200;
   --white:#fff;
+  --purple-400:#c084fc;
 }
 
 img {
@@ -29,6 +30,9 @@ a{
 .text-white{
   color:var(--white);
 }
+.text-purple-400{
+  color:var(--purple-400)
+}
 
 .btn{
   margin: 0;
@@ -44,7 +48,7 @@ a{
   background: var(--primary);
 }
 .avatar span{
-  color: var(--tertiary);
+  color: var(--white);
   font-weight: bolder;
 }
 

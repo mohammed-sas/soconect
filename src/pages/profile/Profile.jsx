@@ -24,7 +24,7 @@ const Profile = () => {
 
   return (
     <main className={classes["profile-container"]}>
-      <h1 className="centered-text text-primary">Profile</h1>
+      <h1 className="centered-text text-purple-400">Profile</h1>
       {!user && <h1 className="text-primary">Loading...</h1>}
       {user && <ProfileCard user={user} />}
       {user && (

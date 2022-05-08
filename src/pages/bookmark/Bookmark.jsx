@@ -14,7 +14,7 @@ const Bookmark = () => {
   },[]);
   return (
     <main className={classes["bookmarks-container"]}>
-      <h1 className="centered-text text-primary">Bookmark</h1>
+      <h1 className="centered-text text-purple-400">Bookmark</h1>
       <div className={classes["bookmark-list"]}>
         {user.bookmarks.map((bookmark) => {
           return <PostCard key={bookmark._id} post={bookmark} />;

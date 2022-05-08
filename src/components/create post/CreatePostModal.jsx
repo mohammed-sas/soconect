@@ -17,10 +17,10 @@ const CreatePostModal = ({ setShowModal }) => {
     <div className={classes["modal-container"]}>
       <div className={classes["modal"]}>
         <i
-          className={`fas fa-times text-primary ${classes["close-btn"]}`}
+          className={`fas fa-times text-white ${classes["close-btn"]}`}
           onClick={setShowModal}
         ></i>
-        <h3 className="text-primary">Create Post</h3>
+        <h3 className="text-white">Create Post</h3>
         <textarea
           className={classes["text-area"]}
           name="post"
