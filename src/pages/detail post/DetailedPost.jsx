@@ -35,7 +35,7 @@ const DetailedPost = () => {
       )}
       {post ? (
         <div className={classes["comments-list"]}>
-          <h4 className="text-primary">Comments</h4>
+          <h4 className="text-purple-400">Comments</h4>
           {post.comment.comments.map((comment) => {
             return (
               <CommentCard key={comment._id} comment={comment} post={post} />

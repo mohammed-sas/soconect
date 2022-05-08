@@ -22,10 +22,10 @@ const CommentModal = ({ post, setShowCommentModal }) => {
     <div className={classes["modal-container"]}>
       <div className={classes["modal"]}>
         <i
-          className={`fas fa-times text-primary ${classes["close-btn"]}`}
+          className={`fas fa-times text-white ${classes["close-btn"]}`}
           onClick={setShowCommentModal}
         ></i>
-        <h3 className="text-primary">Comment on Post</h3>
+        <h3 className="text-white">Comment on Post</h3>
         <textarea
           className={classes["text-area"]}
           name="post"

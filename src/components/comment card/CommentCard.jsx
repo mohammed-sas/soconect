@@ -12,9 +12,9 @@ const CommentCard = ({comment,post}) => {
                 <p className={`${classes["content"]} text-white`}>
                     {comment.content}
                 </p>
-                <i className={`fas fa-times text-primary ${classes["close-btn"]}`} onClick={deleteHandler}></i>
+                <i className={`fas fa-times text-purple-400 ${classes["close-btn"]}`} onClick={deleteHandler}></i>
             </div>
-            <span className={`${classes["footer"]} text-primary`}>@{comment.username}</span>
+            <span className={`${classes["footer"]} text-purple-400`}>@{comment.username}</span>
         </div>
     )
 }
