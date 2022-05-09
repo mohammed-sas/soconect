@@ -53,7 +53,7 @@ const UserInfo = ({ userId }) => {
               </span>
             </div>
           </div>
-          <div>
+          <div className={classes["follow-container"]}>
             <button className="btn btn-primary" onClick={followHandler}>
               {checkFollowing() ? "UnFollow" : "Follow"}
             </button>
