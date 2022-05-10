@@ -4,7 +4,7 @@ import EditProfileModal from "../edit profile/EditProfileModal";
 import { useSelector } from "react-redux";
 import FollowingModal from "../following/FollowingModal";
 const ProfileCard = ({ user }) => {
-  const userState = useSelector(state=>state.user);
+  const userState = useSelector((state) => state.user);
   const [showModal, setShowModal] = useToggle(false);
   const [showFollowing, setShowFollowing] = useToggle(false);
   const editHandler = () => {
@@ -12,11 +12,15 @@ const ProfileCard = ({ user }) => {
   };
   return (
     <div className={classes["user-container"]}>
-      <div
-        className={`avatar ${classes["avatar-text-lg"]} ${classes["avatar-large"]}`}
-      >
-        <span>{user.username.substring(0, 2).toUpperCase()}</span>
-      </div>
+      {userState.image !== "" ? (
+        <img src={userState.image} alt="avatar" className="avatar avatar-lg" />
+      ) : (
+        <div
+          className={`avatar ${classes["avatar-text-lg"]} ${classes["avatar-large"]}`}
+        >
+          <span>{user.username.substring(0, 2).toUpperCase()}</span>
+        </div>
+      )}
       <div className={classes["body"]}>
         <div className={classes["header"]}>
           <h2 className="text-white">
@@ -32,7 +36,10 @@ const ProfileCard = ({ user }) => {
           <span className="text-white">
             {userState.followers.length} Followers
           </span>
-          <span className={`text-white ${classes["following"]}`} onClick={setShowFollowing}>
+          <span
+            className={`text-white ${classes["following"]}`}
+            onClick={setShowFollowing}
+          >
             {userState.following.length} Following
           </span>
         </div>
@@ -51,7 +58,9 @@ const ProfileCard = ({ user }) => {
       {showModal ? (
         <EditProfileModal user={user} setShowModal={setShowModal} />
       ) : null}
-      {showFollowing ? <FollowingModal setShowFollowing={setShowFollowing} /> : null}
+      {showFollowing ? (
+        <FollowingModal setShowFollowing={setShowFollowing} />
+      ) : null}
     </div>
   );
 };

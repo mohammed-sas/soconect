@@ -19,22 +19,27 @@ const EditProfileModal = ({ user, setShowModal }) => {
   const submitHandler = async (e) => {
     try {
       e.preventDefault();
-      const fileInput =e.target.avatar.files[0];
-      const formData = new FormData();
-      formData.append("file", fileInput);
-      formData.append("upload_preset", "gomh4n5e");
-      const response = await fetch(
-        "https://api.cloudinary.com/v1_1/dx1vtnzy6/image/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-      const data = await response.json();
-      const userProfile={
-        image:data.url,
-        bio:profile
+      const fileInput = e.target.avatar.files[0];
+      let imageUrl=""
+      if (fileInput) {
+        const formData = new FormData();
+        formData.append("file", fileInput);
+        formData.append("upload_preset", "gomh4n5e");
+        const response = await fetch(
+          "https://api.cloudinary.com/v1_1/dx1vtnzy6/image/upload",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+        const data = await response.json();
+        imageUrl = data.url;
       }
+      const userProfile = {
+        image: imageUrl,
+        bio: profile,
+      };
+
       dispatch(editUser(userProfile));
       setShowModal();
     } catch (error) {

@@ -68,7 +68,7 @@ export const userSlice = createSlice({
     },
     [editUser.fulfilled]: (state, { payload }) => {
       state.bio = payload.bio;
-      state.image=payload.imageUrl;
+      state.image=payload.image;
       state.loading = false;
     },
     [editUser.rejected]: (state) => {
