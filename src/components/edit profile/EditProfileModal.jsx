@@ -2,6 +2,7 @@ import classes from "./editProfileModal.module.css";
 import { useState } from "react";
 import { editUser } from "../../redux/async thunks/userThunk";
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 const EditProfileModal = ({ user, setShowModal }) => {
   const dispatch = useDispatch();
@@ -16,10 +17,29 @@ const EditProfileModal = ({ user, setShowModal }) => {
     });
   };
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(editUser(profile));
-    setShowModal();
+  const submitHandler = async (e) => {
+    try {
+      e.preventDefault();
+      const form = e.currentTarget;
+      const fileInput = Array.from(form.elements).find(
+        ({ name }) => name === "file"
+      );
+      const formData = new FormData();
+      formData.append("file", fileInput.fi);
+      formData.append("upload_preset", "gomh4n5e");
+      const data = await axios(
+        "https://api.cloudinary.com/v1_1/dx1vtnzy6/image/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      console.log(data);
+      dispatch(editUser(profile));
+      setShowModal();
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className={classes["modal-container"]}>
@@ -34,6 +54,15 @@ const EditProfileModal = ({ user, setShowModal }) => {
           className={classes["edit-profile-form"]}
           onSubmit={submitHandler}
         >
+          <label htmlFor="avatar">
+            <span className="text-white">Avatar</span>
+            <input
+              name="avatar"
+              type="file"
+              placeholder="choose image to upload"
+              accept="image/png, image/jpeg, image/webp"
+            />
+          </label>
           <label htmlFor="username">
             <span className="text-white">Username</span>
             <input
