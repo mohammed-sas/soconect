@@ -2,7 +2,6 @@ import classes from "./editProfileModal.module.css";
 import { useState } from "react";
 import { editUser } from "../../redux/async thunks/userThunk";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
 
 const EditProfileModal = ({ user, setShowModal }) => {
   const dispatch = useDispatch();
@@ -20,22 +19,24 @@ const EditProfileModal = ({ user, setShowModal }) => {
   const submitHandler = async (e) => {
     try {
       e.preventDefault();
-      const fileInput =e.target.avatar;
-      console.log(fileInput);
-      console.log(fileInput.file);
+      const fileInput =e.target.avatar.files[0];
       const formData = new FormData();
-      // formData.append("file", fileInput);
-      // formData.append("upload_preset", "gomh4n5e");
-      // const data = await axios(
-      //   "https://api.cloudinary.com/v1_1/dx1vtnzy6/image/upload",
-      //   {
-      //     method: "POST",
-      //     body: formData,
-      //   }
-      // );
-      // console.log(data);
-      // dispatch(editUser(profile));
-      // setShowModal();
+      formData.append("file", fileInput);
+      formData.append("upload_preset", "gomh4n5e");
+      const response = await fetch(
+        "https://api.cloudinary.com/v1_1/dx1vtnzy6/image/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const data = await response.json();
+      const userProfile={
+        image:data.url,
+        bio:profile
+      }
+      dispatch(editUser(userProfile));
+      setShowModal();
     } catch (error) {
       console.log(error);
     }
