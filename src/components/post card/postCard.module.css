@@ -32,6 +32,7 @@
   gap: 1rem;
 }
 .image-container{
+  align-self: center;
  width: 50%;
  height:50%;
 }

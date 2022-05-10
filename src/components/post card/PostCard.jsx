@@ -25,6 +25,7 @@ const PostCard = ({ post }) => {
   const navigate = useNavigate();
   const deleteHandler = () => {
     dispatch(deletePost(post._id));
+    navigate("/");
   };
   const checkLiked = (postId) => {
     const likeArray = posts.find((existingPost) => existingPost._id === postId)
