@@ -29,3 +29,12 @@
     background:var(--white);
 }
 
+.image-upload{
+    cursor: pointer;
+}
+.image-upload i{
+    font-size: 2rem;
+}
+.image-upload input{
+    display: none;
+}

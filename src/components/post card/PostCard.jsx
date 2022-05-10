@@ -14,7 +14,7 @@ import {
 } from "../../redux/async thunks/userThunk";
 import { useDispatch, useSelector } from "react-redux";
 const PostCard = ({ post }) => {
-  const authState = useSelector(state=>state.auth);
+  const authState = useSelector((state) => state.auth);
   const { user } = authState;
   const [showOptions, setShowOptions] = useToggle(false);
   const [showEditModal, setShowEditModal] = useToggle(false);
@@ -97,6 +97,7 @@ const PostCard = ({ post }) => {
           </span>
         </div>
         <div className={classes["post-body"]} onClick={viewPostHandler}>
+          {post.image && <div className={classes["image-container"]}><img src={post.image} alt="post image" /></div>}
           <p className="text-white">{post.content}</p>
         </div>
         <div className={classes["post-footer"]}>
