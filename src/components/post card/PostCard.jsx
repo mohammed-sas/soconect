@@ -57,9 +57,9 @@ const PostCard = ({ post }) => {
   };
   return (
     <div className={classes["post-container"]}>
-      <div className="avatar avatar-text">
+      {user.username===post.username ?<img src={userState.image} alt="avatar" class="avatar avatar-sm"></img>: <div className="avatar avatar-text">
         <span>{post.username.substring(0, 2).toUpperCase()}</span>
-      </div>
+      </div>}
       <div className={classes["post-body-container"]}>
         <div className={classes["username-id-container"]}>
           <div
