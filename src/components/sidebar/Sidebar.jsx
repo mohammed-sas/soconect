@@ -29,21 +29,21 @@ const Sidebar = () => {
         </div>
         <NavLink to="/" style={({ isActive }) => (isActive ? active : null)}>
           <div className={classes["tab-item"]}>
-            <i className="fas fa-home text-primary"></i>
-            <span className="text-primary">Home</span>
+            <i className="fas fa-home text-purple-400"></i>
+            <span className="text-white">Home</span>
           </div>
         </NavLink>
         <div className={classes["tab-item"]}>
-          <i className="fas fa-bell text-primary"></i>
-          <span className="text-primary">Notifications</span>
+          <i className="fas fa-bell text-purple-400"></i>
+          <span className="text-white">Notifications</span>
         </div>
         <NavLink
           to="/bookmark"
           style={({ isActive }) => (isActive ? active : null)}
         >
           <div className={classes["tab-item"]}>
-            <i className="fas fa-bookmark text-primary"></i>
-            <span className="text-primary">Bookmark</span>
+            <i className="fas fa-bookmark text-purple-400"></i>
+            <span className="text-white">Bookmark</span>
           </div>
         </NavLink>
         <NavLink
@@ -51,24 +51,26 @@ const Sidebar = () => {
           style={({ isActive }) => (isActive ? active : null)}
         >
           <div className={classes["tab-item"]}>
-            <i className="fas fa-user-alt text-primary"></i>
-            <span className="text-primary">Profile</span>
+            <i className="fas fa-user-alt text-purple-400"></i>
+            <span className="text-white">Profile</span>
           </div>
         </NavLink>
-        <button className="btn btn-primary" onClick={setShowModal}>
+        <button className={`btn btn-primary ${classes["post-btn"]}`} onClick={setShowModal}>
           Create Post
         </button>
+        <i className={`far fa-plus-square text-purple-400 ${classes["mini-create-btn"]}`} onClick={setShowModal}></i>
+        
       </div>
       {user && (
         <div className={classes["profile-container"]}>
           <div className={classes["user-detail"]}>
-            <span className="text-primary">
+            <span className="text-white">
               {user.firstName} {user.lastName}
             </span>
-            <span className="text-primary">@{user.username}</span>
+            <span className="text-white">@{user.username}</span>
           </div>
           <i
-            className={`fas fa-sign-out-alt text-primary ${classes["logout-btn"]}`}
+            className={`fas fa-sign-out-alt text-purple-400 ${classes["logout-btn"]}`}
             onClick={logoutHandler}
           ></i>
         </div>

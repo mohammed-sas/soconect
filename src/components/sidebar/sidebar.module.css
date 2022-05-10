@@ -54,3 +54,41 @@
   font-size: 2rem;
   font-weight: bolder;
 }
+.mini-create-btn{
+  display:none;
+  font-size: 2.4rem;
+  padding: 5px;
+}
+
+@media only screen and (max-width:750px){
+  .container{
+    flex-direction: row;
+    position: fixed;
+    bottom: 0;
+    height: 5rem;
+    padding: 1rem;
+    width: 100vw;
+    gap: 2rem;
+  }
+  .tabs-container{
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+    flex-grow: 1;
+  }
+  .tab-item{
+    padding: 5px;
+  }
+  .tab-item span{
+    display:none;
+  }
+  .user-detail{
+    display:none;
+  }
+  .mini-create-btn{
+    display:block;
+  }
+  .post-btn{
+    display:none;
+  }
+}

@@ -35,12 +35,14 @@
     flex-grow: 1;
 }
 .edit-profile-form>label input{
-    background: var(--secondary);
+    background: var(--white);
     border: none;
+    border-radius: 5px;
     height: 2rem;
+    padding: 8px 4px;
 }
 .edit-profile-form textarea{
-    background: var(--secondary);
+    background: var(--white);
 }
 
 .edit-profile-form>label{

@@ -45,14 +45,14 @@ const Signup = () => {
         <img src={hero} alt="logo" />
       </div>
       <div className={classes["login-form-container"]}>
-        <h2 className="centered-text text-primary">Sign Up</h2>
+        <h2 className="centered-text text-white">Sign Up</h2>
         <form
           action="post"
           className={classes["login-form"]}
           onSubmit={submitHandler}
         >
           <label htmlFor="email">
-            <span className="text-primary">Username</span>
+            <span className="text-white">Username</span>
             <input
               onChange={changeHandler}
               name="username"
@@ -61,7 +61,7 @@ const Signup = () => {
             />
           </label>
           <label className="text-white" htmlFor="firstName">
-            <span className="text-primary">First Name</span>
+            <span className="text-white">First Name</span>
             <input
               name="firstName"
               required
@@ -71,7 +71,7 @@ const Signup = () => {
             />
           </label>
           <label className="text-white" htmlFor="lastName">
-            <span className="text-primary">Last Name</span>
+            <span className="text-white">Last Name</span>
             <input
               name="lastName"
               required
@@ -82,7 +82,7 @@ const Signup = () => {
           </label>
 
           <label className="text-white" htmlFor="password">
-            <span className="text-primary">Password</span>
+            <span className="text-white">Password</span>
             <div className={classes["password"]}>
               <input
                 name="password"
@@ -93,13 +93,13 @@ const Signup = () => {
               <i
                 onClick={setShowpass}
                 className={
-                  "text-primary fas " + (showpass ? "fa-eye" : "fa-eye-slash")
+                  "text-white fas " + (showpass ? "fa-eye" : "fa-eye-slash")
                 }
               ></i>
             </div>
           </label>
           <label className="text-white" htmlFor="confirmPassword">
-            <span className="text-primary">Confirm Password</span>
+            <span className="text-white">Confirm Password</span>
             <div className={classes["password"]}>
               <input
                 name="confirmPassword"
@@ -110,7 +110,7 @@ const Signup = () => {
               <i
                 onClick={setShowConfirmpass}
                 className={
-                  "text-primary fas " +
+                  "text-white fas " +
                   (showConfirmpass ? "fa-eye" : "fa-eye-slash")
                 }
               ></i>
@@ -127,7 +127,7 @@ const Signup = () => {
           <div>
             <label htmlFor="accept-condition">
               <input id="accept-condition" required type="checkbox" />{" "}
-              <span className="text-primary">
+              <span className="text-white">
                 I accept all Terms & Conditions
               </span>
             </label>
@@ -136,7 +136,7 @@ const Signup = () => {
 
           <div>
             <p className="centered-text  ">
-              <Link to="/login" className="text-primary">
+              <Link to="/login" className="text-white">
                 Aleady have an Account <i className="fas fa-chevron-right"></i>
               </Link>
             </p>

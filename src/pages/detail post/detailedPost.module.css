@@ -19,3 +19,17 @@
 .post-details>div{
     margin: 1rem auto;
 }
+
+@media only screen and (max-width:750px){
+    .post-details{
+        width: 100%;
+        padding: 1rem;
+    }
+    .comments-list{
+        max-width: 100%;
+        height: auto;
+    }
+    .lists{
+        width: 100%;
+    }
+}

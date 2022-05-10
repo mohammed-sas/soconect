@@ -3,7 +3,7 @@ import Feeds from "./feeds/Feeds";
 const Home = () => {
   return (
     <main className={classes["user-feed"]}>
-      <h1 className="centered-text text-primary">Home</h1>
+      <h1 className="centered-text text-purple-400">Home</h1>
       <Feeds />
     </main>
   );

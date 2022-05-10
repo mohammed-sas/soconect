@@ -1,12 +1,13 @@
 :root {
-  --primary: #f87db4;
-  --tertiary: #1e1545;
-  --tertiary-light:#261D50;
-  --tertiary-lighter:#3E336D;
-  --tertiary-lightest:#4D427F;
+  --primary: #9333ea;
+  --tertiary: #121212;
+  --tertiary-light:#282828;
+  --tertiary-lighter:#333333;
+  --tertiary-lightest:#434343;
   --secondary:#F9CEE1;
   --primary-dark:#960200;
   --white:#fff;
+  --purple-400:#c084fc;
 }
 
 img {
@@ -29,28 +30,14 @@ a{
 .text-white{
   color:var(--white);
 }
+.text-purple-400{
+  color:var(--purple-400)
+}
 
 .btn{
   margin: 0;
 }
-.btn-primary{
-  background: var(--primary);
-  color: var(--tertiary);
-  font-weight: bolder;
-}
-.btn-primary:hover{
-  background: var(--secondary);
-  color: var(--primary-dark);
-}
 
-.btn-secondary{
-  background: var(--secondary);
-  color: var(--primary-dark);
-}
-.btn-secondary:hover{
-  background: var(--primary);
-  color:var(--tertiary)
-}
 
 .mismatch{
   color:var(--white);
@@ -61,6 +48,12 @@ a{
   background: var(--primary);
 }
 .avatar span{
-  color: var(--tertiary);
+  color: var(--white);
   font-weight: bolder;
+}
+
+@media only screen and (max-width:600px){
+  html{
+    font-size: 50%;
+  }
 }
