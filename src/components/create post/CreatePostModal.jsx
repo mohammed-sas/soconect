@@ -3,6 +3,7 @@ import { useState } from "react";
 import { addPost } from "../../redux/async thunks/postThunk";
 import { useDispatch } from "react-redux";
 import { useRef } from "react";
+import {toast} from 'react-toastify';
 const CreatePostModal = ({ setShowModal }) => {
   const [post, setPost] = useState({ content: "" });
   const imageRef = useRef();
@@ -32,8 +33,10 @@ const CreatePostModal = ({ setShowModal }) => {
         ...post,
         image: imageUrl,
       };
-      dispatch(addPost(userPost));
       setShowModal();
+      dispatch(addPost(userPost));
+      toast.success("Post created");
+      
     } catch (error) {
       console.log(error);
     }

@@ -54,3 +54,24 @@
 .cursor-not-allowed{
     cursor: not-allowed;
 }
+.avatar-input-container{
+    cursor: pointer;
+}
+.avatar-input-container input{
+    display: none;
+}
+.avatar-container{
+    position: relative;
+    align-self: center;
+}
+
+.avatar-container>i{
+    position: absolute;
+    bottom: 0;
+    right: -5px;
+}
+.avatar-container.display-pic>i{
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+}

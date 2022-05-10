@@ -57,9 +57,13 @@ const PostCard = ({ post }) => {
   };
   return (
     <div className={classes["post-container"]}>
-      {user.username===post.username ?<img src={userState.image} alt="avatar" class="avatar avatar-sm"></img>: <div className="avatar avatar-text">
-        <span>{post.username.substring(0, 2).toUpperCase()}</span>
-      </div>}
+      {user.username === post.username && userState.image ? (
+        <img src={userState.image} alt="avatar" class="avatar avatar-sm"></img>
+      ) : (
+        <div className="avatar avatar-text">
+          <span>{post.username.substring(0, 2).toUpperCase()}</span>
+        </div>
+      )}
       <div className={classes["post-body-container"]}>
         <div className={classes["username-id-container"]}>
           <div
@@ -98,7 +102,11 @@ const PostCard = ({ post }) => {
           </span>
         </div>
         <div className={classes["post-body"]} onClick={viewPostHandler}>
-          {post.image && <div className={classes["image-container"]}><img src={post.image} alt="post image" /></div>}
+          {post.image && (
+            <div className={classes["image-container"]}>
+              <img src={post.image} alt="post image" />
+            </div>
+          )}
           <p className="text-white">{post.content}</p>
         </div>
         <div className={classes["post-footer"]}>
