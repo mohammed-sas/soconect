@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { editPost } from "../../redux/async thunks/postThunk";
 import { useDispatch } from "react-redux";
+import {toast} from 'react-toastify';
 import classes from "../create post/createPostModal.module.css";
 
 const EditPostModal = ({ post, setShowEditModal, setShowOptions }) => {
@@ -10,6 +11,7 @@ const EditPostModal = ({ post, setShowEditModal, setShowOptions }) => {
   const saveHandler = () => {
     dispatch(editPost({postData:editedPost,id:post._id}));
     setShowEditModal();
+    toast.success("Post updated");
     setShowOptions();
   };
   const changeHandler = (e) => {

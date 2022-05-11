@@ -12,7 +12,7 @@
 
 .modal{
     width:30rem;
-    height: 35rem;
+    height: 40rem;
     background: var(--tertiary-light);
     display: flex;
     flex-direction: column;
@@ -38,7 +38,7 @@
     background: var(--white);
     border: none;
     border-radius: 5px;
-    height: 2rem;
+    height: auto;
     padding: 8px 4px;
 }
 .edit-profile-form textarea{
@@ -53,4 +53,25 @@
 
 .cursor-not-allowed{
     cursor: not-allowed;
+}
+.avatar-input-container{
+    cursor: pointer;
+}
+.avatar-input-container input{
+    display: none;
+}
+.avatar-container{
+    position: relative;
+    align-self: center;
+}
+
+.avatar-container>i{
+    position: absolute;
+    bottom: 0;
+    right: -5px;
+}
+.avatar-container.display-pic>i{
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
 }

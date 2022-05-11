@@ -9,6 +9,7 @@ import {
 } from "../async thunks/userThunk";
 
 const initialState = {
+  image:"",
   bookmarks: [],
   followers: [],
   following: [],
@@ -66,7 +67,8 @@ export const userSlice = createSlice({
       state.loading = true;
     },
     [editUser.fulfilled]: (state, { payload }) => {
-      state.bio = payload;
+      state.bio = payload.bio;
+      state.image=payload.image;
       state.loading = false;
     },
     [editUser.rejected]: (state) => {

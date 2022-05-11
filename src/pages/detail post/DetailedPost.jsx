@@ -4,8 +4,10 @@ import { useParams } from "react-router-dom";
 import {  PostCard } from "../../components";
 import axios from 'axios';
 import CommentCard from "../../components/comment card/CommentCard";
+import { useSelector } from "react-redux";
 const DetailedPost = () => {
   const params = useParams();
+  const {posts} = useSelector(state=>state.posts);
   const { postId } = params;
   const [post, setPost] = useState(null);
   const mountedRef = useRef(false);
@@ -23,17 +25,17 @@ const DetailedPost = () => {
     })();
 
     return () => (mountedRef.current = false);
-  });
+  },[posts]);
   return (
     <main className={classes["post-details"]}>
-      {post ? (
+      {post!==null ? (
         <div className={classes["lists"]}>
           <PostCard post={post} />
         </div>
       ) : (
         <h1 className="text-primary">Loading...</h1>
       )}
-      {post ? (
+      {post!==null ? (
         <div className={classes["comments-list"]}>
           <h4 className="text-purple-400">Comments</h4>
           {post.comment.comments.map((comment) => {

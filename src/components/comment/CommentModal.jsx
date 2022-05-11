@@ -2,6 +2,7 @@ import { useState } from "react";
 import { addComment } from "../../redux/async thunks/postThunk";
 import { useDispatch } from "react-redux";
 import classes from "./../create post/createPostModal.module.css";
+import {toast} from 'react-toastify';
 
 const CommentModal = ({ post, setShowCommentModal }) => {
   const [comment, setComment] = useState({ content: "" });
@@ -9,6 +10,7 @@ const CommentModal = ({ post, setShowCommentModal }) => {
 
   const commentHandler = () => {
       dispatch(addComment({comment, postId:post._id}));
+      toast.success("Comment posted");
       setShowCommentModal();
 
   };

@@ -4,6 +4,7 @@ import hero from "../../assets/logo.webp";
 import { login } from "../../redux/async thunks/authThunk";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const Login = () => {
     try{
     await dispatch(login(user));
     navigate(from, { replace: true });
+    toast.success("logged in successfully");
     }catch(error){
       console.log(error);
     }

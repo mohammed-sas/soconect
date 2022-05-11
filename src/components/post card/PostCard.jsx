@@ -14,7 +14,7 @@ import {
 } from "../../redux/async thunks/userThunk";
 import { useDispatch, useSelector } from "react-redux";
 const PostCard = ({ post }) => {
-  const authState = useSelector(state=>state.auth);
+  const authState = useSelector((state) => state.auth);
   const { user } = authState;
   const [showOptions, setShowOptions] = useToggle(false);
   const [showEditModal, setShowEditModal] = useToggle(false);
@@ -25,6 +25,7 @@ const PostCard = ({ post }) => {
   const navigate = useNavigate();
   const deleteHandler = () => {
     dispatch(deletePost(post._id));
+    navigate("/");
   };
   const checkLiked = (postId) => {
     const likeArray = posts.find((existingPost) => existingPost._id === postId)
@@ -56,9 +57,13 @@ const PostCard = ({ post }) => {
   };
   return (
     <div className={classes["post-container"]}>
-      <div className="avatar avatar-text">
-        <span>{post.username.substring(0, 2).toUpperCase()}</span>
-      </div>
+      {user.username === post.username && userState.image ? (
+        <img src={userState.image} alt="avatar" class="avatar avatar-sm"></img>
+      ) : (
+        <div className="avatar avatar-text">
+          <span>{post.username.substring(0, 2).toUpperCase()}</span>
+        </div>
+      )}
       <div className={classes["post-body-container"]}>
         <div className={classes["username-id-container"]}>
           <div
@@ -97,6 +102,11 @@ const PostCard = ({ post }) => {
           </span>
         </div>
         <div className={classes["post-body"]} onClick={viewPostHandler}>
+          {post.image && (
+            <div className={classes["image-container"]}>
+              <img src={post.image} alt="post image" />
+            </div>
+          )}
           <p className="text-white">{post.content}</p>
         </div>
         <div className={classes["post-footer"]}>

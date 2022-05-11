@@ -113,14 +113,9 @@ export const editUser = createAsyncThunk("user/editUser", async (userBio) => {
         authorization: token,
       },
     };
-    const userData = {
-      bio: {
-        ...userBio,
-      },
-    };
-    const response = await axios.post("/api/users/edit", { userData }, auth);
+    const response = await axios.post("/api/users/edit", { userData:userBio }, auth);
     if (response.status === 201) {
-      return response.data.user.bio;
+      return response.data.user;
     }
   } catch (error) {
     console.log(error);

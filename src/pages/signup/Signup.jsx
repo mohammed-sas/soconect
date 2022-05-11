@@ -6,10 +6,9 @@ import { useToggle } from "../../hooks/useToggle";
 import { signup } from "../../redux/async thunks/authThunk";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import {toast} from 'react-toastify';
 const Signup = () => {
   const dispatch = useDispatch();
-  const [passMatch, setPassMatch] = useState(true);
-  const [passLen, setPassLen] = useState(true);
   const [showpass, setShowpass] = useToggle(false);
   const [user, setUser] = useState(null);
   const [showConfirmpass, setShowConfirmpass] = useToggle(false);
@@ -25,14 +24,15 @@ const Signup = () => {
     e.preventDefault();
     try {
       if (user.password !== user.confirmPassword) {
-        setPassMatch(false);
+        toast.error("password should match");
         return;
       }
       if (user.password.length < 8) {
-        setPassLen(false);
+        toast.error("password should be atleast 8 characters")
         return;
       }
       await dispatch(signup(user));
+      toast.success("Signed Up Successfully");
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -116,14 +116,6 @@ const Signup = () => {
               ></i>
             </div>
           </label>
-          {passMatch ? null : (
-            <span className="mismatch">Passwords Not Matching</span>
-          )}
-          {passLen ? null : (
-            <span className="mismatch">
-              Password must have minimum of 8 characters
-            </span>
-          )}
           <div>
             <label htmlFor="accept-condition">
               <input id="accept-condition" required type="checkbox" />{" "}

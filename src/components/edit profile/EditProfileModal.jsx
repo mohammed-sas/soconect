@@ -2,11 +2,12 @@ import classes from "./editProfileModal.module.css";
 import { useState } from "react";
 import { editUser } from "../../redux/async thunks/userThunk";
 import { useSelector, useDispatch } from "react-redux";
-
+import { toast } from "react-toastify";
 const EditProfileModal = ({ user, setShowModal }) => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.user);
   const [profile, setProfile] = useState(userState.bio);
+  const [submitDisable,setSubmitDisable] = useState(false);
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
@@ -16,10 +17,37 @@ const EditProfileModal = ({ user, setShowModal }) => {
     });
   };
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(editUser(profile));
-    setShowModal();
+  const submitHandler = async (e) => {
+    try {
+      e.preventDefault();
+      setSubmitDisable(true);
+      const fileInput = e.target.avatar.files[0];
+      let imageUrl = "";
+      if (fileInput) {
+        const formData = new FormData();
+        formData.append("file", fileInput);
+        formData.append("upload_preset", "gomh4n5e");
+        const response = await fetch(
+          "https://api.cloudinary.com/v1_1/dx1vtnzy6/image/upload",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+        const data = await response.json();
+        imageUrl = data.url;
+      }
+      const userProfile = {
+        image: imageUrl,
+        bio: profile,
+      };
+
+      dispatch(editUser(userProfile));
+      toast.success("Profile Updated");
+      setShowModal();
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className={classes["modal-container"]}>
@@ -34,6 +62,34 @@ const EditProfileModal = ({ user, setShowModal }) => {
           className={classes["edit-profile-form"]}
           onSubmit={submitHandler}
         >
+          <label htmlFor="avatar" className={classes["avatar-input-container"]}>
+            <span className="text-white">Avatar</span>
+            {userState.image ? (
+              <div className={`${classes["avatar-container"]} ${classes["display-pic"]}`}>
+                <img
+                  src={userState.image}
+                  alt="avatar"
+                  class="avatar avatar-md"
+                />
+                <i className="fas fa-camera text-white"></i>
+              </div>
+            ) : (
+              <div
+                className={`avatar avatar-text ${classes["avatar-container"]}`}
+              >
+                <span>{user.username.substring(0, 2).toUpperCase()}</span>
+                <i className="fas fa-camera text-white"></i>
+              </div>
+            )}
+
+            <input
+              name="avatar"
+              type="file"
+              id="avatar"
+              placeholder="choose image to upload"
+              accept="image/png, image/jpeg, image/webp"
+            />
+          </label>
           <label htmlFor="username">
             <span className="text-white">Username</span>
             <input
@@ -69,7 +125,7 @@ const EditProfileModal = ({ user, setShowModal }) => {
               onChange={changeHandler}
             />
           </label>
-          <input type="submit" value="Update" className="btn btn-primary" />
+          <input type="submit" value="Update" disabled={submitDisable} className="btn btn-primary" />
         </form>
       </div>
     </div>
