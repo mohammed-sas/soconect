@@ -3,6 +3,8 @@ import { useToggle } from "../../hooks/useToggle";
 import EditPostModal from "../edit post/EditPostModal";
 import CommentModal from "../comment/CommentModal";
 import { useNavigate } from "react-router-dom";
+import { LeafPoll, Result } from "react-leaf-polls";
+import "react-leaf-polls/dist/index.css";
 import {
   deletePost,
   likePost,
@@ -13,6 +15,14 @@ import {
   deleteBookmark,
 } from "../../redux/async thunks/userThunk";
 import { useDispatch, useSelector } from "react-redux";
+const customTheme = {
+  textColor: '#9333ea',
+  mainColor: '#9333ea',
+  backgroundColor: 'rgb(255,255,255)',
+  alignment: 'center',
+  rightColor:'#9333ea',
+  leftColor:'#9333ea'
+}
 const PostCard = ({ post }) => {
   const authState = useSelector((state) => state.auth);
   const { user } = authState;
@@ -55,6 +65,9 @@ const PostCard = ({ post }) => {
       (bookmarkedPost) => bookmarkedPost._id === postId
     );
   };
+  function vote(item, results) {
+    console.log('voted', item, results)
+  }
   return (
     <div className={classes["post-container"]}>
       {user.username === post.username && userState.image ? (
@@ -108,6 +121,18 @@ const PostCard = ({ post }) => {
             </div>
           )}
           <p className="text-white">{post.content}</p>
+          {post.poll && (
+            <div className={classes["poll-container"]}>
+              <LeafPoll
+                type="binary"
+                question={post.poll.question}
+                results={post.poll.resData}
+                theme={customTheme}
+                onVote={vote}
+                isVoted={false}
+              />
+            </div>
+          )}
         </div>
         <div className={classes["post-footer"]}>
           <div className={classes["footer-item"]} onClick={commentHandler}>

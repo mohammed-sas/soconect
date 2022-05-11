@@ -87,3 +87,8 @@
 .option-list li:hover{
   background: var(--tertiary-lightest);
 }
+
+.poll-container{
+  width:60%;
+  margin: 0 auto;
+}
