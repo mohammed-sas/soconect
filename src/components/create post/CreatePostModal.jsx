@@ -77,7 +77,7 @@ const CreatePostModal = ({ setShowModal }) => {
             accept="image/png, image/jpeg, image/webp"
           />
         </label>}
-        {isPollActive && <div style={{display:"flex",flexDirection:"column",color:"white"}}>
+        {isPollActive && <div className={classes["poll-container"]}>
           <label htmlFor="question">
             <span>Question</span>
             <input type="text" name="question"  onChange={pollHandler}/>
