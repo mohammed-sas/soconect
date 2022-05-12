@@ -18,5 +18,5 @@ export {
   UserInfo,
   ProfileCard,
   FollowingModal,
-  Hashtag
+  Hashtag,
 };

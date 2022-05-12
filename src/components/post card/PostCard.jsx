@@ -3,9 +3,9 @@ import { useToggle } from "../../hooks/useToggle";
 import EditPostModal from "../edit post/EditPostModal";
 import CommentModal from "../comment/CommentModal";
 import { useLocation, useNavigate } from "react-router-dom";
-import { LeafPoll } from "react-leaf-polls";
 import "react-leaf-polls/dist/index.css";
 import { Hashtag } from "../index";
+import {LeafPoll} from 'react-leaf-polls'
 import {
   deletePost,
   likePost,
@@ -72,6 +72,12 @@ const PostCard = ({ post }) => {
     dispatch(updatePollPost({results,postId:post._id}));
 
   }
+  const write=()=>{
+   return post.poll.resData.map(elem => {
+      return Object.assign({}, elem);
+    });
+
+  }
   return (
     <div className={classes["post-container"]}>
       {user.username === post.username && userState.image ? (
@@ -132,10 +138,10 @@ const PostCard = ({ post }) => {
               <LeafPoll
                 type="binary"
                 question={post.poll.question}
-                results={post.poll.resData}
+                results={write()}
                 theme={customTheme}
                 onVote={vote}
-                isVoted={false}
+                isVoted={post.poll.isVoted}
               />
             </div>
           )}
