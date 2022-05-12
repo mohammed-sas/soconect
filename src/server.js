@@ -16,7 +16,8 @@ import {
   getAllUserPostsHandler,
   addCommentHandler,
   deleteCommentHandler,
-  getAllHashtags
+  getAllHashtags,
+  getHashtagPosts
 } from "./backend/controllers/PostController";
 import {
   followUserHandler,
@@ -73,6 +74,7 @@ export function makeServer({ environment = "development" } = {}) {
       this.get("/posts/:postId", getPostHandler.bind(this));
       this.get("/posts/user/:username", getAllUserPostsHandler.bind(this));
       this.get("/posts/hashtags", getAllHashtags.bind(this));
+      this.get("/posts/hashtag/:hashtag", getHashtagPosts.bind(this));
 
       // post routes (private)
       this.post("/posts", createPostHandler.bind(this));

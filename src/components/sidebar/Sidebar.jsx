@@ -48,11 +48,11 @@ const Sidebar = () => {
           </div>
         </NavLink>
         <NavLink
-          to="/hashtags"
+          to="/hashtags?tag=all"
           style={({ isActive }) => (isActive ? active : null)}
         >
           <div className={classes["tab-item"]}>
-            <i class="fas fa-hashtag text-purple-400"></i>
+            <i className="fas fa-hashtag text-purple-400"></i>
             <span className="text-white">Hashtags</span>
           </div>
         </NavLink>

@@ -5,4 +5,10 @@
     border-radius: 1rem;
     font-weight: bolder;
     font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.hashtag.active{
+    background: var(--primary);
+    color:var(--white);
 }

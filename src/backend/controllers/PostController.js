@@ -371,3 +371,11 @@ export const getAllHashtags=function (schema,request){
   return new Response(200, {}, { hashtags: uniqueHashtags });  
 
 }
+
+export const getHashtagPosts=function (schema,request){
+  let posts = Array.from(this.db.posts);
+  let hashtag= request.params.hashtag;
+  let hashtagPosts = posts.filter(post=>post.hashtags.some(h=>h===hashtag));;
+  return new Response(200, {}, { hashtagPosts });  
+
+}
