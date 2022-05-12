@@ -2,10 +2,10 @@ import classes from "./postCard.module.css";
 import { useToggle } from "../../hooks/useToggle";
 import EditPostModal from "../edit post/EditPostModal";
 import CommentModal from "../comment/CommentModal";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { LeafPoll } from "react-leaf-polls";
 import "react-leaf-polls/dist/index.css";
-import {Hashtag} from '../index'
+import { Hashtag } from "../index";
 import {
   deletePost,
   likePost,
@@ -17,14 +17,15 @@ import {
 } from "../../redux/async thunks/userThunk";
 import { useDispatch, useSelector } from "react-redux";
 const customTheme = {
-  textColor: '#9333ea',
-  mainColor: '#9333ea',
-  backgroundColor: 'rgb(255,255,255)',
-  alignment: 'center',
-  rightColor:'#9333ea',
-  leftColor:'#9333ea'
-}
+  textColor: "#9333ea",
+  mainColor: "#9333ea",
+  backgroundColor: "rgb(255,255,255)",
+  alignment: "center",
+  rightColor: "#9333ea",
+  leftColor: "#9333ea",
+};
 const PostCard = ({ post }) => {
+  const location = useLocation();
   const authState = useSelector((state) => state.auth);
   const { user } = authState;
   const [showOptions, setShowOptions] = useToggle(false);
@@ -67,7 +68,7 @@ const PostCard = ({ post }) => {
     );
   };
   function vote(item, results) {
-    console.log('voted', item, results)
+    console.log("voted", item, results);
   }
   return (
     <div className={classes["post-container"]}>
@@ -86,34 +87,36 @@ const PostCard = ({ post }) => {
           >
             <span className="text-white">@{post.username}</span>
           </div>
-          <span className={classes["options"]}>
-            <i
-              className={`fas fa-ellipsis-h text-white ${classes["option-btn"]}`}
-              onClick={setShowOptions}
-            ></i>
-            {showOptions && (
-              <ul className={classes["option-list"]}>
-                {user.username === post.username && (
-                  <li onClick={deleteHandler}>
-                    <i className="far fa-trash-alt"></i> Delete Post
+          {location.pathname !== "/hashtags" && (
+            <span className={classes["options"]}>
+              <i
+                className={`fas fa-ellipsis-h text-white ${classes["option-btn"]}`}
+                onClick={setShowOptions}
+              ></i>
+              {showOptions && (
+                <ul className={classes["option-list"]}>
+                  {user.username === post.username && (
+                    <li onClick={deleteHandler}>
+                      <i className="far fa-trash-alt"></i> Delete Post
+                    </li>
+                  )}
+                  {user.username === post.username && (
+                    <li onClick={setShowEditModal}>
+                      <i className="far fa-edit"></i> Edit Post
+                    </li>
+                  )}
+                  <li onClick={bookmarkHandler}>
+                    <i
+                      className={`${
+                        checkIfBookmarked(post._id) ? "fas " : "far "
+                      } fa-bookmark`}
+                    ></i>{" "}
+                    Bookmark
                   </li>
-                )}
-                {user.username === post.username && (
-                  <li onClick={setShowEditModal}>
-                    <i className="far fa-edit"></i> Edit Post
-                  </li>
-                )}
-                <li onClick={bookmarkHandler}>
-                  <i
-                    className={`${
-                      checkIfBookmarked(post._id) ? "fas " : "far "
-                    } fa-bookmark`}
-                  ></i>{" "}
-                  Bookmark
-                </li>
-              </ul>
-            )}
-          </span>
+                </ul>
+              )}
+            </span>
+          )}
         </div>
         <div className={classes["post-body"]} onClick={viewPostHandler}>
           {post.image && (
@@ -135,27 +138,27 @@ const PostCard = ({ post }) => {
             </div>
           )}
           <div className={classes["hashtag-container"]}>
-            {
-              post.hashtags.map(tag=>{
-                return <Hashtag key={tag} tag={tag}/>
-              })
-            }
+            {post.hashtags.map((tag) => {
+              return <Hashtag key={tag} tag={tag} />;
+            })}
           </div>
         </div>
-        <div className={classes["post-footer"]}>
-          <div className={classes["footer-item"]} onClick={commentHandler}>
-            <i className="far fa-comment text-white"></i>
-            <span className="text-white">{post.comment.commentCount}</span>
+        {location.pathname !== "/hashtags" && (
+          <div className={classes["post-footer"]}>
+            <div className={classes["footer-item"]} onClick={commentHandler}>
+              <i className="far fa-comment text-white"></i>
+              <span className="text-white">{post.comment.commentCount}</span>
+            </div>
+            <div className={classes["footer-item"]} onClick={likeHandler}>
+              <i
+                className={`fas fa-heart ${
+                  checkLiked(post._id) ? "text-primary" : "text-white"
+                }`}
+              ></i>
+              <span className="text-white">{post.likes.likeCount}</span>
+            </div>
           </div>
-          <div className={classes["footer-item"]} onClick={likeHandler}>
-            <i
-              className={`fas fa-heart ${
-                checkLiked(post._id) ? "text-primary" : "text-white"
-              }`}
-            ></i>
-            <span className="text-white">{post.likes.likeCount}</span>
-          </div>
-        </div>
+        )}
       </div>
       {showEditModal && (
         <EditPostModal

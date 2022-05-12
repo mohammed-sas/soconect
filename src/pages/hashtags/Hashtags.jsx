@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink } from "react-router-dom";
-import { Hashtag } from "../../components";
+import { Hashtag,PostCard } from "../../components";
 import { getHashtags } from "../../redux/async thunks/postThunk";
 import classes from './hashtags.module.css';
 
 
 const Hashtags = () => {
     const dispatch = useDispatch();
-    const {hashtags} = useSelector(state=>state.posts);    
+    const {hashtags,currentHashtagPosts} = useSelector(state=>state.posts);    
     useEffect(()=>{
         dispatch(getHashtags());
     },[]);
@@ -18,6 +18,13 @@ const Hashtags = () => {
                 {
                     hashtags.map(tag=>{
                         return <NavLink key={tag} to={`/hashtags?tag=${tag}`}><Hashtag tag={tag}/></NavLink>
+                    })
+                }
+            </div>
+            <div className={classes["lists"]}>
+                {
+                    currentHashtagPosts.map(post=>{
+                        return <PostCard key={post._id} post={post}/>
                     })
                 }
             </div>
