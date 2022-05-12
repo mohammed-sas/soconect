@@ -5,7 +5,8 @@ import {
   followUser,
   unFollowUser,
   editUser,
-  getUser
+  getUser,
+  addToHashtag
 } from "../async thunks/userThunk";
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
   bookmarks: [],
   followers: [],
   following: [],
+  hashtag:[],
   bio: { info: "", website: "" },
   posts:[],
   loading: false,
@@ -86,6 +88,16 @@ export const userSlice = createSlice({
       state.loading = false;
     },
     [getUser.rejected]: (state) => {
+      state.loading = false;
+    },
+    [addToHashtag.pending]: (state) => {
+      state.loading = true;
+    },
+    [addToHashtag.fulfilled]: (state, { payload }) => {
+      state.hashtag=payload;
+      state.loading = false;
+    },
+    [addToHashtag.rejected]: (state) => {
       state.loading = false;
     },
   },

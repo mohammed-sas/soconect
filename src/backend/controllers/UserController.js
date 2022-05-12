@@ -319,3 +319,16 @@ export const unfollowUserHandler = function (schema, request) {
     );
   }
 };
+
+export const addHashtag=function (schema,request){
+  const user = requiresAuth.call(this, request);
+  const hashtag = request.params.hashtag;
+  const userHashtag = this.db.users.findBy({_id:user._id}).hashtag;
+  let updatedHashtag=[...userHashtag,hashtag];
+  this.db.users.update(
+    {_id:user._id},
+    {hashtag:updatedHashtag}
+  );
+  console.log(updatedHashtag);
+  return new Response(201,{},{hashtag:updatedHashtag})
+}

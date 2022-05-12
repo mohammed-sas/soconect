@@ -28,6 +28,7 @@ import {
   removePostFromBookmarkHandler,
   unfollowUserHandler,
   editUserHandler,
+  addHashtag
 } from "./backend/controllers/UserController";
 
 export function makeServer({ environment = "development" } = {}) {
@@ -51,6 +52,7 @@ export function makeServer({ environment = "development" } = {}) {
           followers: [],
           following: [],
           bookmarks: [],
+          hashtag:[],
           bio:{info:"",website:""},
           posts:posts.filter(post=>post.username===item.username)
         })
@@ -102,6 +104,7 @@ export function makeServer({ environment = "development" } = {}) {
         "/users/unfollow/:followUserId/",
         unfollowUserHandler.bind(this)
       );
+      this.post("/user/addHashtag/:hashtag",addHashtag.bind(this));
     },
   });
 }

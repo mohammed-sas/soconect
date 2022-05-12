@@ -121,3 +121,20 @@ export const editUser = createAsyncThunk("user/editUser", async (userBio) => {
     console.log(error);
   }
 });
+
+export const addToHashtag=createAsyncThunk("user/addHashtag",async (tag)=>{
+  try{
+    const token = localStorage.getItem("token");
+    const auth = {
+      headers: {
+        authorization: token,
+      },
+    };
+    const response = await axios.post(`/api/user/addHashtag/${tag}`, {}, auth);
+    if(response.status === 201){
+      return response.data.hashtag;
+    }
+  }catch(error){
+    console.log(error);
+  }
+})
