@@ -362,3 +362,12 @@ export const deleteCommentHandler = function (schema, request) {
     );
   }
 };
+
+export const getAllHashtags=function (schema,request){
+  let posts = this.db.posts;
+  let hashtagsArray = posts.map(post=>post.hashtags);
+  let hashtags = hashtagsArray.reduce((acc,curr)=>[...acc,...curr],[]);
+  let uniqueHashtags = hashtags.reduce((acc,curr)=>acc.some(tag=>tag===curr)? acc:[...acc,curr],[]);
+  return new Response(200, {}, { hashtags: uniqueHashtags });  
+
+}

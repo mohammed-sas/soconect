@@ -15,7 +15,8 @@ import {
   dislikePostHandler,
   getAllUserPostsHandler,
   addCommentHandler,
-  deleteCommentHandler
+  deleteCommentHandler,
+  getAllHashtags
 } from "./backend/controllers/PostController";
 import {
   followUserHandler,
@@ -71,6 +72,7 @@ export function makeServer({ environment = "development" } = {}) {
       this.get("/posts", getAllpostsHandler.bind(this));
       this.get("/posts/:postId", getPostHandler.bind(this));
       this.get("/posts/user/:username", getAllUserPostsHandler.bind(this));
+      this.get("/posts/hashtags", getAllHashtags.bind(this));
 
       // post routes (private)
       this.post("/posts", createPostHandler.bind(this));

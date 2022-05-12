@@ -6,6 +6,7 @@ import { logout } from "../../redux/slices/authSlice";
 import { clearPosts } from "../../redux/slices/postSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, NavLink } from "react-router-dom";
+
 const Sidebar = () => {
   const authState = useSelector((state) => state.auth);
   const { user } = authState;
@@ -47,6 +48,15 @@ const Sidebar = () => {
           </div>
         </NavLink>
         <NavLink
+          to="/hashtags"
+          style={({ isActive }) => (isActive ? active : null)}
+        >
+          <div className={classes["tab-item"]}>
+            <i class="fas fa-hashtag text-purple-400"></i>
+            <span className="text-white">Hashtags</span>
+          </div>
+        </NavLink>
+        <NavLink
           to="/profile"
           style={({ isActive }) => (isActive ? active : null)}
         >
@@ -55,11 +65,16 @@ const Sidebar = () => {
             <span className="text-white">Profile</span>
           </div>
         </NavLink>
-        <button className={`btn btn-primary ${classes["post-btn"]}`} onClick={setShowModal}>
+        <button
+          className={`btn btn-primary ${classes["post-btn"]}`}
+          onClick={setShowModal}
+        >
           Create Post
         </button>
-        <i className={`far fa-plus-square text-purple-400 ${classes["mini-create-btn"]}`} onClick={setShowModal}></i>
-        
+        <i
+          className={`far fa-plus-square text-purple-400 ${classes["mini-create-btn"]}`}
+          onClick={setShowModal}
+        ></i>
       </div>
       {user && (
         <div className={classes["profile-container"]}>
