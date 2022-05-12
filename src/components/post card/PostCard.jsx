@@ -3,8 +3,9 @@ import { useToggle } from "../../hooks/useToggle";
 import EditPostModal from "../edit post/EditPostModal";
 import CommentModal from "../comment/CommentModal";
 import { useNavigate } from "react-router-dom";
-import { LeafPoll, Result } from "react-leaf-polls";
+import { LeafPoll } from "react-leaf-polls";
 import "react-leaf-polls/dist/index.css";
+import {Hashtag} from '../index'
 import {
   deletePost,
   likePost,
@@ -133,6 +134,13 @@ const PostCard = ({ post }) => {
               />
             </div>
           )}
+          <div className={classes["hashtag-container"]}>
+            {
+              post.hashtags.map(tag=>{
+                return <Hashtag key={tag} tag={tag}/>
+              })
+            }
+          </div>
         </div>
         <div className={classes["post-footer"]}>
           <div className={classes["footer-item"]} onClick={commentHandler}>

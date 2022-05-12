@@ -1,0 +1,8 @@
+.hashtag{
+    padding: 8px 12px;
+    background: var(--tertiary-lighter);
+    color:var(--white);
+    border-radius: 1rem;
+    font-weight: bolder;
+    font-size: 1.2rem;
+}

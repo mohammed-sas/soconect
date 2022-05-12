@@ -92,3 +92,10 @@
   width:60%;
   margin: 0 auto;
 }
+
+.hashtag-container{
+  display: flex;
+  flex-flow: row wrap;
+  gap:1rem;
+  margin-top: 1rem;
+}
