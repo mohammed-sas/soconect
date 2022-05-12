@@ -329,6 +329,17 @@ export const addHashtag=function (schema,request){
     {_id:user._id},
     {hashtag:updatedHashtag}
   );
-  console.log(updatedHashtag);
+  return new Response(201,{},{hashtag:updatedHashtag})
+}
+
+export const removeHashtag=function (schema,request){
+  const user = requiresAuth.call(this, request);
+  const hashtag = request.params.hashtag;
+  const userHashtag = this.db.users.findBy({_id:user._id}).hashtag;
+  let updatedHashtag=userHashtag.filter(tag=>tag!=hashtag);
+  this.db.users.update(
+    {_id:user._id},
+    {hashtag:updatedHashtag}
+  );
   return new Response(201,{},{hashtag:updatedHashtag})
 }

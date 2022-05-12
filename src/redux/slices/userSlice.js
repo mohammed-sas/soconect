@@ -6,7 +6,8 @@ import {
   unFollowUser,
   editUser,
   getUser,
-  addToHashtag
+  addToHashtag,
+  deleteHashtag
 } from "../async thunks/userThunk";
 
 const initialState = {
@@ -98,6 +99,16 @@ export const userSlice = createSlice({
       state.loading = false;
     },
     [addToHashtag.rejected]: (state) => {
+      state.loading = false;
+    },
+    [deleteHashtag.pending]: (state) => {
+      state.loading = true;
+    },
+    [deleteHashtag.fulfilled]: (state, { payload }) => {
+      state.hashtag=payload;
+      state.loading = false;
+    },
+    [deleteHashtag.rejected]: (state) => {
       state.loading = false;
     },
   },

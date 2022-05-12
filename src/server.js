@@ -28,7 +28,8 @@ import {
   removePostFromBookmarkHandler,
   unfollowUserHandler,
   editUserHandler,
-  addHashtag
+  addHashtag,
+  removeHashtag
 } from "./backend/controllers/UserController";
 
 export function makeServer({ environment = "development" } = {}) {
@@ -105,6 +106,8 @@ export function makeServer({ environment = "development" } = {}) {
         unfollowUserHandler.bind(this)
       );
       this.post("/user/addHashtag/:hashtag",addHashtag.bind(this));
+      this.post("/user/removeHashtag/:hashtag",removeHashtag.bind(this));
+
     },
   });
 }
