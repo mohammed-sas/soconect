@@ -37,8 +37,8 @@ const CreatePostModal = ({ setShowModal }) => {
         pollObject = {
           question: poll.question,
           resData: [
-            { text: poll.answerA, votes: 0 },
-            { text: poll.answerB, votes: 0 },
+            { text: poll.answerA, votes: 0,percentage:0 },
+            { text: poll.answerB, votes: 0,percentage:0},
           ],
         };
       }

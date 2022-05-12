@@ -69,7 +69,6 @@ const PostCard = ({ post }) => {
     );
   };
   function vote(item, results) {
-    console.log("voted", item, results);
     dispatch(updatePollPost({results,postId:post._id}));
 
   }
