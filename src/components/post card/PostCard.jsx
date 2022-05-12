@@ -68,7 +68,7 @@ const PostCard = ({ post }) => {
     );
   };
   function vote(item, results) {
-    console.log("voted", item, results);
+    // console.log("voted", item, results);
   }
   return (
     <div className={classes["post-container"]}>

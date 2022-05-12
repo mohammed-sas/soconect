@@ -50,3 +50,12 @@
     flex-direction: column;
     gap: 5px;
 }
+.footer{
+    display: flex;
+    gap: 1rem;
+}
+
+.hashtag-text-area{
+    width: 100%;
+    margin-top: 1rem;
+}
