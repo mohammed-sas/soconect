@@ -379,3 +379,13 @@ export const getHashtagPosts=function (schema,request){
   return new Response(200, {}, { hashtagPosts });  
 
 }
+
+export const updatePollPost=function (schema,request){
+  const postId = request.params.postId;
+  const { results } = JSON.parse(request.requestBody);
+  let post = schema.posts.findBy({ _id: postId }).attrs;
+  post.poll.resData=results;
+  this.db.posts.update({ _id: postId }, { ...post, updatedAt: formatDate() });
+  return new Response(201, {}, { post });  
+
+}

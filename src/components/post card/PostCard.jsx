@@ -10,6 +10,7 @@ import {
   deletePost,
   likePost,
   unlikePost,
+  updatePollPost,
 } from "../../redux/async thunks/postThunk";
 import {
   addToBookmark,
@@ -68,7 +69,9 @@ const PostCard = ({ post }) => {
     );
   };
   function vote(item, results) {
-    // console.log("voted", item, results);
+    console.log("voted", item, results);
+    dispatch(updatePollPost({results,postId:post._id}));
+
   }
   return (
     <div className={classes["post-container"]}>

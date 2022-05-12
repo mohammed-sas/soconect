@@ -9,7 +9,8 @@ import {
   addComment,
   deleteComment,
   getHashtags,
-  getHashtagPosts
+  getHashtagPosts,
+  updatePollPost
 } from "../async thunks/postThunk";
 
 const initialState = {
@@ -127,6 +128,22 @@ export const postSlice = createSlice({
       state.loading = false;
     },
     [getHashtagPosts.rejected]: (state) => {
+      state.loading = false;
+    },
+    [updatePollPost.pending]: (state) => {
+      state.loading = true;
+    },
+    [updatePollPost.fulfilled]: (state, { payload }) => {
+      state.posts = state.posts.map(p=>{
+        if(p._id === payload._id){
+          return payload;
+        }else{
+          return p;
+        }
+      });
+      state.loading = false;
+    },
+    [updatePollPost.rejected]: (state) => {
       state.loading = false;
     },
   },

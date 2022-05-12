@@ -215,3 +215,17 @@ export const getHashtagPosts=createAsyncThunk(
     }
   }
 )
+
+export const updatePollPost=createAsyncThunk(
+  "/post/poll/update",
+  async ({results,postId})=>{
+    try{
+      const response = await axios.post(`/api/post/poll/${postId}`,{results});
+      if(response.status===201){
+        return response.data.post;
+      }
+    }catch(error){
+      console.log(error);
+    }
+  }
+)
