@@ -2,10 +2,12 @@ import classes from "./postCard.module.css";
 import { useToggle } from "../../hooks/useToggle";
 import EditPostModal from "../edit post/EditPostModal";
 import CommentModal from "../comment/CommentModal";
+import ShareModal from '../social share/ShareModal'
 import { useLocation, useNavigate } from "react-router-dom";
 import "react-leaf-polls/dist/index.css";
 import { Hashtag } from "../index";
-import {LeafPoll} from 'react-leaf-polls'
+import { LeafPoll } from "react-leaf-polls";
+
 import {
   deletePost,
   likePost,
@@ -24,7 +26,7 @@ const customTheme = {
   alignment: "center",
   rightColor: "#9333ea",
   leftColor: "#9333ea",
-};
+}
 const PostCard = ({ post }) => {
   const location = useLocation();
   const authState = useSelector((state) => state.auth);
@@ -32,6 +34,7 @@ const PostCard = ({ post }) => {
   const [showOptions, setShowOptions] = useToggle(false);
   const [showEditModal, setShowEditModal] = useToggle(false);
   const [showCommentModal, setShowCommentModal] = useToggle(false);
+  const [showShareModal,setShowShareModal] = useToggle(false);
   const dispatch = useDispatch();
   const { posts } = useSelector((state) => state.posts);
   const userState = useSelector((state) => state.user);
@@ -69,15 +72,13 @@ const PostCard = ({ post }) => {
     );
   };
   function vote(item, results) {
-    dispatch(updatePollPost({results,postId:post._id}));
-
+    dispatch(updatePollPost({ results, postId: post._id }));
   }
-  const write=()=>{
-   return post.poll.resData.map(elem => {
+  const write = () => {
+    return post.poll.resData.map((elem) => {
       return Object.assign({}, elem);
     });
-
-  }
+  };
   return (
     <div className={classes["post-container"]}>
       {user.username === post.username && userState.image ? (
@@ -165,6 +166,9 @@ const PostCard = ({ post }) => {
               ></i>
               <span className="text-white">{post.likes.likeCount}</span>
             </div>
+            <div className={classes["footer-item"]}>
+              <i className="fas fa-share-alt text-white" onClick={setShowShareModal}></i>
+            </div>
           </div>
         )}
       </div>
@@ -177,6 +181,9 @@ const PostCard = ({ post }) => {
       )}
       {showCommentModal && (
         <CommentModal post={post} setShowCommentModal={setShowCommentModal} />
+      )}
+      {showShareModal &&(
+        <ShareModal post={post} setShowShareModal={setShowShareModal}/>
       )}
     </div>
   );
