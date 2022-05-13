@@ -27,7 +27,7 @@ const customTheme = {
   rightColor: "#9333ea",
   leftColor: "#9333ea",
 }
-const PostCard = ({ post }) => {
+const PostCard = ({ post,innerRef }) => {
   const location = useLocation();
   const authState = useSelector((state) => state.auth);
   const { user } = authState;
@@ -80,7 +80,7 @@ const PostCard = ({ post }) => {
     });
   };
   return (
-    <div className={classes["post-container"]}>
+    <div ref={innerRef} className={classes["post-container"]}>
       {user.username === post.username && userState.image ? (
         <img src={userState.image} alt="avatar" class="avatar avatar-sm"></img>
       ) : (

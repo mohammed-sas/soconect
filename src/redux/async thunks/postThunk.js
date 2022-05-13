@@ -13,6 +13,22 @@ export const getAllPost = createAsyncThunk("users/allUsers", async () => {
   }
 });
 
+export const getNthPagePost = createAsyncThunk("posts/page", async (page) => {
+  try {
+    const response = await axios.get("/api/posts");
+    if (response.status === 200) {
+      let startIndex=page*3;
+      let endIndex=startIndex+3;
+      return  {
+        posts:response.data.posts.slice(startIndex,endIndex),
+        maxPage:Math.floor(response.data.posts.length/3),
+      }
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 export const addPost = createAsyncThunk("user/addPost", async (postData) => {
   try {
     const token = localStorage.getItem("token");

@@ -7,7 +7,7 @@ import {
   editUser,
   getUser,
   addToHashtag,
-  deleteHashtag
+  deleteHashtag,
 } from "../async thunks/userThunk";
 
 const initialState = {
