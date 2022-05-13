@@ -1,0 +1,27 @@
+.container{
+    padding: 1rem;
+    height: 100vh;
+    overflow-y: scroll;
+}
+.hashtag-container{
+    display: flex;
+    flex-flow:row wrap;
+    gap: 1rem;
+}
+.hashtag-container>*{
+    margin: 1rem;
+}
+.lists{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}

@@ -362,3 +362,31 @@ export const deleteCommentHandler = function (schema, request) {
     );
   }
 };
+
+export const getAllHashtags=function (schema,request){
+  let posts = this.db.posts;
+  let hashtagsArray = posts.map(post=>post.hashtags);
+  let hashtags = hashtagsArray.reduce((acc,curr)=>[...acc,...curr],[]);
+  let uniqueHashtags = hashtags.reduce((acc,curr)=>acc.some(tag=>tag===curr)? acc:[...acc,curr],[]);
+  return new Response(200, {}, { hashtags: uniqueHashtags });  
+
+}
+
+export const getHashtagPosts=function (schema,request){
+  let posts = Array.from(this.db.posts);
+  let hashtag= request.params.hashtag;
+  let hashtagPosts = posts.filter(post=>post.hashtags.some(h=>h===hashtag));;
+  return new Response(200, {}, { hashtagPosts });  
+
+}
+
+export const updatePollPost=function (schema,request){
+  const postId = request.params.postId;
+  const { results } = JSON.parse(request.requestBody);
+  let post = schema.posts.findBy({ _id: postId }).attrs;
+  post.poll.resData=results;
+  post.poll.isVoted=true;
+  this.db.posts.update({ _id: postId }, { ...post, updatedAt: formatDate() });
+  return new Response(201, {}, { post });  
+
+}

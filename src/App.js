@@ -2,7 +2,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import classes from "./App.module.css";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { Home, Login, Signup, DetailedPost, Bookmark, UserPost , Profile } from "./pages";
+import { Home, Login, Signup, DetailedPost, Bookmark, UserPost , Profile, Hashtags } from "./pages";
 import { RequiresAuth, Sidebar } from "./components";
 function App() {
   const location = useLocation();
@@ -49,6 +49,14 @@ function App() {
           element={
             <RequiresAuth>
               <Profile/>
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/hashtags"
+          element={
+            <RequiresAuth>
+              <Hashtags/>
             </RequiresAuth>
           }
         />

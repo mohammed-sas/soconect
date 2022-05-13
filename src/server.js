@@ -15,7 +15,10 @@ import {
   dislikePostHandler,
   getAllUserPostsHandler,
   addCommentHandler,
-  deleteCommentHandler
+  deleteCommentHandler,
+  getAllHashtags,
+  getHashtagPosts,
+  updatePollPost
 } from "./backend/controllers/PostController";
 import {
   followUserHandler,
@@ -26,6 +29,8 @@ import {
   removePostFromBookmarkHandler,
   unfollowUserHandler,
   editUserHandler,
+  addHashtag,
+  removeHashtag
 } from "./backend/controllers/UserController";
 
 export function makeServer({ environment = "development" } = {}) {
@@ -49,6 +54,7 @@ export function makeServer({ environment = "development" } = {}) {
           followers: [],
           following: [],
           bookmarks: [],
+          hashtag:[],
           bio:{info:"",website:""},
           posts:posts.filter(post=>post.username===item.username)
         })
@@ -66,14 +72,13 @@ export function makeServer({ environment = "development" } = {}) {
       this.passthrough(
         'https://api.cloudinary.com/v1_1/dx1vtnzy6/image/upload/'
       );
-      this.passthrough(
-        'https://api.cloudinary.com/v1_1/dx1vtnzy6/delete_by_token'
-      );
 
       // post routes (public)
       this.get("/posts", getAllpostsHandler.bind(this));
       this.get("/posts/:postId", getPostHandler.bind(this));
       this.get("/posts/user/:username", getAllUserPostsHandler.bind(this));
+      this.get("/posts/hashtags", getAllHashtags.bind(this));
+      this.get("/posts/hashtag/:hashtag", getHashtagPosts.bind(this));
 
       // post routes (private)
       this.post("/posts", createPostHandler.bind(this));
@@ -83,7 +88,7 @@ export function makeServer({ environment = "development" } = {}) {
       this.post("/posts/dislike/:postId", dislikePostHandler.bind(this));
       this.post("/posts/comment/:postId",addCommentHandler.bind(this));
       this.post("/posts/:postId/:commentId",deleteCommentHandler.bind(this));
-
+      this.post("/post/poll/:postId",updatePollPost.bind(this));
       // user routes (public)
       this.get("/users", getAllUsersHandler.bind(this));
       this.get("/users/:userId", getUserHandler.bind(this));
@@ -101,6 +106,9 @@ export function makeServer({ environment = "development" } = {}) {
         "/users/unfollow/:followUserId/",
         unfollowUserHandler.bind(this)
       );
+      this.post("/user/addHashtag/:hashtag",addHashtag.bind(this));
+      this.post("/user/removeHashtag/:hashtag",removeHashtag.bind(this));
+
     },
   });
 }

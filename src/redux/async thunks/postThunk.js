@@ -187,3 +187,45 @@ export const deleteComment = createAsyncThunk(
     }
   }
 );
+
+export const getHashtags=createAsyncThunk(
+  "/posts/hashtags",
+  async ()=>{
+    try{
+      const response = await axios.get("/api/posts/hashtags");
+      if(response.status===200){
+        return response.data.hashtags;
+      }
+    }catch(error){
+      console.log(error);
+    }
+  }
+)
+
+export const getHashtagPosts=createAsyncThunk(
+  "/posts/hashtag/allPosts",
+  async (tag)=>{
+    try{
+      const response = await axios.get(`/api/posts/hashtag/${tag}`);
+      if(response.status===200){
+        return response.data.hashtagPosts;
+      }
+    }catch(error){
+      console.log(error);
+    }
+  }
+)
+
+export const updatePollPost=createAsyncThunk(
+  "/post/poll/update",
+  async ({results,postId})=>{
+    try{
+      const response = await axios.post(`/api/post/poll/${postId}`,{results});
+      if(response.status===201){
+        return response.data.post;
+      }
+    }catch(error){
+      console.log(error);
+    }
+  }
+)

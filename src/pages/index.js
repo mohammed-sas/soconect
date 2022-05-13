@@ -5,4 +5,5 @@ import DetailedPost from "./detail post/DetailedPost";
 import Bookmark from "./bookmark/Bookmark";
 import UserPost from "./user post/UserPost";
 import Profile from "./profile/Profile";
-export { Home, Login, Signup, DetailedPost, Bookmark, UserPost, Profile };
+import Hashtags from './hashtags/Hashtags'
+export { Home, Login, Signup, DetailedPost, Bookmark, UserPost, Profile , Hashtags};

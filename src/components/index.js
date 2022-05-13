@@ -7,6 +7,7 @@ import RequiresAuth from "./requires auth/RequiresAuth";
 import UserInfo from "./user info/UserInfo";
 import ProfileCard from "./profile card/ProfileCard";
 import FollowingModal from "./following/FollowingModal";
+import Hashtag from './hashtag/Hashtag';
 export {
   Sidebar,
   PostCard,
@@ -17,4 +18,5 @@ export {
   UserInfo,
   ProfileCard,
   FollowingModal,
+  Hashtag,
 };
