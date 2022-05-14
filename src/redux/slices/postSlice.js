@@ -10,7 +10,8 @@ import {
   deleteComment,
   getHashtags,
   getHashtagPosts,
-  updatePollPost
+  updatePollPost,
+  getNthPagePost
 } from "../async thunks/postThunk";
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
   loading: false,
   hashtags: [],
   currentHashtagPosts:[],
+  maxPage:0
 };
 
 export const postSlice = createSlice({
@@ -144,6 +146,17 @@ export const postSlice = createSlice({
       state.loading = false;
     },
     [updatePollPost.rejected]: (state) => {
+      state.loading = false;
+    },
+    [getNthPagePost.pending]: (state) => {
+      state.loading = true;
+    },
+    [getNthPagePost.fulfilled]: (state, { payload }) => {
+      state.posts = [...state.posts,...payload.posts];
+      state.maxPage=payload.maxPage;
+      state.loading = false;
+    },
+    [getNthPagePost.rejected]: (state) => {
       state.loading = false;
     },
   },
