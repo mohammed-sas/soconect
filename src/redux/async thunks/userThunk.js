@@ -155,3 +155,14 @@ export const deleteHashtag=createAsyncThunk("user/removeHashtag",async (tag)=>{
     console.log(error);
   }
 })
+
+export const getAllStories=createAsyncThunk("users/stories",async ()=>{
+  try{
+    const response = await axios.get("api/users/stories");
+    if(response.status === 200){
+      console.log(response);
+    }
+  }catch(error){
+    console.log(error);
+  }
+})

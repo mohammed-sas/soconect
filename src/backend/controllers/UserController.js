@@ -343,3 +343,9 @@ export const removeHashtag=function (schema,request){
   );
   return new Response(201,{},{hashtag:updatedHashtag})
 }
+
+export const getAllUserStories= function (schema,request){
+  const users = Array.from(this.db.users);
+  const stories = users.map(user=>user.stories);
+  return new Response(200,{},{stories:stories});
+}
