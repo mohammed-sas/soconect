@@ -1,12 +1,14 @@
 import classes from "./profileCard.module.css";
 import { useToggle } from "../../hooks/useToggle";
 import EditProfileModal from "../edit profile/EditProfileModal";
+import FollowingHashtag from '../following hashtag/FollowingHashtag'
 import { useSelector } from "react-redux";
 import FollowingModal from "../following/FollowingModal";
 const ProfileCard = ({ user }) => {
   const userState = useSelector((state) => state.user);
   const [showModal, setShowModal] = useToggle(false);
   const [showFollowing, setShowFollowing] = useToggle(false);
+  const [showHashtags,setShowHashtags] = useToggle(false);
   const editHandler = () => {
     setShowModal();
   };
@@ -42,6 +44,12 @@ const ProfileCard = ({ user }) => {
           >
             {userState.following.length} Following
           </span>
+          <span
+            className={`text-white ${classes["following"]}`}
+            onClick={setShowHashtags}
+          >
+           {userState.hashtag.length} Hashtags
+          </span>
         </div>
         <div>
           <div className={classes["bio-container"]}>
@@ -61,6 +69,7 @@ const ProfileCard = ({ user }) => {
       {showFollowing ? (
         <FollowingModal setShowFollowing={setShowFollowing} />
       ) : null}
+      {showHashtags ? <FollowingHashtag setShowHashtags={setShowHashtags}/>: null}
     </div>
   );
 };

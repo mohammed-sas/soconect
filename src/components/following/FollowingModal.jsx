@@ -20,8 +20,8 @@ const FollowingModal = ({ setShowFollowing }) => {
                   <span className="text-primary">{user.username.substring(0, 2).toUpperCase()}</span>
                 </div>
                 <div>
-                    <h4 className="text-primary">{user.firstName+" "+user.lastName}</h4>
-                    <small className="text-primary">@{user.username}</small>
+                    <h4 className="text-white">{user.firstName+" "+user.lastName}</h4>
+                    <small className="text-white">@{user.username}</small>
                 </div>
               </div>
             );
