@@ -97,7 +97,7 @@ export const createPostHandler = function (schema, request) {
 
     this.db.posts.insert(post);
     this.db.users.update({_id:user._id},{...user,posts:user.posts.concat(post)});
-    return new Response(201, {}, { posts: this.db.posts });
+    return new Response(201, {}, { post: post});
   } catch (error) {
     return new Response(
       500,

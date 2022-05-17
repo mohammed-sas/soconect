@@ -8,6 +8,7 @@ import {
   getUser,
   addToHashtag,
   deleteHashtag,
+  getAllStories
 } from "../async thunks/userThunk";
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
   hashtag:[],
   bio: { info: "", website: "" },
   posts:[],
+  stories:[],
   loading: false,
 };
 
@@ -109,6 +111,16 @@ export const userSlice = createSlice({
       state.loading = false;
     },
     [deleteHashtag.rejected]: (state) => {
+      state.loading = false;
+    },
+    [getAllStories.pending]: (state) => {
+      state.loading = true;
+    },
+    [getAllStories.fulfilled]: (state, { payload }) => {
+      state.stories=payload;
+      state.loading = false;
+    },
+    [getAllStories.rejected]: (state) => {
       state.loading = false;
     },
   },

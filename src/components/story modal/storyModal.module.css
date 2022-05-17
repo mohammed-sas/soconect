@@ -1,0 +1,50 @@
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--tertiary);
+  z-index: 5;
+  color: var(--white);
+}
+
+.modal {
+  width: 30rem;
+  height: 30rem;
+  background: var(--tertiary-light);
+  padding: 1rem;
+  gap: 5px;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.close-btn {
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.logo {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.content{
+    height: 80%;
+}
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.footer i {
+  font-size: 1.4rem;
+  font-weight: bolder;
+  cursor: pointer;
+}

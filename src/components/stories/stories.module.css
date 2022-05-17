@@ -1,0 +1,9 @@
+.icon-list {
+  display: flex;
+  flex-flow: row nowrap;
+  overflow-x: scroll;
+  gap: 1rem;
+  width: 80%;
+  margin: 1rem auto;
+  
+}

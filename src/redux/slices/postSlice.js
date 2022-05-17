@@ -46,7 +46,7 @@ export const postSlice = createSlice({
       state.loading = true;
     },
     [addPost.fulfilled]: (state, { payload }) => {
-      state.posts = payload;
+      state.posts = state.posts.concat(payload);
       state.loading = false;
     },
     [addPost.rejected]: (state) => {
@@ -152,7 +152,7 @@ export const postSlice = createSlice({
       state.loading = true;
     },
     [getNthPagePost.fulfilled]: (state, { payload }) => {
-      state.posts = [...state.posts,...payload.posts];
+      state.posts = [...state.posts,...payload.posts].reduce((acc,curr)=>acc.some(obj=>obj._id === curr._id)?acc : [...acc,curr],[]);
       state.maxPage=payload.maxPage;
       state.loading = false;
     },

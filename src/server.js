@@ -30,7 +30,8 @@ import {
   unfollowUserHandler,
   editUserHandler,
   addHashtag,
-  removeHashtag
+  removeHashtag,
+  getAllUserStories
 } from "./backend/controllers/UserController";
 
 export function makeServer({ environment = "development" } = {}) {
@@ -108,6 +109,7 @@ export function makeServer({ environment = "development" } = {}) {
       );
       this.post("/user/addHashtag/:hashtag",addHashtag.bind(this));
       this.post("/user/removeHashtag/:hashtag",removeHashtag.bind(this));
+      this.get("/users/stories",getAllUserStories.bind(this));
 
     },
   });
