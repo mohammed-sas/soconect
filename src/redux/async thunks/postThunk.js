@@ -39,7 +39,7 @@ export const addPost = createAsyncThunk("user/addPost", async (postData) => {
     };
     const response = await axios.post("/api/posts", { postData }, auth);
     if (response.status === 201) {
-      return response.data.posts;
+      return response.data.post;
     }
   } catch (error) {
     console.log(error);
