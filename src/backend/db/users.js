@@ -12,12 +12,23 @@ export const users = [
     lastName: "Ashraf",
     username: "mohammed",
     password: "@12345678_",
-    stories:[
-      {
-        _id:"069527a3-eaca-4ed9-9acd-55b60d6a5a7f",
-        content:"Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem"
-      }
-    ],
+    stories: {
+      username: "mohammed",
+      data: [
+        {
+          _id: "04fe250c-961f-4276-b3fe-75a1568fc87a",
+
+          content:
+            "Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem",
+        },
+        {
+          _id: "0555250c-961f-4276-b3fe-75a1568fc87a",
+
+          content:
+            "A long weekend!!!!",
+        },
+      ],
+    },
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
@@ -27,12 +38,17 @@ export const users = [
     lastName: "Vahid",
     username: "vahid",
     password: "@vahid123",
-    stories:[
-      {
-        _id:"069527a3-eaca-4ed9-9acd-55b6zd6a3c7f",
-        content:"Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem"
-      }
-    ],
+    stories: {
+      username: "vahid",
+      data: [
+        {
+          _id: "04fe250c-961f-4276-b3fe-75a1568fc87a",
+
+          content:
+            "Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem",
+        },
+      ],
+    },
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
@@ -42,12 +58,17 @@ export const users = [
     lastName: "Saini",
     username: "akshay",
     password: "@saini123",
-    stories:[
-      {
-        _id:"f2907b2f-2442-4667-b35b-e12e0b03fa23",
-        content:"Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem"
-      }
-    ],
+    stories: {
+      username: "akshay",
+      data: [
+        {
+          _id: "04fe250c-961f-4276-b3fe-75a1568fc87a",
+
+          content:
+            "Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem",
+        },
+      ],
+    },
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
@@ -57,12 +78,17 @@ export const users = [
     lastName: "Kumar",
     username: "suraj",
     password: "@suraj123",
-    stories:[
-      {
-        _id:"6169d4ca-79f6-43fb-aeae-b1429aab77a7",
-        content:"Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem"
-      }
-    ],
+    stories: {
+      username: "suraj",
+      data: [
+        {
+          _id: "04fe250c-961f-4276-b3fe-75a1568fc87a",
+
+          content:
+            "Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem",
+        },
+      ],
+    },
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
@@ -72,12 +98,17 @@ export const users = [
     lastName: "Linsley",
     username: "tanner",
     password: "@linsley123",
-    stories:[
-      {
-        _id:"587ba3cc-5d52-4e88-8670-1df2171153ed",
-        content:"Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem"
-      }
-    ],
+    stories: {
+      username: "tanner",
+      data: [
+        {
+          _id: "04fe250c-961f-4276-b3fe-75a1568fc87a",
+
+          content:
+            "Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem",
+        },
+      ],
+    },
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
@@ -87,14 +118,18 @@ export const users = [
     lastName: "Khalid",
     username: "khalid",
     password: "@khalid123",
-    stories:[
-      {
-        _id:"04fe250c-961f-4276-b3fe-75a1568fc87a",
-        content:"Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem"
-      }
-    ],
+    stories: {
+      username: "khalid",
+      data: [
+        {
+          _id: "04fe250c-961f-4276-b3fe-75a1568fc87a",
+
+          content:
+            "Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem",
+        },
+      ],
+    },
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
-
 ];

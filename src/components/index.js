@@ -9,6 +9,7 @@ import ProfileCard from "./profile card/ProfileCard";
 import FollowingModal from "./following/FollowingModal";
 import Hashtag from './hashtag/Hashtag';
 import Stories from './stories/Stories';
+import UserStoryIcon from './user story icon/UserStoryIcon';
 export {
   Sidebar,
   PostCard,
@@ -20,5 +21,6 @@ export {
   ProfileCard,
   FollowingModal,
   Hashtag,
-  Stories
+  Stories,
+  UserStoryIcon
 };

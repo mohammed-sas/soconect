@@ -160,7 +160,7 @@ export const getAllStories=createAsyncThunk("users/stories",async ()=>{
   try{
     const response = await axios.get("api/users/stories");
     if(response.status === 200){
-      console.log(response);
+      return response.data.stories;
     }
   }catch(error){
     console.log(error);
