@@ -28,7 +28,7 @@ const UserInfo = ({ userId }) => {
       }
     })();
     return () => (mountedRef.current = false);
-  }, [userState]);
+  }, [userState,userId]);
 
   return (
     <>
