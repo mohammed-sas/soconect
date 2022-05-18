@@ -6,11 +6,13 @@ import { logout } from "../../redux/slices/authSlice";
 import { clearPosts } from "../../redux/slices/postSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, NavLink } from "react-router-dom";
+import SearchModal from "../search/SearchModal";
 
 const Sidebar = () => {
   const authState = useSelector((state) => state.auth);
   const { user } = authState;
   const [showModal, setShowModal] = useToggle(false);
+  const [showSearch, setShowSearch] = useToggle(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutHandler = () => {
@@ -65,6 +67,12 @@ const Sidebar = () => {
             <span className="text-white">Profile</span>
           </div>
         </NavLink>
+
+        <div className={classes["tab-item"]} onClick={setShowSearch}>
+          <i className="fas fa-search text-purple-400"></i>
+          <span className="text-white">Search</span>
+        </div>
+
         <button
           className={`btn btn-primary ${classes["post-btn"]}`}
           onClick={setShowModal}
@@ -91,6 +99,7 @@ const Sidebar = () => {
         </div>
       )}
       {showModal ? <CreatePostModal setShowModal={setShowModal} /> : null}
+      {showSearch ? <SearchModal setShowSearch={setShowSearch}/> : null}
     </aside>
   );
 };
