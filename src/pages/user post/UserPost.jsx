@@ -27,7 +27,7 @@ const UserPost = () => {
     fetchUser();
 
     return () => (mountedRef.current = false);
-  }, [postsState]);
+  }, [postsState,userId]);
   return (
     <main className={classes["user-posts-container"]}>
       {user && <UserInfo userId={user._id} />}
