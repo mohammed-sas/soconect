@@ -16,6 +16,7 @@ import {
 
 const initialState = {
   posts: [],
+  completePosts:[],
   loading: false,
   hashtags: [],
   currentHashtagPosts:[],
@@ -36,7 +37,7 @@ export const postSlice = createSlice({
       state.loading = true;
     },
     [getAllPost.fulfilled]: (state, { payload }) => {
-      state.posts = payload;
+      state.completePosts = payload;
       state.loading = false;
     },
     [getAllPost.rejected]: (state) => {

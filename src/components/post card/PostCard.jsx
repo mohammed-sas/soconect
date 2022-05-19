@@ -36,7 +36,7 @@ const PostCard = ({ post,innerRef }) => {
   const [showCommentModal, setShowCommentModal] = useToggle(false);
   const [showShareModal,setShowShareModal] = useToggle(false);
   const dispatch = useDispatch();
-  const { posts } = useSelector((state) => state.posts);
+  const {completePosts:posts} = useSelector((state) => state.posts);
   const userState = useSelector((state) => state.user);
   const navigate = useNavigate();
   const deleteHandler = () => {
@@ -44,6 +44,7 @@ const PostCard = ({ post,innerRef }) => {
     navigate("/");
   };
   const checkLiked = (postId) => {
+  
     const likeArray = posts.find((existingPost) => existingPost._id === postId)
       ?.likes?.likedBy;
     return likeArray.some((likedUser) => likedUser.username === user.username);
