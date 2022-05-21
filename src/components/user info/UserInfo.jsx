@@ -34,11 +34,7 @@ const UserInfo = ({ userId }) => {
     <>
       {user ? (
         <div className={classes["user-container"]}>
-          <div
-            className={`avatar ${classes["avatar-text-lg"]} ${classes["avatar-large"]}`}
-          >
-            <span>{user.username.substring(0, 2).toUpperCase()}</span>
-          </div>
+          <img src={user.avatar} alt="user-dp" className="avatar-lg" />
           <div className={classes["body"]}>
             <h2 className="text-white">
               {user.firstName} {user.lastName}
