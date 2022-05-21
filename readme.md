@@ -29,7 +29,6 @@ A social media app where you could connect with your loved ones and friends.
     * Profile URL
     * Profile Picture
 1. Follow/Unfollow Hashtags
-1. Infinite scroll
 1. Search functionality
 1. Alerts   
 
