@@ -1,13 +1,29 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import classes from "./App.module.css";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
-import { Home, Login, Signup, DetailedPost, Bookmark, UserPost , Profile, Hashtags } from "./pages";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+import {
+  Home,
+  Login,
+  Signup,
+  DetailedPost,
+  Bookmark,
+  UserPost,
+  Profile,
+  Hashtags,
+  NotFound,
+} from "./pages";
 import { RequiresAuth, Sidebar } from "./components";
 function App() {
   const location = useLocation();
   return (
-    <div className={location.pathname!=="/login" && location.pathname !== "/signup" ? classes["container"]:""}>
+    <div
+      className={
+        location.pathname !== "/login" && location.pathname !== "/signup"
+          ? classes["container"]
+          : ""
+      }
+    >
       {location.pathname !== "/login" && location.pathname !== "/signup" ? (
         <Sidebar />
       ) : null}
@@ -48,7 +64,7 @@ function App() {
           path="/profile"
           element={
             <RequiresAuth>
-              <Profile/>
+              <Profile />
             </RequiresAuth>
           }
         />
@@ -56,26 +72,34 @@ function App() {
           path="/hashtags"
           element={
             <RequiresAuth>
-              <Hashtags/>
+              <Hashtags />
             </RequiresAuth>
           }
         />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route
+          path="*"
+          element={
+            <RequiresAuth>
+              <NotFound />
+            </RequiresAuth>
+          }
+        />
       </Routes>
       <ToastContainer
-				theme="colored"
-				position="top-right"
-				autoClose={2000}
-				hideProgressBar={false}
-				newestOnTop={false}
-				closeOnClick
-        style={{fontSize:"1.4rem"}}
-				rtl={false}
-				pauseOnFocusLoss
-				draggable
-				pauseOnHover
-			/>
+        theme="colored"
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        style={{ fontSize: "1.4rem" }}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

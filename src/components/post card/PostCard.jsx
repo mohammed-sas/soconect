@@ -2,7 +2,7 @@ import classes from "./postCard.module.css";
 import { useToggle } from "../../hooks/useToggle";
 import EditPostModal from "../edit post/EditPostModal";
 import CommentModal from "../comment/CommentModal";
-import ShareModal from '../social share/ShareModal'
+import ShareModal from "../social share/ShareModal";
 import { useLocation, useNavigate } from "react-router-dom";
 import "react-leaf-polls/dist/index.css";
 import { Hashtag } from "../index";
@@ -26,17 +26,17 @@ const customTheme = {
   alignment: "center",
   rightColor: "#9333ea",
   leftColor: "#9333ea",
-}
-const PostCard = ({ post,innerRef }) => {
+};
+const PostCard = ({ post }) => {
   const location = useLocation();
   const authState = useSelector((state) => state.auth);
   const { user } = authState;
   const [showOptions, setShowOptions] = useToggle(false);
   const [showEditModal, setShowEditModal] = useToggle(false);
   const [showCommentModal, setShowCommentModal] = useToggle(false);
-  const [showShareModal,setShowShareModal] = useToggle(false);
+  const [showShareModal, setShowShareModal] = useToggle(false);
   const dispatch = useDispatch();
-  const {completePosts:posts} = useSelector((state) => state.posts);
+  const { posts } = useSelector((state) => state.posts);
   const userState = useSelector((state) => state.user);
   const navigate = useNavigate();
   const deleteHandler = () => {
@@ -44,7 +44,6 @@ const PostCard = ({ post,innerRef }) => {
     navigate("/");
   };
   const checkLiked = (postId) => {
-  
     const likeArray = posts.find((existingPost) => existingPost._id === postId)
       ?.likes?.likedBy;
     return likeArray.some((likedUser) => likedUser.username === user.username);
@@ -81,9 +80,9 @@ const PostCard = ({ post,innerRef }) => {
     });
   };
   return (
-    <div ref={innerRef} className={classes["post-container"]}>
-      {user.username === post.username && userState.image ? (
-        <img src={userState.image} alt="avatar" class="avatar avatar-sm"></img>
+    <div className={classes["post-container"]}>
+      {userState.image || post.avatar ? (
+        <img src={userState.image? userState.image : post.avatar} alt="avatar" className="avatar-sm"></img>
       ) : (
         <div className="avatar avatar-text">
           <span>{post.username.substring(0, 2).toUpperCase()}</span>
@@ -149,7 +148,7 @@ const PostCard = ({ post,innerRef }) => {
           )}
           <div className={classes["hashtag-container"]}>
             {post.hashtags.map((tag) => {
-              return <Hashtag key={tag} tag={tag} />;
+              if (tag !== "") return <Hashtag key={tag} tag={tag} />;
             })}
           </div>
         </div>
@@ -168,7 +167,10 @@ const PostCard = ({ post,innerRef }) => {
               <span className="text-white">{post.likes.likeCount}</span>
             </div>
             <div className={classes["footer-item"]}>
-              <i className="fas fa-share-alt text-white" onClick={setShowShareModal}></i>
+              <i
+                className="fas fa-share-alt text-white"
+                onClick={setShowShareModal}
+              ></i>
             </div>
           </div>
         )}
@@ -183,8 +185,8 @@ const PostCard = ({ post,innerRef }) => {
       {showCommentModal && (
         <CommentModal post={post} setShowCommentModal={setShowCommentModal} />
       )}
-      {showShareModal &&(
-        <ShareModal post={post} setShowShareModal={setShowShareModal}/>
+      {showShareModal && (
+        <ShareModal post={post} setShowShareModal={setShowShareModal} />
       )}
     </div>
   );

@@ -11,16 +11,13 @@ import {
   getHashtags,
   getHashtagPosts,
   updatePollPost,
-  getNthPagePost
 } from "../async thunks/postThunk";
 
 const initialState = {
   posts: [],
-  completePosts:[],
   loading: false,
   hashtags: [],
   currentHashtagPosts:[],
-  maxPage:0
 };
 
 export const postSlice = createSlice({
@@ -37,7 +34,7 @@ export const postSlice = createSlice({
       state.loading = true;
     },
     [getAllPost.fulfilled]: (state, { payload }) => {
-      state.completePosts = payload;
+      state.posts = payload;
       state.loading = false;
     },
     [getAllPost.rejected]: (state) => {
@@ -147,17 +144,6 @@ export const postSlice = createSlice({
       state.loading = false;
     },
     [updatePollPost.rejected]: (state) => {
-      state.loading = false;
-    },
-    [getNthPagePost.pending]: (state) => {
-      state.loading = true;
-    },
-    [getNthPagePost.fulfilled]: (state, { payload }) => {
-      state.posts = [...state.posts,...payload.posts].reduce((acc,curr)=>acc.some(obj=>obj._id === curr._id)?acc : [...acc,curr],[]);
-      state.maxPage=payload.maxPage;
-      state.loading = false;
-    },
-    [getNthPagePost.rejected]: (state) => {
       state.loading = false;
     },
   },
