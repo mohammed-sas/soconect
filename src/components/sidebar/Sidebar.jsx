@@ -36,10 +36,6 @@ const Sidebar = () => {
             <span className="text-white">Home</span>
           </div>
         </NavLink>
-        <div className={classes["tab-item"]}>
-          <i className="fas fa-bell text-purple-400"></i>
-          <span className="text-white">Notifications</span>
-        </div>
         <NavLink
           to="/bookmark"
           style={({ isActive }) => (isActive ? active : null)}
