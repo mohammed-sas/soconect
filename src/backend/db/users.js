@@ -18,8 +18,7 @@ export const users = [
         {
           _id: "04fe250c-961f-4276-b3fe-75a1568fc87a",
 
-          content:
-            "Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem",
+          content:"When I code, I talk to myself out loud and explain what I'm doing as I would in a video.If you haven't tried it, I would recommend it. It helps me think more clearly.Although, you probably shouldn't do it in public 😄",
         },
         {
           _id: "0555250c-961f-4276-b3fe-75a1568fc87a",
@@ -38,6 +37,7 @@ export const users = [
     lastName: "Vahid",
     username: "vahid",
     password: "@vahid123",
+    avatar:"https://res.cloudinary.com/dx1vtnzy6/image/upload/v1653125648/my-uploads/avataaars_vwvich.png",
     stories: {
       username: "vahid",
       data: [
@@ -45,7 +45,7 @@ export const users = [
           _id: "04fe250c-961f-4276-b3fe-75a1568fc87a",
 
           content:
-            "Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem",
+            "I'm really digging @Alpine_JS. This is very useful when you don't want to use a large framework but just need some basic interactivity. It almost reminds me of jQuery.",
         },
       ],
     },
@@ -58,6 +58,7 @@ export const users = [
     lastName: "Saini",
     username: "akshay",
     password: "@saini123",
+    avatar:"https://res.cloudinary.com/dx1vtnzy6/image/upload/v1653126084/my-uploads/avataaars_1_vmwffm.png",
     stories: {
       username: "akshay",
       data: [
@@ -65,7 +66,7 @@ export const users = [
           _id: "04fe250c-961f-4276-b3fe-75a1568fc87a",
 
           content:
-            "Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem",
+           "Coding challenges are tough but incredibly useful.They help with general problem-solving abilities and you learn more about certain methods, concepts, patterns, etc.You'll probably feel dumb at first, but spend 30 mins per day and watch how much you improve.",
         },
       ],
     },
@@ -78,6 +79,7 @@ export const users = [
     lastName: "Kumar",
     username: "suraj",
     password: "@suraj123",
+    avatar:"https://res.cloudinary.com/dx1vtnzy6/image/upload/v1653126280/my-uploads/avataaars_2_cw1hc0.png",
     stories: {
       username: "suraj",
       data: [
@@ -85,7 +87,7 @@ export const users = [
           _id: "04fe250c-961f-4276-b3fe-75a1568fc87a",
 
           content:
-            "Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem",
+            "There are certain blocks of code and even terminal commands that I've had to look up literally for years.Don't sweat it if you have a hard time remembering. Hell, I look up stuff from my own tutorials 😆",
         },
       ],
     },
@@ -98,6 +100,7 @@ export const users = [
     lastName: "Linsley",
     username: "tanner",
     password: "@linsley123",
+    avatar:"https://res.cloudinary.com/dx1vtnzy6/image/upload/v1653126607/my-uploads/avataaars_4_j5fxmd.png",
     stories: {
       username: "tanner",
       data: [
@@ -105,7 +108,7 @@ export const users = [
           _id: "04fe250c-961f-4276-b3fe-75a1568fc87a",
 
           content:
-            "Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem",
+           "I absolutely love @tailwindcss. Just testing out layouts and messing around in the browser is so much easier and faster than it's ever been before. I think for many projects, it eliminates the need for design software. completely. Just my opinion though.",
         },
       ],
     },
@@ -118,6 +121,7 @@ export const users = [
     lastName: "Khalid",
     username: "khalid",
     password: "@khalid123",
+    avatar:"https://res.cloudinary.com/dx1vtnzy6/image/upload/v1653126430/my-uploads/avataaars_3_efqu2r.png",
     stories: {
       username: "khalid",
       data: [
@@ -125,7 +129,7 @@ export const users = [
           _id: "04fe250c-961f-4276-b3fe-75a1568fc87a",
 
           content:
-            "Vivamus tempor magna id urna cursus, vitae porta ex pharetra. Phasellus nulla sem, fringilla at sem et, placerat sagittis sapien. In hac habitasse platea dictumst. Maecenas ullamcorper ultrices metus in ornare. Nam venenatis massa diam, ut fringilla tortor rutrum ut. Vestibulum mattis justo turpis, quis laoreet lorem",
+           "The life of a developer is not all fun and games and great cafeteria food. Let's talk about some of the everyday frustrations and some ways to deal with them.",
         },
       ],
     },
