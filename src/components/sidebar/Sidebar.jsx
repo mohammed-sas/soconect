@@ -50,7 +50,7 @@ const Sidebar = () => {
           </div>
         </NavLink>
         <NavLink
-          to="/hashtags?tag=all"
+          to="/hashtags?tag=javascript"
           style={({ isActive }) => (isActive ? active : null)}
         >
           <div className={classes["tab-item"]}>
