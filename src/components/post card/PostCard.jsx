@@ -27,7 +27,7 @@ const customTheme = {
   rightColor: "#9333ea",
   leftColor: "#9333ea",
 }
-const PostCard = ({ post,innerRef }) => {
+const PostCard = ({ post }) => {
   const location = useLocation();
   const authState = useSelector((state) => state.auth);
   const { user } = authState;
@@ -36,7 +36,7 @@ const PostCard = ({ post,innerRef }) => {
   const [showCommentModal, setShowCommentModal] = useToggle(false);
   const [showShareModal,setShowShareModal] = useToggle(false);
   const dispatch = useDispatch();
-  const {completePosts:posts} = useSelector((state) => state.posts);
+  const {posts} = useSelector((state) => state.posts);
   const userState = useSelector((state) => state.user);
   const navigate = useNavigate();
   const deleteHandler = () => {
@@ -81,7 +81,7 @@ const PostCard = ({ post,innerRef }) => {
     });
   };
   return (
-    <div ref={innerRef} className={classes["post-container"]}>
+ <div className={classes["post-container"]}>
       {user.username === post.username && userState.image ? (
         <img src={userState.image} alt="avatar" class="avatar avatar-sm"></img>
       ) : (

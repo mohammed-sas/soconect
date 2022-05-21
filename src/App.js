@@ -78,7 +78,14 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="*" element={<RequiresAuth><NotFound /></RequiresAuth>} />
+        <Route
+          path="*"
+          element={
+            <RequiresAuth>
+              <NotFound />
+            </RequiresAuth>
+          }
+        />
       </Routes>
       <ToastContainer
         theme="colored"
