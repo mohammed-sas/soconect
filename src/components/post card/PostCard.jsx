@@ -91,8 +91,9 @@ const PostCard = ({ post }) => {
   };
   return (
     <div className={classes["post-container"]}>
-      {userState.image || post.avatar ? (
-        <img src={userState.image? userState.image : post.avatar} alt="avatar" className="avatar-sm"></img>
+
+      {post.avatar || (user.username===post.username && userState.image) ? (
+        <img src={user.username=== post.username? userState.image : post.avatar} alt="avatar" className="avatar-sm"></img>
       ) : (
         <div className="avatar avatar-text">
           <span>{post.username.substring(0, 2).toUpperCase()}</span>

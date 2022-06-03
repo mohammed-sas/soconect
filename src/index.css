@@ -47,6 +47,9 @@ a{
 .avatar{
   background: var(--primary);
 }
+.avatar-sm{
+  border-radius: 50%;
+}
 .avatar span{
   color: var(--white);
   font-weight: bolder;
