@@ -1,6 +1,7 @@
 import classes from "./login.module.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import hero from "../../assets/logo.webp";
+import text from '../../assets/hero-text.png';
 import { login } from "../../redux/async thunks/authThunk";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -43,6 +44,7 @@ const Login = () => {
     <div className={classes["login-container"]}>
       <div className={classes["hero-image"]}>
         <img src={hero} alt="logo" />
+        <img src={text} alt="hero-text" />
       </div>
       <div className={classes["login-form-container"]}>
         <h2 className="centered-text text-white">Login</h2>
