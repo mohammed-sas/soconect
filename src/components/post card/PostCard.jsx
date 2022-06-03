@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "react-leaf-polls/dist/index.css";
 import { Hashtag } from "../index";
 import { LeafPoll } from "react-leaf-polls";
-
+import { toast } from "react-toastify";
 import {
   deletePost,
   likePost,
@@ -50,9 +50,14 @@ const PostCard = ({ post }) => {
   };
 
   const likeHandler = () => {
-    checkLiked(post._id)
-      ? dispatch(unlikePost(post._id))
-      : dispatch(likePost(post._id));
+    if(checkLiked(post._id)){
+      dispatch(unlikePost(post._id));
+      toast.success("Post Unliked");
+    }else{
+      dispatch(likePost(post._id));
+      toast.success("Post Liked");
+    }
+      
   };
   const commentHandler = (e) => {
     e.stopPropagation();
@@ -62,9 +67,14 @@ const PostCard = ({ post }) => {
     navigate(`/posts/${post._id}`);
   };
   const bookmarkHandler = () => {
-    checkIfBookmarked(post._id)
-      ? dispatch(deleteBookmark(post._id))
-      : dispatch(addToBookmark(post._id));
+    if(checkIfBookmarked(post._id)){
+      dispatch(deleteBookmark(post._id));
+      toast.success("Removed Bookmark")
+    }else{
+      dispatch(addToBookmark(post._id));
+      toast.success("Added Bookmark");
+    }
+  
   };
   const checkIfBookmarked = (postId) => {
     return userState.bookmarks.find(

@@ -1,10 +1,12 @@
 import classes from './commentCard.module.css';
 import { deleteComment } from "../../redux/async thunks/postThunk";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 const CommentCard = ({comment,post}) => {
     const dispatch = useDispatch();
     const deleteHandler=async ()=>{
         dispatch(deleteComment({commentId:comment._id,postId:post._id})); 
+        toast.success("Comment Deleted");
     }
     return (
         <div className={classes["comment-card"]}>

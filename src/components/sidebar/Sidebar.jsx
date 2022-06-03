@@ -7,6 +7,7 @@ import { clearPosts } from "../../redux/slices/postSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, NavLink } from "react-router-dom";
 import SearchModal from "../search/SearchModal";
+import { toast } from "react-toastify";
 
 const Sidebar = () => {
   const authState = useSelector((state) => state.auth);
@@ -18,6 +19,7 @@ const Sidebar = () => {
   const logoutHandler = () => {
     dispatch(logout());
     navigate("/login");
+    toast.success("Logged out successfully");
     dispatch(clearPosts());
   };
   let active = {
