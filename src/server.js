@@ -56,7 +56,7 @@ export function makeServer({ environment = "development" } = {}) {
           following: [],
           bookmarks: [],
           hashtag:[],
-          bio:{info:"",website:""},
+          bio:{info:"frontend developer",website:"https://hashnode.com"},
           posts:posts.filter(post=>post.username===item.username)
         })
       );

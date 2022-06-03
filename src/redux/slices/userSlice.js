@@ -17,7 +17,7 @@ const initialState = {
   followers: [],
   following: [],
   hashtag:[],
-  bio: { info: "", website: "" },
+  bio: { info: "frontend developer", website: "https://hashnode.com" },
   posts:[],
   stories:[],
   loading: false,

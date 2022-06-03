@@ -28,6 +28,7 @@ export const users = [
         },
       ],
     },
+    bio:{info:"frontend developer",website:"https://hashnode.com"},
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
