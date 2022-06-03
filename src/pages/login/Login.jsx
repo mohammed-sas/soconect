@@ -1,11 +1,11 @@
 import classes from "./login.module.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import hero from "../../assets/logo.webp";
-import text from '../../assets/hero-text.png';
+import text from "../../assets/hero-text.png";
 import { login } from "../../redux/async thunks/authThunk";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -30,13 +30,18 @@ const Login = () => {
     };
     setUser(guestUser);
   };
-  const submitHandler =async (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    try{
-    await dispatch(login(user));
-    navigate(from, { replace: true });
-    toast.success("logged in successfully");
-    }catch(error){
+    try {
+      console.log(user);
+      if (user.username === "" || user.password === "") {
+        toast.error("kindly enter username and password");
+        return;
+      }
+      await dispatch(login(user));
+      navigate(from, { replace: true });
+      toast.success("logged in successfully");
+    } catch (error) {
       console.log(error);
     }
   };
