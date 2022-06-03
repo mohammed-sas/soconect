@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { getHashtagPosts } from "../../redux/async thunks/postThunk";
 import classes from './hashtag.module.css';
 const Hashtag = ({ tag }) => {

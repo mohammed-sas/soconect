@@ -33,7 +33,6 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      console.log(user);
       if (user.username === "" || user.password === "") {
         toast.error("kindly enter username and password");
         return;
